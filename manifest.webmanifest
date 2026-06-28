@@ -1,1 +1,1 @@
-{"name":"FORGE","short_name":"FORGE","start_url":"./?v=9.2","display":"standalone","background_color":"#090909","theme_color":"#ff5a1f","icons":[]}
+{"name": "FORGE", "short_name": "FORGE", "start_url": "./index.html", "display": "standalone", "background_color": "#0d0d0f", "theme_color": "#0d0d0f", "icons": []}
