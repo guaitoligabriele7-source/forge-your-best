@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#ff6b00" />
+<link rel="manifest" href="manifest.webmanifest">
+<title>FORGE</title>
+<style>
+:root{--bg:#0c0c0e;--card:#171719;--card2:#222226;--txt:#f6f3ee;--muted:#a8a6a1;--orange:#ff6b00;--red:#e63946;--green:#21c55d;--line:#313136;--blue:#38bdf8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#2b1504 0,#0c0c0e 38%,#050506 100%);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:84px}.wrap{max-width:760px;margin:0 auto;padding:18px}.hero{padding:24px 18px;border:1px solid rgba(255,107,0,.35);border-radius:28px;background:linear-gradient(135deg,rgba(255,107,0,.18),rgba(230,57,70,.08),rgba(255,255,255,.03));box-shadow:0 20px 50px rgba(0,0,0,.35);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:180px;height:180px;background:rgba(255,107,0,.16);border-radius:50%;filter:blur(18px)}.brand{display:flex;align-items:center;gap:12px}.logo{width:58px;height:58px;border-radius:18px;background:linear-gradient(135deg,#ff6b00,#e63946);display:grid;place-items:center;font-weight:900;font-size:24px;box-shadow:0 8px 24px rgba(255,107,0,.25)}h1{font-size:37px;line-height:.9;margin:0;letter-spacing:-1px}.tag{color:#fff;margin-top:6px;font-weight:800;letter-spacing:.6px}.sub{color:var(--muted);font-size:14px;margin-top:4px}.primary{width:100%;border:0;border-radius:18px;padding:17px 18px;margin-top:18px;background:linear-gradient(135deg,var(--orange),var(--red));color:white;font-weight:900;font-size:17px;letter-spacing:.6px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px}.stat b{display:block;font-size:21px}.stat span{color:var(--muted);font-size:12px}.section{display:none}.section.active{display:block}.card{background:rgba(23,23,25,.94);border:1px solid var(--line);border-radius:24px;padding:16px;margin:14px 0;box-shadow:0 12px 30px rgba(0,0,0,.22)}.card h2,.card h3{margin:0 0 10px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pill{border:1px solid var(--line);background:var(--card2);color:var(--txt);border-radius:999px;padding:10px 13px;font-weight:700}.pill.active{background:rgba(255,107,0,.18);border-color:var(--orange);color:#fff}.field{width:100%;background:#0e0e10;color:var(--txt);border:1px solid var(--line);border-radius:14px;padding:13px;margin:6px 0}button{cursor:pointer}.btn{border:0;border-radius:14px;padding:13px 14px;background:var(--card2);color:var(--txt);font-weight:800}.btn.orange{background:var(--orange);color:#fff}.btn.red{background:var(--red);color:#fff}.btn.green{background:var(--green);color:#06140a}.btn.outline{border:1px solid var(--line);background:transparent}.small{font-size:13px;color:var(--muted)}.wodbox{border:1px solid rgba(255,107,0,.35);background:linear-gradient(180deg,rgba(255,107,0,.08),rgba(255,255,255,.03));border-radius:22px;padding:15px;margin-top:12px}.exercise{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}.exercise:last-child{border-bottom:none}.info{border:0;border-radius:50%;width:28px;height:28px;background:rgba(255,107,0,.2);color:#fff;font-weight:900}.timer{font-size:48px;font-weight:900;letter-spacing:1px;text-align:center;margin:12px 0}.rounds{text-align:center;font-size:26px;font-weight:900}.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,12,.96);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px;z-index:3}.tab{color:var(--muted);background:none;border:0;font-size:11px;font-weight:800;padding:7px 4px}.tab.active{color:var(--orange)}.checkrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.check{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px}.check input{transform:scale(1.2);margin-right:8px}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10;padding:18px;overflow:auto}.modal.active{display:block}.modalbox{max-width:620px;margin:40px auto;background:#151517;border:1px solid var(--line);border-radius:24px;padding:18px}.close{float:right;background:#2a2a2e;color:white;border:0;border-radius:12px;padding:8px 10px}.listitem{padding:12px;border:1px solid var(--line);border-radius:14px;margin:8px 0;background:#101012}.badge{display:inline-block;border-radius:999px;background:rgba(255,107,0,.15);color:#ffb172;padding:6px 9px;font-size:12px;font-weight:800}.table{width:100%;border-collapse:collapse;overflow:hidden}.table td,.table th{border-bottom:1px solid var(--line);padding:10px;text-align:left}.table th{color:#ffb172}.quote{font-style:italic;color:#ddd}.lang{position:absolute;right:14px;top:14px;z-index:2}.hidden{display:none!important}@media(min-width:700px){.grid3{display:grid;grid-template-columns:1fr 1fr;gap:14px}.checkrow{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="home" class="section active">
+    <div class="hero">
+      <select id="lang" class="field lang" style="width:82px;padding:8px"><option value="it">IT</option><option value="en">EN</option></select>
+      <div class="brand"><div class="logo">F</div><div><h1>FORGE</h1><div class="tag">Train. Track. Evolve.</div><div class="sub">Forge Your Best · Functional Fitness & Calisthenics</div></div></div>
+      <button class="primary" onclick="go('wod')">🔥 BEGIN FORGING</button>
+      <div class="grid">
+        <div class="stat"><b id="streak">0</b><span>Streak giorni</span></div>
+        <div class="stat"><b id="monthCount">0</b><span>Allenamenti mese</span></div>
+        <div class="stat"><b id="lastWod">-</b><span>Ultimo WOD</span></div>
+        <div class="stat"><b id="bodyWeight">-</b><span>Peso attuale</span></div>
+      </div>
+    </div>
+    <div class="card"><h3>🧠 AI Coach</h3><p id="coach" class="small"></p></div>
+    <div class="grid3">
+      <div class="card"><h3>📲 Condividi FORGE</h3><p class="small">Manda il link a un amico o a un coach per provarla.</p><button class="btn orange" onclick="shareApp()">Condividi app</button><input class="field" id="shareLink" readonly></div>
+      <div class="card"><h3>🎯 Missione</h3><p class="quote">Non serve il momento perfetto. Serve iniziare a forgiare.</p></div>
+    </div>
+  </section>
+
+  <section id="wod" class="section">
+    <div class="card"><h2>🔥 WOD Generator</h2>
+      <div class="row"><button class="pill active" data-mode="hybrid" onclick="setMode(this)">Hybrid</button><button class="pill" data-mode="functional" onclick="setMode(this)">Functional</button><button class="pill" data-mode="calisthenics" onclick="setMode(this)">Calisthenics</button></div>
+      <h3 style="margin-top:14px">Dove ti alleni?</h3><div class="row"><button class="pill active" data-place="home" onclick="setPlace(this)">Casa</button><button class="pill" data-place="gym" onclick="setPlace(this)">Palestra</button><button class="pill" data-place="box" onclick="setPlace(this)">Box</button></div>
+      <h3 style="margin-top:14px">Blocchi da eseguire oggi</h3><div class="checkrow"><label class="check"><input type="checkbox" id="doWarm" checked>Warm-up</label><label class="check"><input type="checkbox" id="doWod" checked>WOD</label><label class="check"><input type="checkbox" id="doCool" checked>Post-WOD</label><label class="check"><input type="checkbox" id="doMob">Mobilità</label></div>
+      <h3 style="margin-top:14px">Attrezzatura</h3><div class="checkrow"><label class="check"><input type="checkbox" class="eq" value="body" checked>Corpo libero</label><label class="check"><input type="checkbox" class="eq" value="rope">Corda</label><label class="check"><input type="checkbox" class="eq" value="bands">Elastici</label><label class="check"><input type="checkbox" class="eq" value="db">Manubri</label><label class="check"><input type="checkbox" class="eq" value="kb">Kettlebell</label><label class="check"><input type="checkbox" class="eq" value="barbell">Bilanciere</label><label class="check"><input type="checkbox" class="eq" value="pullbar">Sbarra</label><label class="check"><input type="checkbox" class="eq" value="rings">Anelli</label></div>
+      <div class="row" style="margin-top:12px"><select id="duration" class="field" style="max-width:180px"><option value="20">20 min</option><option value="30">30 min</option><option value="45" selected>45 min</option><option value="60">60 min</option></select><button class="btn orange" onclick="generateWorkout()">Genera allenamento</button></div>
+    </div>
+    <div id="workout"></div>
+  </section>
+
+  <section id="timer" class="section">
+    <div class="card"><h2>⏱️ Timer separati</h2><p class="small">Il timer del WOD resta separato da warm-up e post-WOD.</p></div>
+    <div id="timers"></div>
+  </section>
+
+  <section id="academy" class="section">
+    <div class="card"><h2>📚 FORGE Academy</h2><p class="small">Tocca un esercizio per vedere esecuzione, errori comuni e cosa sviluppa.</p><input id="searchEx" class="field" placeholder="Cerca esercizio..." oninput="renderAcademy()"></div><div id="academyList"></div>
+  </section>
+
+  <section id="log" class="section">
+    <div class="card"><h2>📅 Workout Journal</h2><p class="small">Allenamenti salvati per giorno, mese e anno.</p><button class="btn red" onclick="clearHistory()">Svuota storico</button></div><div id="history"></div>
+  </section>
+
+  <section id="profile" class="section">
+    <div class="card"><h2>👤 Athlete Profile</h2><input id="name" class="field" placeholder="Nome atleta"><input id="weight" class="field" type="number" placeholder="Peso corporeo kg"><select id="level" class="field"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option><option>Elite</option></select><select id="discipline" class="field"><option>Functional Fitness</option><option>Calisthenics</option><option selected>Hybrid Athlete</option></select><textarea id="bio" class="field" placeholder="Bio / motto personale"></textarea><button class="btn orange" onclick="saveProfile()">Salva profilo</button></div>
+    <div class="card"><h2>🏋️ PR & Benchmark</h2><div id="prs"></div><button class="btn orange" onclick="savePRs()">Salva PR</button></div>
+  </section>
+</div>
+
+<div class="tabs"><button class="tab active" onclick="go('home')">Home</button><button class="tab" onclick="go('wod')">WOD</button><button class="tab" onclick="go('timer')">Timer</button><button class="tab" onclick="go('academy')">Academy</button><button class="tab" onclick="go('log')">Storico</button><button class="tab" onclick="go('profile')">Profilo</button></div>
+<div id="modal" class="modal"><div class="modalbox"><button class="close" onclick="closeModal()">Chiudi</button><div id="modalContent"></div></div></div>
+<script>
+const APP_URL='https://guaitoligabriele7-source.github.io/forge-your-best/';
+let state={mode:'hybrid',place:'home',current:null,timers:{warm:0,wod:0,cool:0},interval:null,activeTimer:null};
+const EX={
+ 'Air Squat':{type:'body',desc:'Piedi circa larghezza spalle, scendi portando le anche indietro e in basso, ginocchia in linea con le punte, petto alto. Risali spingendo il pavimento.',why:'Fondamentale per imparare lo schema dello squat, migliorare gambe, glutei e controllo del core.',mistakes:'Ginocchia che collassano, talloni che si alzano, schiena che si chiude.',muscles:'Quadricipiti, glutei, core'},
+ 'Push-up':{type:'body',desc:'Mani sotto le spalle, corpo in linea, scendi con controllo fino a sfiorare il pavimento e risali mantenendo addome attivo.',why:'Costruisce forza di spinta e controllo del tronco.',mistakes:'Bacino che cade, gomiti troppo larghi, ROM incompleto.',muscles:'Pettorali, tricipiti, spalle, core'},
+ 'Burpee':{type:'body',desc:'Scendi a terra in plank, petto al pavimento, risali portando i piedi sotto il corpo e termina con piccolo salto.',why:'Ottimo per conditioning, resistenza muscolare e capacità di rialzarsi rapidamente.',mistakes:'Iperestendere la schiena, perdere ritmo, atterrare pesante.',muscles:'Full body, cardio'},
+ 'Jump Rope':{type:'rope',desc:'Salta basso, gomiti vicini al corpo e movimento dai polsi. Mantieni ritmo regolare e atterraggio morbido.',why:'Migliora coordinazione, cardio, elasticità di caviglia e timing.',mistakes:'Saltare troppo alto, ruotare dalle spalle, corpo rigido.',muscles:'Polpacci, spalle, cardio'},
+ 'Band Row':{type:'bands',desc:'Fissa l’elastico, tira verso il busto portando i gomiti indietro e stringendo le scapole.',why:'Rinforza la tirata orizzontale e aiuta postura e trazioni.',mistakes:'Spalle chiuse, tirare solo con le braccia, perdere controllo.',muscles:'Dorsali, romboidi, bicipiti'},
+ 'Band Pull Apart':{type:'bands',desc:'Braccia tese davanti al petto, apri l’elastico portando le mani verso l’esterno e le scapole insieme.',why:'Ottimo per spalle sane, postura e preparazione ai lavori sopra la testa.',mistakes:'Inarcare la schiena, piegare troppo i gomiti.',muscles:'Deltoidi posteriori, trapezi, romboidi'},
+ 'Dumbbell Snatch':{type:'db',desc:'Manubrio da terra tra i piedi, estendi anche e gambe in modo esplosivo e porta il manubrio sopra la testa in un unico movimento.',why:'Sviluppa potenza, coordinazione e conditioning monolaterale.',mistakes:'Tirare solo di braccio, schiena arrotondata, manubrio lontano dal corpo.',muscles:'Gambe, glutei, schiena, spalle'},
+ 'Kettlebell Swing':{type:'kb',desc:'Movimento di hip hinge: porta il kettlebell indietro tra le gambe e spingi forte le anche per proiettarlo in avanti.',why:'Sviluppa catena posteriore, potenza d’anca e resistenza.',mistakes:'Squattare invece di fare hinge, tirare con le braccia, schiena curva.',muscles:'Glutei, femorali, core, dorsali'},
+ 'Thruster':{type:'barbell',desc:'Front squat completo seguito da una spinta sopra la testa. Usa la risalita dello squat per trasferire potenza al bilanciere.',why:'Esercizio simbolo del functional fitness: forza, potenza e fiato in un solo gesto.',mistakes:'Perdere il rack, spingere solo di braccia, talloni sollevati.',muscles:'Gambe, glutei, spalle, tricipiti, core'},
+ 'Power Clean':{type:'barbell',desc:'Dal pavimento porta il bilanciere alle spalle con estensione esplosiva di anche e gambe, ricevendo in quarter squat.',why:'Sviluppa potenza, coordinazione e trasferimento atletico.',mistakes:'Tirare presto con le braccia, bilanciere lontano, ricezione passiva.',muscles:'Catena posteriore, trapezi, gambe, core'},
+ 'Push Press':{type:'barbell',desc:'Bilanciere in front rack, piccolo dip verticale, estendi gambe e spingi il bilanciere sopra la testa.',why:'Collega potenza delle gambe e forza di spinta sopra la testa.',mistakes:'Dip in avanti, schiena iperestesa, bilanciere fuori traiettoria.',muscles:'Spalle, tricipiti, quadricipiti, core'},
+ 'Pull-up':{type:'pullbar',desc:'Parti appeso, scapole attive, tira fino a portare il mento sopra la sbarra. Scala con elastico se serve.',why:'Base della ginnastica di tirata e prerequisito per chest-to-bar e muscle-up.',mistakes:'Partire rilassato, mezze ripetizioni, perdere controllo in discesa.',muscles:'Dorsali, bicipiti, core'},
+ 'Toes to Bar':{type:'pullbar',desc:'Appeso alla sbarra, usa hollow/arch e porta i piedi alla sbarra mantenendo ritmo e controllo.',why:'Sviluppa core dinamico, grip e coordinazione ginnica.',mistakes:'Solo slancio, perdere hollow, presa debole.',muscles:'Addome, dorsali, flessori dell’anca'},
+ 'Ring Dip':{type:'rings',desc:'Sostieniti agli anelli, scendi con controllo finché la spalla è sotto il gomito e spingi fino a braccia distese.',why:'Costruisce forza di spinta instabile, fondamentale per muscle-up.',mistakes:'Anelli lontani, spalle chiuse, scendere senza controllo.',muscles:'Pettorali, tricipiti, spalle, core'}
+};
+const PRS=['Back Squat','Front Squat','Deadlift','Strict Press','Push Press','Push Jerk','Clean','Power Clean','Snatch','Power Snatch','Bench Press','Pull-up max','Push-up max','Dips max','Plank sec','Handstand Hold sec'];
+function qs(x){return document.querySelector(x)} function qsa(x){return [...document.querySelectorAll(x)]}
+function get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}} function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function go(id){qsa('.section').forEach(s=>s.classList.remove('active'));qs('#'+id).classList.add('active');qsa('.tab').forEach(t=>t.classList.toggle('active',t.textContent.toLowerCase().includes(id)|| (id==='home'&&t.textContent==='Home'))); if(id==='log')renderHistory(); if(id==='academy')renderAcademy(); updateDash()}
+function setMode(b){state.mode=b.dataset.mode;qsa('[data-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+function setPlace(b){state.place=b.dataset.place;qsa('[data-place]').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+function selectedEq(){return qsa('.eq:checked').map(x=>x.value)}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function exBy(types){let arr=Object.keys(EX).filter(k=>types.includes(EX[k].type));return arr.length?arr:Object.keys(EX)}
+function weightsFor(ex){ if(!['Thruster','Power Clean','Push Press'].includes(ex))return '';
+ const tables={Thruster:[['Beginner','15-25 kg','10-20 kg'],['Scaled','30-35 kg','20-25 kg'],['RX','42.5 kg','30 kg'],['Elite','52.5-60 kg','35-42.5 kg']], 'Power Clean':[['Beginner','30-40 kg','20-30 kg'],['Scaled','50-60 kg','35-45 kg'],['RX','70 kg','50 kg'],['Elite','90+ kg','65+ kg']], 'Push Press':[['Beginner','25-35 kg','15-25 kg'],['Scaled','40-50 kg','25-35 kg'],['RX','60 kg','40 kg'],['Elite','80+ kg','55+ kg']]};
+ return `<h4>Riferimento carichi</h4><table class="table"><tr><th>Livello</th><th>Uomo</th><th>Donna</th></tr>${tables[ex].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table><p class="small">Scala sempre per tecnica, intensità e sicurezza. Meglio chiudere bene il WOD che inseguire RX.</p>`}
+function generateWorkout(){const eq=selectedEq(); const dur=+qs('#duration').value; let parts=[]; let types=eq; if(state.mode==='calisthenics') types=eq.filter(e=>['body','pullbar','rings','bands','rope'].includes(e)); if(state.place==='home') types=eq.filter(e=>['body','rope','bands','db','kb','pullbar','rings'].includes(e)); let list=exBy(types);
+ const wodType=pick(['AMRAP','For Time','EMOM','Interval']); const e1=pick(list), e2=pick(list.filter(x=>x!==e1)||list), e3=pick(list.filter(x=>x!==e1&&x!==e2)||list);
+ let wod = wodType==='AMRAP'?`AMRAP ${Math.min(20,Math.max(10,Math.round(dur/2)))}'` : wodType==='EMOM'?`EMOM ${Math.min(18,Math.max(10,Math.round(dur/2)))}'` : wodType==='Interval'?`5 Rounds · 40'' ON / 20'' OFF` : `For Time · 4 Rounds`;
+ const reps = wodType==='EMOM'?['Min 1: 12 '+e1,'Min 2: 10 '+e2,'Min 3: 8 '+e3]:['12 '+e1,'10 '+e2,'8 '+e3];
+ const warm=['5 min cardio leggero','2 round: 10 Air Squat, 10 Push-up easy, 20 Jump Rope','Mobilità specifica su spalle/anche/caviglie'];
+ const cool=['3-5 min camminata o bike leggera','Respirazione nasale 2 min','Stretching: quadricipiti, femorali, spalle']; const mob=['Polsi 2 min','Caviglie 2 min per lato','Thoracic rotation 8/8','Deep squat hold 60 sec'];
+ state.current={date:new Date().toISOString(),title:wod,exercises:reps,warm,cool,mob,blocks:{warm:qs('#doWarm').checked,wod:qs('#doWod').checked,cool:qs('#doCool').checked,mob:qs('#doMob').checked},score:'',notes:'',customLoads:{}};
+ renderWorkout(); renderTimers(); go('wod');}
+function exLine(name){let clean=name.replace(/^Min \d+: /,'').replace(/^\d+ /,'');return `<div class="exercise"><span>${name}</span><button class="info" onclick="showExercise('${clean}')">i</button></div>`}
+function renderWorkout(){let w=state.current;if(!w)return; let html=`<div class="card"><h2>Allenamento generato</h2><div class="wodbox"><h3>${w.title}</h3>`;
+ if(w.blocks.warm) html+=`<h4>Warm-up</h4>${w.warm.map(exLine).join('')}`;
+ if(w.blocks.wod) html+=`<h4>WOD</h4>${w.exercises.map(exLine).join('')}`;
+ if(w.blocks.cool) html+=`<h4>Post-WOD</h4>${w.cool.map(x=>`<div class="exercise"><span>${x}</span></div>`).join('')}`;
+ if(w.blocks.mob) html+=`<h4>Mobilità</h4>${w.mob.map(x=>`<div class="exercise"><span>${x}</span></div>`).join('')}`;
+ html+=`</div><h3>Carichi personalizzati</h3><p class="small">Inserisci il peso che userai davvero, così resta nello storico.</p>`;
+ w.exercises.forEach(e=>{let name=e.replace(/^Min \d+: /,'').replace(/^\d+ /,''); if(['Thruster','Power Clean','Push Press'].includes(name)) html+=`<div class="listitem"><b>${name}</b>${weightsFor(name)}<input class="field load" data-ex="${name}" placeholder="Peso usato, es. 35 kg"></div>`});
+ html+=`<h3>Score finale</h3><input id="score" class="field" placeholder="es. 6 round + 12 / 8:32 / 95 reps"><textarea id="notes" class="field" placeholder="Note: come ti sei sentito, scaling, dolore, energia..."></textarea><button class="btn green" onclick="saveWorkout()">Salva WOD nello storico</button></div>`;
+ qs('#workout').innerHTML=html;}
+function renderTimers(){let w=state.current; const blocks=[['warm','Warm-up',w?.blocks.warm,8*60],['wod','WOD',w?.blocks.wod,12*60],['cool','Post-WOD',w?.blocks.cool,6*60]]; qs('#timers').innerHTML=blocks.filter(b=>b[2]).map(b=>timerCard(b[0],b[1],b[3])).join('') || '<div class="card">Genera un allenamento prima.</div>';}
+function timerCard(id,label,sec){state.timers[id]=state.timers[id]||sec;return `<div class="card"><h3>${label}</h3><input class="field" type="number" value="${Math.round(state.timers[id]/60)}" onchange="setTimerMin('${id}',this.value)"><div class="timer" id="timer_${id}">${fmt(state.timers[id])}</div><div class="rounds">Round: <span id="round_${id}">0</span></div><div class="row"><button class="btn orange" onclick="startTimer('${id}')">Start</button><button class="btn" onclick="pauseTimer()">Pause</button><button class="btn red" onclick="resetTimer('${id}')">Reset</button><button class="btn green" onclick="incRound('${id}')">+ Round</button></div></div>`}
+function fmt(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function setTimerMin(id,v){state.timers[id]=Math.max(1,+v)*60; qs('#timer_'+id).textContent=fmt(state.timers[id])}
+function startTimer(id){pauseTimer();state.activeTimer=id;state.interval=setInterval(()=>{state.timers[id]--; if(qs('#timer_'+id))qs('#timer_'+id).textContent=fmt(state.timers[id]); if(state.timers[id]<=0)pauseTimer()},1000)}
+function pauseTimer(){if(state.interval)clearInterval(state.interval);state.interval=null}
+function resetTimer(id){pauseTimer();state.timers[id]=0;if(qs('#timer_'+id))qs('#timer_'+id).textContent=fmt(0)}
+function incRound(id){let el=qs('#round_'+id);el.textContent=+el.textContent+1}
+function saveWorkout(){let w=state.current;if(!w)return; w.score=qs('#score')?.value||'';w.notes=qs('#notes')?.value||'';qsa('.load').forEach(i=>w.customLoads[i.dataset.ex]=i.value);let h=get('history',[]);h.unshift(w);set('history',h);alert('WOD salvato!');updateDash();renderHistory()}
+function renderHistory(){let h=get('history',[]); if(!h.length){qs('#history').innerHTML='<div class="card">Nessun WOD salvato.</div>';return} let byMonth={};h.forEach(w=>{let d=new Date(w.date);let k=d.toLocaleString('it-IT',{month:'long',year:'numeric'});(byMonth[k]=byMonth[k]||[]).push(w)});qs('#history').innerHTML=Object.entries(byMonth).map(([m,arr])=>`<div class="card"><h3>${m}</h3>${arr.map(w=>{let d=new Date(w.date);return `<div class="listitem"><b>${d.toLocaleDateString('it-IT')} · ${w.title}</b><br><span class="badge">${w.score||'score non inserito'}</span><p class="small">Blocchi: ${Object.entries(w.blocks).filter(x=>x[1]).map(x=>x[0]).join(', ')}</p><p class="small">Carichi: ${Object.entries(w.customLoads||{}).map(x=>x.join(': ')).join(' · ')||'-'}</p><p>${w.notes||''}</p></div>`}).join('')}</div>`).join('')}
+function clearHistory(){if(confirm('Cancellare tutto lo storico?')){localStorage.removeItem('history');renderHistory();updateDash()}}
+function showExercise(name){let e=EX[name]; if(!e){qs('#modalContent').innerHTML='<h2>Esercizio</h2><p>Descrizione non ancora disponibile. Verrà aggiunta in FORGE Academy.</p>';qs('#modal').classList.add('active');return} qs('#modalContent').innerHTML=`<h2>${name}</h2><p>${e.desc}</p><h3>🎯 Perché è fondamentale</h3><p>${e.why}</p><h3>💪 Cosa sviluppa</h3><p>${e.muscles}</p><h3>⚠️ Errori comuni</h3><p>${e.mistakes}</p>${weightsFor(name)}`;qs('#modal').classList.add('active')}
+function closeModal(){qs('#modal').classList.remove('active')}
+function renderAcademy(){let s=(qs('#searchEx')?.value||'').toLowerCase();qs('#academyList').innerHTML=Object.keys(EX).filter(k=>k.toLowerCase().includes(s)).map(k=>`<div class="card"><h3>${k}</h3><p class="small">${EX[k].why}</p><button class="btn orange" onclick="showExercise('${k}')">Apri scheda</button></div>`).join('')}
+function saveProfile(){set('profile',{name:qs('#name').value,weight:qs('#weight').value,level:qs('#level').value,discipline:qs('#discipline').value,bio:qs('#bio').value});updateDash();alert('Profilo salvato')}
+function loadProfile(){let p=get('profile',{});['name','weight','level','discipline','bio'].forEach(id=>{if(qs('#'+id)&&p[id])qs('#'+id).value=p[id]});}
+function renderPRs(){let vals=get('prs',{});qs('#prs').innerHTML=PRS.map(p=>`<label class="small">${p}</label><input class="field pr" data-pr="${p}" value="${vals[p]||''}" placeholder="kg / reps / sec">`).join('')}
+function savePRs(){let o={};qsa('.pr').forEach(i=>o[i.dataset.pr]=i.value);set('prs',o);alert('PR salvati')}
+function updateDash(){let h=get('history',[]),p=get('profile',{});qs('#bodyWeight').textContent=p.weight?p.weight+' kg':'-';qs('#lastWod').textContent=h[0]?.title?.split('·')[0]||'-';let now=new Date(), month=h.filter(w=>{let d=new Date(w.date);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()}).length;qs('#monthCount').textContent=month;qs('#streak').textContent=calcStreak(h); let msg= h.length===0?'Primo obiettivo: salva il tuo primo allenamento. Anche 15 minuti contano.': month<4?'Buon inizio. Obiettivo realistico: 4 allenamenti questo mese.':'Stai creando continuità. Ora punta a qualità, tecnica e recupero.';qs('#coach').textContent=msg; qs('#shareLink').value=APP_URL}
+function calcStreak(h){let days=[...new Set(h.map(w=>new Date(w.date).toDateString()))];let c=0;let d=new Date();for(;;){if(days.includes(d.toDateString())){c++;d.setDate(d.getDate()-1)}else break}return c}
+function shareApp(){let text='🛡️ FORGE - Train. Track. Evolve. Prova la web app: '+APP_URL; if(navigator.share)navigator.share({title:'FORGE',text,url:APP_URL}); else {navigator.clipboard?.writeText(text); alert('Link copiato!')}}
+function init(){loadProfile();renderPRs();updateDash();renderAcademy(); if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});}
+init();
+</script>
+</body></html>
