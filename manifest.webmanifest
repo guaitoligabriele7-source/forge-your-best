@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.5 Engine",
+  "name": "FORGE v9.5.1 Engine Fix",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Forge Engine: workout programming by movement patterns, equipment and level."
+  "description": "Forge Engine con audio EMOM corretto, guide esercizi e migrazione dello storico."
 }
