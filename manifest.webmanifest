@@ -1,1 +1,9 @@
-{"name": "FORGE", "short_name": "FORGE", "start_url": "./index.html", "display": "standalone", "background_color": "#0d0d0f", "theme_color": "#0d0d0f", "icons": []}
+{
+  "name": "FORGE v9.5 Engine",
+  "short_name": "FORGE",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "description": "Forge Engine: workout programming by movement patterns, equipment and level."
+}
