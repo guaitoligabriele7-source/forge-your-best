@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.5 — Engine</title>
+<title>FORGE v9.5.1 — Engine Fix</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -64,7 +64,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.5 — Engine</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.5.1 — Engine Fix</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -80,7 +80,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.5</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.5.1</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
@@ -127,7 +127,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
       <button class="btn warn" onclick="addSplit()">⏱ PARZIALE</button>
       <button class="btn danger" onclick="timerReset()">↺ RESET</button>
     </div>
-    <div class="title" style="margin-top:12px"><h3>Round: <span id="roundCount">0</span></h3><button class="btn" onclick="toggleSound()">🔊 <span id="soundState">Audio ON</span></button></div>
+    <div class="title" style="margin-top:12px"><h3>Round: <span id="roundCount">0</span></h3><button class="btn" onclick="toggleSound()">🔊 <span id="soundState">Audio ON</span></button><button class="btn" onclick="unlockAudio();beep(900,.25)">Test audio</button></div>
     <div id="splitList" class="splitlist"></div>
     <div class="field"><label>Score finale</label><input id="score" placeholder="Tempo / round + reps / carico"></div>
     <div class="field"><label>Note test</label><textarea id="notes" rows="2" placeholder="Cosa ha funzionato? Dove hai spezzato? Limite cardio o muscolare?"></textarea></div>
@@ -144,7 +144,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 </section>
 
 <section id="history" class="section">
-  <div class="card"><div class="title"><h2>📈 Test & Storico</h2><button class="btn danger" onclick="clearHistory()">Svuota</button></div><div id="historyList"></div></div>
+  <div class="card"><div class="title"><h2>📈 Test & Storico permanente</h2><button class="btn danger" onclick="clearHistory()">Svuota</button></div><div class="status warning small">I dati vengono migrati dalle release precedenti e mantenuti usando una chiave stabile. Restano però sul dispositivo: cancellazione dati del browser o disinstallazione può rimuoverli. Il backup cloud arriverà con gli account.</div><div id="historyList"></div></div>
 </section>
 
 </div>
@@ -255,7 +255,76 @@ const E=[
 
 let current=null,timer=null,elapsed=0,remaining=0,timerDirection='down',paused=true,rounds=0,splits=[],soundOn=true,wakeLock=null;
 
+
+const HISTORY_KEY='forge_history_master';
+const LEGACY_HISTORY_KEYS=['forge95history','forge94history','forge93history','forge92history','forge91history','forge9history','forgeHistory','workoutHistory'];
+
+const EXERCISE_GUIDES={
+'Air Squat':{how:'Piedi circa alla larghezza delle spalle. Porta il bacino indietro e in basso, mantieni il petto aperto e le ginocchia nella linea dei piedi. Risali spingendo il pavimento.',errors:'Ginocchia che collassano verso l’interno, talloni sollevati, schiena che perde neutralità.',benefit:'Sviluppa controllo di anche e ginocchia, resistenza delle gambe e base per squat caricati.'},
+'Push-up':{how:'Parti in plank con mani poco più larghe delle spalle. Corpo in linea, scendi controllando finché petto e spalle arrivano vicino al pavimento, poi spingi mantenendo il core attivo.',errors:'Bacino che cede, gomiti troppo aperti, ripetizioni incomplete.',benefit:'Sviluppa spinta orizzontale, tricipiti, petto e controllo del tronco.'},
+'Burpee':{how:'Da in piedi porta le mani a terra, estendi i piedi in plank, porta il petto verso il pavimento, ritorna in accosciata e completa con estensione e piccolo salto.',errors:'Perdere il controllo lombare, atterrare rigidi, partire troppo forte e degradare la tecnica.',benefit:'Allena tutto il corpo e aumenta rapidamente la richiesta cardiovascolare.'},
+'Band Row':{how:'Ancora l’elastico davanti a te. Tira i gomiti indietro portando le mani verso il busto, stringi le scapole e ritorna lentamente.',errors:'Spalle sollevate, slancio del busto, rilascio incontrollato.',benefit:'Rinforza dorso e bicipiti e bilancia i movimenti di spinta.'},
+'Band Lat Pulldown':{how:'Fissa l’elastico in alto. Parti con braccia estese e porta i gomiti verso i fianchi senza inarcare la schiena.',errors:'Tirare solo con le braccia, spalle verso le orecchie, eccessiva estensione lombare.',benefit:'Sviluppa la tirata verticale e prepara a trazioni e progressioni calisteniche.'},
+'Band Chest Press':{how:'Ancora l’elastico dietro di te. Parti con mani all’altezza del petto e spingi in avanti mantenendo costole e bacino controllati.',errors:'Inarcare la schiena, gomiti troppo alti, ritorno troppo veloce.',benefit:'Allena petto e tricipiti con resistenza progressiva.'},
+'Pallof Press':{how:'Posizionati di lato rispetto all’ancoraggio. Porta le mani al petto e spingile avanti resistendo alla rotazione del busto.',errors:'Ruotare verso l’elastico, perdere l’allineamento del bacino, usare una tensione eccessiva.',benefit:'Sviluppa stabilità e anti-rotazione del core.'},
+'Hollow Hold':{how:'Sdraiato, schiaccia la zona lombare a terra. Solleva spalle e gambe mantenendo la posizione senza perdere il contatto lombare.',errors:'Lombare che si stacca, gambe troppo basse, trattenere il respiro.',benefit:'Costruisce la linea corporea fondamentale per molte skill calisteniche.'},
+'Scapular Pull-up':{how:'Appeso alla sbarra con gomiti distesi, abbassa le spalle e solleva leggermente il corpo usando solo il movimento delle scapole.',errors:'Piegare i gomiti, oscillare, perdere la presa attiva.',benefit:'Insegna il controllo scapolare necessario per trazioni più sicure.'},
+'Ring Row':{how:'Corpo in linea, talloni a terra e mani agli anelli. Tira il petto verso gli anelli mantenendo glutei e addome attivi.',errors:'Bacino che cede, spalle chiuse, tirata incompleta.',benefit:'Progressione di tirata orizzontale facilmente scalabile.'},
+'Kettlebell Swing':{how:'Il movimento nasce dall’anca. Porta il kettlebell indietro tra le gambe e estendi rapidamente anche e ginocchia; le braccia guidano, non sollevano.',errors:'Trasformarlo in squat, sollevare con le spalle, iperestendere la schiena.',benefit:'Sviluppa potenza dell’anca e conditioning della catena posteriore.'},
+'Dumbbell Snatch':{how:'Parti con il manubrio tra i piedi. Estendi anche e ginocchia, guida il peso vicino al corpo e termina con il braccio stabile sopra la testa.',errors:'Tirare solo di braccio, peso lontano dal corpo, ricezione instabile.',benefit:'Allena potenza, coordinazione e lavoro unilaterale.'},
+'Barbell Deadlift':{how:'Piedi sotto il bilanciere, schiena neutra, addome attivo. Spingi il pavimento e porta anche e spalle verso l’alto insieme.',errors:'Schiena arrotondata, bilanciere lontano dalle gambe, partenza a strappo.',benefit:'Sviluppa forza della catena posteriore e capacità di sollevamento.'},
+'Power Clean':{how:'Parti con assetto solido, estendi con potenza anche e ginocchia, mantieni il bilanciere vicino e ricevilo sulle spalle con gomiti rapidi.',errors:'Tirare presto con le braccia, bilanciere lontano, ricezione rigida.',benefit:'Sviluppa potenza, coordinazione e trasferimento di forza.'}
+};
+
+function genericGuide(e){
+  const patternText={
+    squat:'Accosciata',lunge:'Affondo',hinge:'Flessione d’anca',hingePower:'Potenza d’anca',
+    pushH:'Spinta orizzontale',pushV:'Spinta verticale',pullH:'Tirata orizzontale',
+    pullV:'Tirata verticale',coreAntiExt:'Core anti-estensione',coreAntiRot:'Core anti-rotazione',
+    locomotion:'Locomozione',conditioning:'Condizionamento',support:'Supporto e controllo'
+  }[e.p]||e.p;
+  return {
+    how:`Esegui il movimento con controllo, mantenendo una posizione stabile e un’ampiezza adatta al tuo livello. Lo schema principale è: ${patternText}.`,
+    errors:'Non sacrificare la tecnica per velocità o ripetizioni. Riduci difficoltà o volume se perdi controllo.',
+    benefit:`Sviluppa soprattutto ${e.m.join(', ')} e migliora lo schema ${patternText.toLowerCase()}.`
+  };
+}
+function getHistory(){
+  return JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');
+}
+function setHistory(h){
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(h));
+}
+function migrateHistory(){
+  let master=getHistory();
+  const seen=new Set(master.map(x=>(x.saved||'')+'|'+(x.id||'')+'|'+(x.score||'')));
+  for(const key of LEGACY_HISTORY_KEYS){
+    try{
+      const old=JSON.parse(localStorage.getItem(key)||'[]');
+      if(Array.isArray(old)){
+        for(const item of old){
+          const sig=(item.saved||'')+'|'+(item.id||'')+'|'+(item.score||'');
+          if(!seen.has(sig)){master.push(item);seen.add(sig);}
+        }
+      }
+    }catch(e){}
+  }
+  master.sort((a,b)=>new Date(b.saved||0)-new Date(a.saved||0));
+  setHistory(master);
+}
+let audioCtx=null;
+function unlockAudio(){
+  try{
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended') audioCtx.resume();
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    g.gain.value=0.0001;o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+.02);
+  }catch(e){}
+}
+
 function init(){
+  migrateHistory();
+  document.addEventListener('pointerdown',unlockAudio,{once:true});
   $('equipment').innerHTML=EQUIPMENT.map(([v,l])=>`<label class="chip"><input type="checkbox" value="${v}" ${v==='bodyweight'?'checked':''}>${l}</label>`).join('');
   renderLibrary();renderHistory();updateStats();
 }
@@ -273,7 +342,7 @@ function candidatePool(discipline,level,eq,anchor){
   return E.filter(x=>x.d.includes(discipline)&&x.lvl<=LEVEL[level]&&equipmentAvailable(x,eq,anchor));
 }
 function recentNames(){
-  const h=JSON.parse(localStorage.getItem('forge95history')||'[]').slice(0,4);
+  const h=getHistory().slice(0,4);
   return new Set(h.flatMap(w=>(w.items||[]).map(i=>i.n)));
 }
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
@@ -427,10 +496,19 @@ function renderWorkout(check){
 }
 function focusLabel(x){return {balanced:'Bilanciato',engine:'Conditioning',upper:'Upper body',lower:'Lower body',core:'Core & controllo'}[x]}
 function showExercise(name){
-  const e=E.find(x=>x.n===name);$('sheet').innerHTML=`<div class="title"><h2>${e.n}</h2><button class="btn" onclick="closeModal()">Chiudi</button></div>
-  <p><b>Schema motorio:</b> ${e.p}</p><p><b>Muscoli:</b> ${e.m.join(', ')}</p><p><b>Attrezzatura:</b> ${e.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p>
-  <p><b>Livello minimo:</b> ${['','Beginner','Intermediate','Advanced'][e.lvl]}</p><p><b>Carico metabolico:</b> ${e.f}/9</p>
-  <div class="status warning">Tecnica prima dell'intensità. Se il movimento è nuovo, usa la regressione e chiedi la verifica di un coach.</div>`;$('modal').classList.add('show')
+  const e=E.find(x=>x.n===name);
+  const g=EXERCISE_GUIDES[e.n]||genericGuide(e);
+  $('sheet').innerHTML=`<div class="title"><h2>${e.n}</h2><button class="btn" onclick="closeModal()">Chiudi</button></div>
+  <div class="status"><b>Come si esegue</b><br>${g.how}</div>
+  <div class="exerciseCard"><b>⚠️ Errori comuni</b><p>${g.errors}</p></div>
+  <div class="exerciseCard"><b>🎯 Cosa sviluppa</b><p>${g.benefit}</p></div>
+  <p><b>Schema motorio:</b> ${e.p}</p>
+  <p><b>Muscoli:</b> ${e.m.join(', ')}</p>
+  <p><b>Attrezzatura:</b> ${e.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p>
+  <p><b>Livello minimo:</b> ${['','Beginner','Intermediate','Advanced'][e.lvl]}</p>
+  <p><b>Carico metabolico:</b> ${e.f}/9</p>
+  <div class="status warning">La spiegazione aiuta a orientarsi, ma non sostituisce la correzione tecnica di un coach. Se senti dolore, interrompi.</div>`;
+  $('modal').classList.add('show')
 }
 function closeModal(){$('modal').classList.remove('show')}
 function configureTimer(){
@@ -447,6 +525,7 @@ function drawTimer(){
 async function requestWake(){try{if('wakeLock'in navigator)wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}
 function releaseWake(){try{wakeLock?.release();wakeLock=null}catch(e){}}
 function timerStart(){
+  unlockAudio();
   if(!current){alert('Genera prima un allenamento.');return}
   if(timer)return;paused=false;$('pauseBtn').classList.remove('active');$('timerState').textContent='IN CORSO';requestWake();beep(700,.08);
   timer=setInterval(()=>{
@@ -472,19 +551,32 @@ function fmt(sec){return `${String(Math.floor(sec/60)).padStart(2,'0')}:${String
 function emomAlerts(){
   const elapsedIn=current.duration*60-remaining;
   const sec=elapsedIn%60;
-  if(sec===50)beep(500,.07);
-  if(sec===57||sec===58||sec===59)beep(700,.08);
-  if(sec===0&&elapsedIn>0){beep(930,.18);if(navigator.vibrate)navigator.vibrate([80,40,80])}
+  if(sec===50)beep(520,.09);
+  if(sec===57||sec===58||sec===59)beep(760,.10);
+  if(sec===0&&elapsedIn>0){
+    beep(980,.28);
+    setTimeout(()=>beep(1180,.18),180);
+    if(navigator.vibrate)navigator.vibrate([120,60,120]);
+  }
 }
 function beep(freq,dur){
-  if(!soundOn)return;try{const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=freq;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+dur);o.start();o.stop(a.currentTime+dur)}catch(e){}
+  if(!soundOn)return;
+  try{
+    unlockAudio();
+    const a=audioCtx;
+    const o=a.createOscillator(),g=a.createGain();
+    o.frequency.value=freq;o.type='sine';o.connect(g);g.connect(a.destination);
+    g.gain.setValueAtTime(.20,a.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,a.currentTime+dur);
+    o.start(a.currentTime);o.stop(a.currentTime+dur);
+  }catch(e){}
 }
 function toggleSound(){soundOn=!soundOn;$('soundState').textContent=soundOn?'Audio ON':'Audio OFF'}
 function saveWorkout(){
   if(!current){alert('Genera prima un allenamento.');return}
-  const h=JSON.parse(localStorage.getItem('forge95history')||'[]');
+  const h=getHistory();
   h.unshift({...current,saved:new Date().toISOString(),score:$('score').value,notes:$('notes').value,rounds,splits,actualSeconds:timerDirection==='up'?elapsed:current.duration*60-remaining});
-  localStorage.setItem('forge95history',JSON.stringify(h));$('score').value='';$('notes').value='';renderHistory();updateStats();alert('Test salvato.')
+  setHistory(h);$('score').value='';$('notes').value='';renderHistory();updateStats();alert('Test salvato.')
 }
 function renderLibrary(){
   const q=($('search')?.value||'').toLowerCase();
@@ -493,7 +585,7 @@ function renderLibrary(){
   $('libraryList').innerHTML=list.map(e=>`<div class="exerciseCard"><div class="title"><b>${e.n}</b><span class="tag">${e.p}</span></div><div class="muted small">${e.d.join(' · ')} · ${e.m.join(', ')} · ${e.eq.join(', ')} · livello ${e.lvl}</div></div>`).join('');
 }
 function renderHistory(){
-  const h=JSON.parse(localStorage.getItem('forge95history')||'[]');
+  const h=getHistory();
   $('historyList').innerHTML=h.map((w,i)=>{
     const prior=h.slice(i+1).find(x=>x.id===w.id);
     return `<div class="exerciseCard"><div class="title"><b>${new Date(w.saved).toLocaleString()}</b><span class="pill">${w.format}</span></div>
@@ -502,8 +594,9 @@ function renderHistory(){
     ${prior?`<div class="status success small">Già eseguito: precedente ${new Date(prior.saved).toLocaleDateString()} · ${prior.score||fmt(prior.actualSeconds||0)}</div>`:''}
     ${w.notes?`<p class="small">📝 ${w.notes}</p>`:''}</div>`}).join('')||'<p class="muted">Nessun test salvato.</p>';
 }
-function clearHistory(){if(confirm('Cancellare tutto lo storico test?')){localStorage.removeItem('forge95history');renderHistory();updateStats()}}
-function updateStats(){const h=JSON.parse(localStorage.getItem('forge95history')||'[]');$('statWod').textContent=h.length;$('statTest').textContent=new Set(h.map(x=>x.id)).size;$('statEquip').textContent=selectedEquipment().length}
+function clearHistory(){if(confirm('Cancellare tutto lo storico test?')){localStorage.removeItem(HISTORY_KEY);renderHistory();updateStats()}}
+function updateStats(){const h=getHistory();$('statWod').textContent=h.length;$('statTest').textContent=new Set(h.map(x=>x.id)).size;$('statEquip').textContent=selectedEquipment().length}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 init();
 </script>
 </body></html>
