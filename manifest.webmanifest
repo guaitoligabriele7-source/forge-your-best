@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.5.2 Audio & Academy",
+  "name": "FORGE v9.6 Engine Refinement",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Audio timer rinforzato e popup esercizi con preparazione, esecuzione, respirazione, muscoli ed errori."
+  "description": "Strength con focus muscolare, superserie e tempo sotto tensione; nuove propedeutiche, Academy video-ready, audio e controlli migliorati."
 }

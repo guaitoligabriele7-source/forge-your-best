@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.5.2 — Audio & Academy</title>
+<title>FORGE v9.6 — Engine Refinement</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -57,6 +57,18 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 .sheet{width:100%;background:#15191f;border-radius:24px 24px 0 0;border:1px solid var(--line);padding:18px;max-height:85vh;overflow:auto}
 .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.stat{padding:10px;border-radius:13px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
 .stat b{display:block;font-size:22px}
+
+.strengthOptions{margin-top:10px;padding:10px;border:1px solid rgba(255,106,19,.35);border-radius:14px;background:rgba(255,106,19,.06)}
+.forgeControls{display:grid!important;grid-template-columns:1.35fr 1.35fr 1fr 1fr;gap:10px}
+.forgeControls .mainControl{min-height:68px;font-size:1.05rem;font-weight:900}
+.forgeControls .secondaryControl{min-height:52px}
+.forgeControls .resetControl{grid-column:1/-1;min-height:42px;opacity:.78}
+.academyVideo{margin:12px 0;padding:14px;border-radius:16px;border:1px solid rgba(255,106,19,.35);background:rgba(0,0,0,.24)}
+.videoPlaceholder{aspect-ratio:16/9;border-radius:14px;display:grid;place-items:center;text-align:center;padding:20px;background:linear-gradient(135deg,#15181d,#090a0c);border:1px dashed rgba(255,255,255,.22)}
+.superset{margin:12px 0;padding:12px;border-left:4px solid #ff6a13;background:rgba(255,106,19,.06);border-radius:10px}
+.supersetTitle{font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.tempoTag{display:inline-block;margin-top:4px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}
+@media(max-width:720px){.forgeControls{grid-template-columns:1fr 1fr}.forgeControls .mainControl{min-height:72px}.forgeControls .resetControl{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -70,7 +82,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.5.2 — Audio & Academy</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.6 — Engine Refinement</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -86,11 +98,11 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.5.2</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.6</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
-        <div class="field"><select id="discipline">
+        <div class="field"><select id="discipline" onchange="updateDisciplineUI()">
           <option value="functional">Functional</option>
           <option value="strength">Forza / Palestra</option>
           <option value="calisthenics">Calisthenics</option>
@@ -105,10 +117,11 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
           <option value="15">15 min</option><option value="20">20 min</option><option value="30" selected>30 min</option>
           <option value="45">45 min</option><option value="60">60 min</option>
         </select></div>
-        <div class="field"><label>Focus</label><select id="focus">
-          <option value="balanced">Bilanciato</option><option value="engine">Conditioning</option><option value="upper">Upper body</option>
-          <option value="lower">Lower body</option><option value="core">Core & controllo</option>
-        </select></div>
+        <div class="field"><label>Focus</label><select id="focus"></select></div>
+<div id="strengthOptions" class="strengthOptions" style="display:none">
+<div class="field"><label>Stimolo Strength</label><select id="strengthStyle"><option value="strong" selected>Strong — superserie intense</option><option value="hypertrophy">Ipertrofia — volume e controllo</option><option value="endurance">Resistenza muscolare</option><option value="accessory">Accessory — rinforzo mirato</option></select></div>
+<div class="field"><label>Intensità</label><select id="strengthIntensity"><option value="standard">Standard</option><option value="high" selected>Alta</option></select></div>
+</div>
       </div>
       <div class="card third">
         <h3>3. Attrezzatura</h3>
@@ -116,7 +129,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
         <label class="chip" style="margin-top:9px"><input type="checkbox" id="anchor"> Punto di ancoraggio elastici</label>
       </div>
     </div>
-    <div class="btnrow"><button class="btn primary" onclick="generateWorkout()">Genera con le nuove regole</button><button class="btn" onclick="generateWorkout(true)">Rigenera variante</button></div>
+    <div class="btnrow"><button class="btn primary" onclick="generateWorkout()">Genera WOD v9.6</button><button class="btn" onclick="generateWorkout(true)">Rigenera variante</button></div>
   </div>
 
   <div id="validation" class="card status" style="display:none"></div>
@@ -126,14 +139,13 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
     <div class="title"><h3>⏱️ Timer operativo</h3><span id="timerMode" class="pill">Nessun WOD</span></div>
     <div id="timerState" class="timerState">Pronto</div>
     <div id="timer" class="timer">00:00</div>
-    <div class="controls">
-      <button id="startBtn" class="btn green" onclick="timerStart()">▶ START</button>
-      <button id="pauseBtn" class="btn" onclick="timerPause()">⏸ PAUSA</button>
-      <button class="btn round" onclick="addRound()">＋ ROUND / LAP</button>
-      <button class="btn warn" onclick="addSplit()">⏱ PARZIALE</button>
-      <button class="btn danger" onclick="timerReset()">↺ RESET</button>
-    </div>
-    <div class="title" style="margin-top:12px"><h3>Round: <span id="roundCount">0</span></h3><button class="btn" onclick="toggleSound()">🔊 <span id="soundState">Audio ON</span></button><button class="btn primary" onclick="unlockAudio().then(()=>{beep(950,.18,'short');setTimeout(()=>beep(1180,.45,'long'),250)})">Sblocca e testa audio</button><span id="audioHelp" class="muted small">Su iPhone premi questo pulsante una volta prima del timer e verifica volume e modalità silenziosa.</span></div>
+    <div class="controls forgeControls">
+<button id="startBtn" class="btn green mainControl" onclick="timerStart()">▶ START</button>
+<button class="btn round mainControl" onclick="addRound()">＋ ROUND / LAP</button>
+<button id="pauseBtn" class="btn secondaryControl" onclick="timerPause()">⏸ PAUSA</button>
+<button class="btn warn secondaryControl" onclick="addSplit()">⏱ PARZIALE</button>
+<button class="btn danger resetControl" onclick="timerReset()">↺ RESET</button>
+</div><div class="title" style="margin-top:12px"><h3>Round: <span id="roundCount">0</span></h3><button class="btn" onclick="toggleSound()">🔊 <span id="soundState">Audio ON</span></button><button class="btn primary" onclick="unlockAudio().then(()=>{beep(1750,.24,'short');setTimeout(()=>beep(2100,.58,'long'),250)})">Sblocca e testa audio</button><span id="audioHelp" class="muted small">Su iPhone premi questo pulsante una volta prima del timer e verifica volume e modalità silenziosa.</span></div>
     <div id="splitList" class="splitlist"></div>
     <div class="field"><label>Score finale</label><input id="score" placeholder="Tempo / round + reps / carico"></div>
     <div class="field"><label>Note test</label><textarea id="notes" rows="2" placeholder="Cosa ha funzionato? Dove hai spezzato? Limite cardio o muscolare?"></textarea></div>
@@ -257,6 +269,27 @@ const E=[
 {n:'Rower Calories',d:['functional'],eq:['rower'],p:'conditioning',m:['cardio','dorso','gambe'],lvl:1,t:4.5,f:7,impact:1,skill:1,isCal:true},
 {n:'Bike Calories',d:['functional'],eq:['bike'],p:'conditioning',m:['cardio','gambe'],lvl:1,t:4.0,f:7,impact:1,skill:1,isCal:true},
 {n:'SkiErg Calories',d:['functional'],eq:['skierg'],p:'conditioning',m:['cardio','dorso','core'],lvl:1,t:4.5,f:7,impact:1,skill:1,isCal:true}
+,
+{n:'Mountain Climber',d:['functional','calisthenics'],eq:['bodyweight'],p:'locomotion',m:['core','spalle','flessori anca'],lvl:1,t:1.1,f:6,impact:2,skill:1},
+{n:'Hollow Rock',d:['functional','calisthenics'],eq:['bodyweight'],p:'coreAntiExt',m:['core','flessori anca'],lvl:2,t:1.8,f:5,impact:1,skill:2},
+{n:'Arch Hold',d:['functional','calisthenics'],eq:['bodyweight'],p:'corePosterior',m:['lombari','glutei','dorso'],lvl:1,t:1,isTime:true,f:3,impact:1,skill:1},
+{n:'Arch Rock',d:['functional','calisthenics'],eq:['bodyweight'],p:'corePosterior',m:['lombari','glutei','dorso'],lvl:2,t:1.8,f:5,impact:1,skill:2},
+{n:'Scapular Push-up',d:['functional','calisthenics','strength'],eq:['bodyweight'],p:'scapula',m:['dentato','spalle','core'],lvl:1,t:2.5,f:3,impact:1,skill:1},
+{n:'Box Pike Push-up',d:['functional','calisthenics','strength'],eq:['box'],p:'pushV',m:['spalle','tricipiti'],lvl:2,t:3.8,f:6,impact:1,skill:2},
+{n:'Wall Walk',d:['functional','calisthenics'],eq:['bodyweight'],p:'pushV',m:['spalle','core','tricipiti'],lvl:3,t:12,f:8,impact:2,skill:3},
+{n:'Jumping Pull-up',d:['functional','calisthenics'],eq:['pullup','box'],p:'pullV',m:['dorso','bicipiti'],lvl:1,t:3.2,f:4,impact:2,skill:1},
+{n:'Negative Pull-up',d:['functional','calisthenics','strength'],eq:['pullup','box'],p:'pullV',m:['dorso','bicipiti'],lvl:2,t:5.0,f:6,impact:1,skill:2},
+{n:'Beat Swing Drill',d:['functional','calisthenics'],eq:['pullup'],p:'scapulaPull',m:['dorso','core','spalle'],lvl:2,t:2.2,f:5,impact:2,skill:3},
+{n:'Strict Knee Raise',d:['functional','calisthenics'],eq:['pullup'],p:'coreCompression',m:['core','flessori anca','presa'],lvl:2,t:3.0,f:5,impact:1,skill:2},
+{n:'Box Step-over',d:['functional'],eq:['box'],p:'locomotion',m:['glutei','quadricipiti'],lvl:1,t:4.0,f:5,impact:1,skill:1},
+{n:'Band Rear Delt Fly',d:['strength'],eq:['bands'],p:'pullH',m:['deltoidi posteriori','dorso'],lvl:1,t:3.2,f:4,impact:1,skill:1},
+{n:'Band Biceps Curl',d:['strength'],eq:['bands'],p:'armsPull',m:['bicipiti','avambracci'],lvl:1,t:3.0,f:4,impact:1,skill:1},
+{n:'Band Triceps Pressdown',d:['strength'],eq:['bands'],p:'armsPush',m:['tricipiti'],lvl:1,t:3.0,f:4,impact:1,skill:1,anchor:true},
+{n:'Band Lateral Raise',d:['strength'],eq:['bands'],p:'pushV',m:['spalle'],lvl:1,t:3.4,f:4,impact:1,skill:1},
+{n:'Band Romanian Deadlift',d:['strength'],eq:['bands'],p:'hinge',m:['femorali','glutei'],lvl:1,t:4.0,f:6,impact:1,skill:1},
+{n:'Band Squat',d:['strength'],eq:['bands'],p:'squat',m:['quadricipiti','glutei'],lvl:1,t:4.0,f:6,impact:1,skill:1},
+{n:'Band Split Squat',d:['strength'],eq:['bands'],p:'lunge',m:['quadricipiti','glutei'],lvl:2,t:4.5,f:6,impact:1,skill:2},
+{n:'Band Overhead Press',d:['strength'],eq:['bands'],p:'pushV',m:['spalle','tricipiti'],lvl:1,t:3.8,f:6,impact:1,skill:1}
 ];
 
 let current=null,timer=null,elapsed=0,remaining=0,timerDirection='down',paused=true,rounds=0,splits=[],soundOn=true,wakeLock=null;
@@ -350,8 +383,11 @@ async function unlockAudio(){
   }catch(e){audioUnlocked=false}
 }
 
+const FOCUS_OPTIONS={functional:[['balanced','Bilanciato'],['engine','Conditioning'],['upper','Upper body'],['lower','Lower body'],['core','Core & controllo']],strength:[['total','Total body'],['back','Dorso'],['chest','Petto'],['shoulders','Spalle'],['arms','Braccia'],['core','Core'],['legs','Gambe'],['posterior','Catena posteriore']],calisthenics:[['balanced','Bilanciato'],['upper','Upper body'],['core','Core & controllo'],['skill','Skill & propedeutiche']]};
+function updateDisciplineUI(){const d=$('discipline').value,old=$('focus').value;$('focus').innerHTML=FOCUS_OPTIONS[d].map(([v,l])=>`<option value="${v}">${l}</option>`).join('');if(FOCUS_OPTIONS[d].some(x=>x[0]===old))$('focus').value=old;$('strengthOptions').style.display=d==='strength'?'block':'none'}
 function init(){
   migrateHistory();
+  updateDisciplineUI();
   document.addEventListener('pointerdown',unlockAudio,{once:true});
   $('equipment').innerHTML=EQUIPMENT.map(([v,l])=>`<label class="chip"><input type="checkbox" value="${v}" ${v==='bodyweight'?'checked':''}>${l}</label>`).join('');
   renderLibrary();renderHistory();updateStats();
@@ -405,22 +441,13 @@ function repPrescription(ex,level,format){
 }
 function workSeconds(item){return item.qty*item.ex.t+(item.unit==='reps'?5:2)}
 function sequenceFor(discipline,focus){
-  if(discipline==='strength'){
-    if(focus==='upper')return [['pushH','pushV'],['pullH','pullV'],['pullH','scapula'],['armsPush','coreAntiRot','coreAntiExt']];
-    if(focus==='lower')return [['squat'],['hinge'],['lunge'],['coreAntiRot','coreAntiExt']];
-    return [['squat','hinge'],['pushH','pushV'],['pullH','pullV'],['coreAntiRot','coreAntiExt','lateral']];
-  }
-  if(discipline==='calisthenics'){
-    if(focus==='upper')return [['scapulaPull','pullV','pullH'],['pushV','pushH','support'],['coreAntiExt','coreCompression'],['grip','scapula']];
-    if(focus==='core')return [['coreAntiExt'],['corePosterior','coreLateral'],['support'],['locomotion']];
-    return [['pullV','pullH','scapulaPull'],['pushH','pushV','support'],['coreAntiExt','coreCompression'],['hinge','lunge','locomotion']];
-  }
-  if(focus==='engine')return [['conditioning','fullBody'],['squat','hingePower'],['pullH','pullV','coreFlex'],['locomotion','coreAntiExt']];
-  if(focus==='upper')return [['pullH','pullV'],['pushH','pushV'],['hingePower','conditioning'],['coreAntiExt','locomotion']];
-  if(focus==='lower')return [['hinge','hingePower'],['squat'],['conditioning','locomotion'],['coreAntiExt','pullH']];
-  if(focus==='core')return [['coreAntiExt','coreFlex'],['hinge','lunge'],['pullH','pushH'],['conditioning','locomotion']];
-  return [['hinge','hingePower','conditioning'],['pushH','pushV'],['pullH','pullV','coreFlex'],['squat','lunge','locomotion']];
-}
+if(discipline==='strength'){const map={total:[['squat','hinge'],['pushH','pushV'],['pullH','pullV'],['coreAntiRot','coreAntiExt']],back:[['pullH'],['pullV'],['scapula','scapulaPull'],['armsPull','coreAntiRot']],chest:[['pushH'],['pushH','pushV'],['armsPush'],['coreAntiExt']],shoulders:[['pushV'],['pullH','scapula'],['pushV'],['coreAntiRot']],arms:[['armsPull'],['armsPush'],['pullH'],['pushH']],core:[['coreAntiExt'],['coreAntiRot'],['coreCompression','coreFlex'],['corePosterior','lateral']],legs:[['squat'],['lunge'],['hinge'],['ankle','coreAntiExt']],posterior:[['hinge'],['hinge'],['pullH'],['corePosterior','coreAntiRot']]};return map[focus]||map.total}
+if(discipline==='calisthenics'){if(focus==='upper')return [['scapulaPull','pullV','pullH'],['pushV','pushH','support'],['coreAntiExt','coreCompression'],['grip','scapula']];if(focus==='core')return [['coreAntiExt'],['corePosterior','coreLateral'],['coreCompression'],['locomotion']];if(focus==='skill')return [['pushV','scapula'],['pullV','scapulaPull'],['coreAntiExt','coreCompression'],['support','locomotion']];return [['pullV','pullH','scapulaPull'],['pushH','pushV','support'],['coreAntiExt','coreCompression'],['hinge','lunge','locomotion']]}
+if(focus==='engine')return [['conditioning','fullBody'],['squat','hingePower'],['pullH','pullV','coreFlex'],['locomotion','coreAntiExt']];
+if(focus==='upper')return [['pullH','pullV'],['pushH','pushV'],['hingePower','conditioning'],['coreAntiExt','locomotion']];
+if(focus==='lower')return [['hinge','hingePower'],['squat'],['conditioning','locomotion'],['coreAntiExt','pullH']];
+if(focus==='core')return [['coreAntiExt','coreFlex'],['hinge','lunge'],['pullH','pushH'],['conditioning','locomotion']];
+return [['hinge','hingePower','conditioning'],['pushH','pushV'],['pullH','pullV','coreFlex'],['squat','lunge','locomotion']]}
 function forceSelectedEquipment(items,pool,eq,used,recent){
   const optional=eq.filter(x=>x!=='bodyweight');
   if(!optional.length)return items;
@@ -444,7 +471,11 @@ function formatChoice(discipline,duration){
   if(duration<=15)return r<.35?'AMRAP':r<.65?'EMOM':'For Time';
   return r<.25?'AMRAP':r<.45?'EMOM':r<.72?'For Time':'Chipper';
 }
+function strengthTempo(style,idx){if(style==='hypertrophy')return idx%2?'3-1-1':'3-0-2';if(style==='endurance')return'2-0-2';if(style==='accessory')return'2-1-2';return idx<2?'3-1-X':'2-1-2'}
+function strengthPrescription(ex,level,style,intensity,idx){const high=intensity==='high',compound=['squat','hinge','lunge','pushH','pushV','pullH','pullV'].includes(ex.p);let reps=compound?10:14,sets=4,rest=high?35:50;if(style==='strong'){reps=compound?8:12;sets=high?5:4;rest=high?40:55}if(style==='hypertrophy'){reps=compound?12:15;sets=4;rest=high?35:50}if(style==='endurance'){reps=compound?16:20;sets=high?4:3;rest=25}if(style==='accessory'){reps=15;sets=high?4:3;rest=30}if(level==='beginner'){reps=Math.max(6,reps-3);sets=Math.max(3,sets-1)}if(level==='advanced'){reps+=2;if(high)sets+=1}return{qty:reps,unit:'reps',sets,rest,tempo:strengthTempo(style,idx)}}
+function buildStrengthWorkout(level,duration,focus,pool,eq){const recent=recentNames(),used=new Set(),patterns=sequenceFor('strength',focus),style=$('strengthStyle').value,intensity=$('strengthIntensity').value;let exercises=patterns.map(ps=>chooseByPattern(pool,ps,used,recent)).filter(Boolean);if(duration>=45){const extra=focus==='arms'?[['armsPull'],['armsPush']]:focus==='core'?[['coreAntiRot'],['corePosterior']]:[['pullH','pushH'],['coreAntiExt','armsPush']];exercises.push(...extra.map(ps=>chooseByPattern(pool,ps,used,recent)).filter(Boolean))}exercises=forceSelectedEquipment(exercises.map(ex=>({ex,...repPrescription(ex,level,'strength')})),pool,eq,used,recent).map(x=>x.ex);const items=exercises.map((ex,idx)=>({ex,...strengthPrescription(ex,level,style,intensity,idx),superset:Math.floor(idx/2)+1})),estimated=Math.round(items.reduce((s,i)=>s+i.sets*(i.qty*i.ex.t+i.rest),0)/60*.72),muscles=[...new Set(items.flatMap(i=>i.ex.m))],intensityScore=Math.min(9,Math.round(items.reduce((s,i)=>s+i.ex.f,0)/items.length)+(intensity==='high'?1:0)),styleLabel={strong:'Strong',hypertrophy:'Ipertrofia',endurance:'Resistenza muscolare',accessory:'Accessory'}[style];return{id:fingerprint('Strength Superset',items,null),discipline:'strength',level,duration,focus,format:'Strength Superset',items,roundsTarget:null,estimated,description:`${styleLabel}: lavora a coppie in superserie. Completa A1, passa ad A2, poi recupera. Mantieni il tempo indicato e lascia 1-2 ripetizioni tecniche in riserva.`,timer:'up',intensity:intensityScore,patterns:items.map(i=>i.ex.p),muscles,eq,style,strengthIntensity:intensity}}
 function buildWorkout(discipline,level,duration,focus,pool,eq){
+if(discipline==='strength')return buildStrengthWorkout(level,duration,focus,pool,eq);
   const recent=recentNames(),used=new Set(),patterns=sequenceFor(discipline,focus);
   let items=patterns.map(ps=>chooseByPattern(pool,ps,used,recent)).filter(Boolean).map(ex=>({ex,...repPrescription(ex,level,discipline==='strength'?'strength':'metcon')}));
   items=forceSelectedEquipment(items,pool,eq,used,recent);
@@ -491,7 +522,7 @@ function validate(w,pool){
   const selected=w.eq.filter(x=>x!=='bodyweight');
   for(const tool of selected)if(pool.some(e=>e.eq.includes(tool))&&!w.items.some(i=>i.ex.eq.includes(tool)))warnings.push(`Attrezzo selezionato ma non usato: ${EQUIPMENT.find(x=>x[0]===tool)?.[1]||tool}.`);
   if(['For Time','Chipper','Quality Rounds','Strength Sets'].includes(w.format)&&Math.abs(w.estimated-w.duration)>Math.max(6,w.duration*.35))warnings.push(`Durata stimata ${w.estimated} min rispetto al target ${w.duration}.`);
-  if(new Set(w.patterns).size<Math.min(3,w.items.length))errors.push('Varietà di schemi motori insufficiente.');
+  if(w.discipline!=='strength'&&new Set(w.patterns).size<Math.min(3,w.items.length))errors.push('Varietà di schemi motori insufficiente.');
   return {ok:errors.length===0,errors,warnings};
 }
 function generateWorkout(){
@@ -504,11 +535,8 @@ function generateWorkout(){
   for(let attempt=0;attempt<80;attempt++){candidate=buildWorkout(discipline,level,duration,focus,pool,eq);check=validate(candidate,pool);if(check.ok&&!check.warnings.length)break}
   current=candidate;renderWorkout(check);configureTimer();
 }
-function displayQty(i){
-  if(i.sets)return `${i.sets} × ${i.qty} ${i.unit}`;
-  if(i.minute)return `Min ${i.minute}: ${i.qty} ${i.unit}`;
-  return `${i.qty} ${i.unit}`;
-}
+function displayQty(i){if(i.sets)return`${i.sets} × ${i.qty} ${i.unit}`;if(i.minute)return`Min ${i.minute}: ${i.qty} ${i.unit}`;return`${i.qty} ${i.unit}`}
+function renderWorkoutItems(){if(current.format!=='Strength Superset')return current.items.map(i=>`<div class="wodline"><div class="reps">${displayQty(i)}</div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')} · fatica ${i.ex.f}/9${i.rest?` · recupero ${i.rest}s`:''}</div></div><button class="btn" onclick="showExercise('${i.ex.n.replaceAll("'","\'")}')">ℹ️</button></div>`).join('');const groups=[...new Set(current.items.map(i=>i.superset))];return groups.map((g,gidx)=>`<div class="superset"><div class="supersetTitle">Superserie ${String.fromCharCode(65+gidx)} · ${current.items.find(i=>i.superset===g).sets} giri</div>${current.items.filter(i=>i.superset===g).map((i,idx)=>`<div class="wodline"><div class="reps">${String.fromCharCode(65+gidx)}${idx+1}<br>${i.qty}</div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')} · recupero dopo la coppia ${i.rest}s</div><span class="tempoTag">Tempo ${i.tempo}</span></div><button class="btn" onclick="showExercise('${i.ex.n.replaceAll("'","\'")}')">ℹ️</button></div>`).join('')}</div>`).join('')}
 function renderWorkout(check){
   $('validation').style.display='block';$('validation').className='card status '+(check.ok?'success':'warning');
   $('validation').innerHTML=`<b>${check.ok?'Controllo Engine superato':'Controllo da rivedere'}</b><br>${check.errors.concat(check.warnings).join('<br>')||'Durata, livello, attrezzatura, schemi motori e sovrapposizioni verificati.'}`;
@@ -516,40 +544,11 @@ function renderWorkout(check){
     <div class="title"><h2>${current.format}</h2><span class="pill">Stima ${current.estimated} min · target ${current.duration}</span></div>
     <p>${current.description}</p>
     <div class="balance">${current.patterns.map(x=>`<span>${x}</span>`).join('')}</div>
-    <div class="wodbox">${current.items.map(i=>`<div class="wodline">
-      <div class="reps">${displayQty(i)}</div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')} · fatica ${i.ex.f}/9${i.rest?` · recupero ${i.rest}s`:''}</div></div>
-      <button class="btn" onclick="showExercise('${i.ex.n.replaceAll("'","\\'")}')">ℹ️</button></div>`).join('')}</div>
+    <div class="wodbox">${renderWorkoutItems()}</div>
   </div>
   <div class="card third"><h3>🎯 Identità</h3><p><b>${focusLabel(current.focus)}</b></p><p class="muted">Intensità media ${current.intensity}/9</p><p class="muted">Muscoli: ${current.muscles.join(', ')}</p><p class="muted">Attrezzi: ${current.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p></div>`;
 }
-function focusLabel(x){return {balanced:'Bilanciato',engine:'Conditioning',upper:'Upper body',lower:'Lower body',core:'Core & controllo'}[x]}
-function showExercise(name){
-  const e=E.find(x=>x.n===name);
-  const raw=EXERCISE_GUIDES[e.n]||genericGuide(e);
-  const g={
-    setup:raw.setup||'Assumi una posizione stabile e prepara l’attrezzatura richiesta.',
-    how:raw.how||'Esegui il movimento con controllo.',
-    breathing:raw.breathing||'Respira in modo regolare senza perdere la tensione del tronco.',
-    feel:raw.feel||`Dovresti sentire soprattutto ${e.m.join(', ')}.`,
-    errors:raw.errors||'Non sacrificare la tecnica per la velocità.',
-    regression:raw.regression||'Riduci difficoltà, carico o ampiezza.',
-    benefit:raw.benefit||`Sviluppa ${e.m.join(', ')}.`
-  };
-  $('sheet').innerHTML=`<div class="title"><h2>${e.n}</h2><button class="btn" onclick="closeModal()">Chiudi</button></div>
-  <div class="exerciseCard"><b>1. Preparazione e posizione</b><p>${g.setup}</p></div>
-  <div class="exerciseCard"><b>2. Esecuzione passo passo</b><p>${g.how}</p></div>
-  <div class="exerciseCard"><b>3. Respirazione e controllo</b><p>${g.breathing}</p></div>
-  <div class="exerciseCard"><b>4. Cosa devi sentire</b><p>${g.feel}</p></div>
-  <div class="exerciseCard"><b>⚠️ Errori comuni</b><p>${g.errors}</p></div>
-  <div class="exerciseCard"><b>↘️ Variante più semplice</b><p>${g.regression}</p></div>
-  <div class="exerciseCard"><b>🎯 Perché è utile</b><p>${g.benefit}</p></div>
-  <p><b>Schema motorio:</b> ${e.p}</p>
-  <p><b>Muscoli:</b> ${e.m.join(', ')}</p>
-  <p><b>Attrezzatura:</b> ${e.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p>
-  <p><b>Livello minimo:</b> ${['','Beginner','Intermediate','Advanced'][e.lvl]}</p>
-  <div class="status warning">Questa guida orienta, ma non sostituisce la correzione tecnica di un coach. Interrompi in caso di dolore.</div>`;
-  $('modal').classList.add('show')
-}
+function focusLabel(x){return{balanced:'Bilanciato',engine:'Conditioning',upper:'Upper body',lower:'Lower body',core:'Core & controllo',skill:'Skill & propedeutiche',total:'Total body',back:'Dorso',chest:'Petto',shoulders:'Spalle',arms:'Braccia',legs:'Gambe',posterior:'Catena posteriore'}[x]||x}
 function closeModal(){$('modal').classList.remove('show')}
 function configureTimer(){
   clearInterval(timer);timer=null;paused=true;rounds=0;splits=[];elapsed=0;
@@ -567,7 +566,7 @@ function releaseWake(){try{wakeLock?.release();wakeLock=null}catch(e){}}
 async function timerStart(){
   await unlockAudio();
   if(!current){alert('Genera prima un allenamento.');return}
-  if(timer)return;paused=false;$('pauseBtn').classList.remove('active');$('timerState').textContent='IN CORSO';requestWake();beep(700,.08);
+  if(timer)return;paused=false;$('pauseBtn').classList.remove('active');$('timerState').textContent='IN CORSO';requestWake();beep(1750,.14,'short');
   timer=setInterval(()=>{
     elapsed++;
     if(timerDirection==='down'){remaining=Math.max(0,remaining-1);emomAlerts();if(remaining===0){timerFinish();return}}
@@ -583,7 +582,7 @@ function timerReset(){
   if(!confirm('Azzerare timer, round e parziali?'))return;
   clearInterval(timer);timer=null;releaseWake();configureTimer();beep(280,.12);
 }
-function timerFinish(){clearInterval(timer);timer=null;releaseWake();$('timerState').textContent='COMPLETATO';beep(950,.18,'short');setTimeout(()=>beep(950,.18,'short'),260);setTimeout(()=>beep(1180,.45,'long'),540);flashTimer()}
+function timerFinish(){clearInterval(timer);timer=null;releaseWake();$('timerState').textContent='COMPLETATO';beep(1750,.24,'short');setTimeout(()=>beep(1750,.24,'short'),260);setTimeout(()=>beep(2100,.58,'long'),540);flashTimer()}
 function addRound(){if(!current)return;rounds++;$('roundCount').textContent=rounds;addSplit('Round '+rounds);if(navigator.vibrate)navigator.vibrate(60)}
 function addSplit(label){if(!current)return;const time=timerDirection==='up'?elapsed:current.duration*60-remaining;splits.push({label:label||('Parziale '+(splits.length+1)),time});renderSplits();beep(620,.06)}
 function renderSplits(){$('splitList').innerHTML=splits.map((s,i)=>`<div class="split"><span>${s.label}</span><b>${fmt(s.time)}${i?` <span class="muted small">(+${fmt(s.time-splits[i-1].time)})</span>`:''}</b></div>`).join('')}
@@ -591,11 +590,11 @@ function fmt(sec){return `${String(Math.floor(sec/60)).padStart(2,'0')}:${String
 function emomAlerts(){
   const elapsedIn=current.duration*60-remaining;
   const sec=elapsedIn%60;
-  if(sec===50)beep(650,.10,'warn');
-  if(sec===57||sec===58||sec===59)beep(650,.10,'warn');
+  if(sec===50)beep(1250,.14,'warn');
+  if(sec===57||sec===58||sec===59)beep(1250,.14,'warn');
   if(sec===0&&elapsedIn>0){
-    beep(950,.18,'short');flashTimer();
-    setTimeout(()=>beep(1180,.45,'long'),220);
+    beep(1750,.24,'short');flashTimer();
+    setTimeout(()=>beep(2100,.58,'long'),220);
     if(navigator.vibrate)navigator.vibrate([120,60,120]);
   }
 }
