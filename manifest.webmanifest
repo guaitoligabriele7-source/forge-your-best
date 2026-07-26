@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.6.1 UX & Academy",
+  "name": "FORGE v9.7.1 Biomechanics Precision",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Interfaccia più immediata, glossario consultabile, popup esercizi dettagliati e prototipo visuale 3D."
+  "description": "Descrizioni biomeccaniche più meticolose e animazioni multi-fase, incluso il burpee completo."
 }

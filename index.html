@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.6.1 — UX & Academy</title>
+<title>FORGE v9.7.1 — Biomechanics Precision</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -83,16 +83,20 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 .sheet{max-height:88vh;overflow:auto}
 .academyHero{display:grid;grid-template-columns:1fr;gap:12px}.academyTabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.academyTabs button{flex:1;min-width:105px}
 .academySection{display:none}.academySection.active{display:block}
-.motionStage{position:relative;min-height:245px;border:1px solid var(--line);border-radius:18px;background:radial-gradient(circle at 50% 35%,#222b35,#090c10 70%);overflow:hidden;perspective:800px}
-.motionGrid{position:absolute;inset:55% 0 0;background:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px;transform:rotateX(68deg);transform-origin:top}
-.forgeMannequin{position:absolute;left:50%;top:49%;width:155px;height:210px;transform:translate(-50%,-50%) rotateY(-18deg);transform-style:preserve-3d;animation:hingeLoop 3.1s ease-in-out infinite}
-.man-head,.man-body,.man-arm,.man-leg{position:absolute;background:linear-gradient(145deg,#dfe8ef,#72808d);border:2px solid #fff4;box-shadow:inset -8px -5px 10px #0004}
-.man-head{width:34px;height:34px;border-radius:50%;left:61px;top:5px}.man-body{width:42px;height:78px;border-radius:18px;left:57px;top:39px}
-.man-arm{width:17px;height:76px;border-radius:12px;top:46px;transform-origin:50% 10%}.man-arm.left{left:42px;transform:rotate(10deg)}.man-arm.right{right:39px;transform:rotate(-10deg)}
-.man-leg{width:20px;height:91px;border-radius:13px;top:111px;transform-origin:50% 8%}.man-leg.left{left:53px;transform:rotate(3deg)}.man-leg.right{right:48px;transform:rotate(-3deg)}
-.motionBadge{position:absolute;top:12px;left:12px;padding:7px 10px;border-radius:999px;background:#000a;border:1px solid #fff2;font-size:.78rem}
-.motionNote{position:absolute;bottom:10px;left:12px;right:12px;text-align:center;color:#ccd5dd;font-size:.78rem}
-@keyframes hingeLoop{0%,20%,100%{transform:translate(-50%,-50%) rotateY(-18deg) rotateZ(0)}50%,72%{transform:translate(-50%,-46%) rotateY(-18deg) rotateZ(34deg)}}
+
+.motionStage{position:relative;min-height:320px;border:1px solid var(--line);border-radius:18px;background:radial-gradient(circle at 50% 32%,#25303b,#090c10 72%);overflow:hidden}
+.motionStage svg{display:block;width:100%;height:auto;min-height:280px}
+.motionControls{display:flex;gap:8px;flex-wrap:wrap;padding:10px;border-top:1px solid var(--line);background:#090c10}
+.motionControls button{flex:1;min-width:86px}
+.motionCaption{padding:0 12px 12px;color:#c8d1da;font-size:.82rem;text-align:center}
+.motionStatus{position:absolute;left:12px;top:12px;z-index:2;padding:7px 10px;border-radius:999px;background:#000b;border:1px solid #fff2;font-size:.76rem;font-weight:800}
+.motionPhase{position:absolute;right:12px;top:12px;z-index:2;padding:7px 10px;border-radius:999px;background:rgba(255,106,19,.16);border:1px solid rgba(255,106,19,.45);font-size:.76rem;font-weight:800}
+.motionFloor{stroke:#67727d;stroke-width:2;opacity:.5}.motionShadow{fill:#000;opacity:.28}
+.motionBoneBack{stroke:#596571;stroke-width:13;stroke-linecap:round}.motionBone{stroke:#d8e1e8;stroke-width:14;stroke-linecap:round}
+.motionJoint{fill:#f2f5f7;stroke:#5e6a75;stroke-width:2}.motionTorso{fill:#aab6c1;stroke:#e8eef2;stroke-width:3}.motionHead{fill:#d9e2e8;stroke:#f4f7f8;stroke-width:3}
+.motionBand{fill:none;stroke:#ff6a13;stroke-width:5;stroke-linecap:round;opacity:.95}.motionEquipment{fill:none;stroke:#bac5ce;stroke-width:6;stroke-linecap:round}.motionBox{fill:#242c34;stroke:#8a98a5;stroke-width:3}
+@media(max-width:520px){.motionStage{min-height:285px}.motionControls button{font-size:.78rem;padding:9px 7px}}
+50%,72%{transform:translate(-50%,-46%) rotateY(-18deg) rotateZ(34deg)}}
 .glossaryItem{border:1px solid var(--line);border-radius:14px;padding:12px;background:#10141a;margin:8px 0}
 .stepList{counter-reset:steps;padding:0;list-style:none}.stepList li{counter-increment:steps;position:relative;padding-left:42px;margin:12px 0}.stepList li:before{content:counter(steps);position:absolute;left:0;top:-2px;width:29px;height:29px;border-radius:50%;display:grid;place-items:center;background:#ff6a13;color:#15100d;font-weight:900}
 @media(min-width:700px){.academyHero{grid-template-columns:.9fr 1.1fr}}
@@ -110,7 +114,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.6.1 — UX & Academy</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.7.1 — Biomechanics Precision</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -126,7 +130,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.6.1</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.7.1</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
@@ -554,14 +558,32 @@ function validate(w,pool){
   return {ok:errors.length===0,errors,warnings};
 }
 function generateWorkout(){
-  const discipline=$('discipline').value,level=$('level').value,duration=+$('duration').value,focus=$('focus').value;
-  const eq=selectedEquipment(),anchor=$('anchor').checked;
-  if(!eq.includes('bodyweight')&&eq.length===0){alert('Seleziona almeno Corpo libero o un attrezzo.');return}
-  const pool=candidatePool(discipline,level,eq,anchor);
-  if(pool.length<4){$('validation').style.display='block';$('validation').className='card status warning';$('validation').innerHTML='<b>Combinazione troppo limitata.</b><br>Aggiungi Corpo libero o altra attrezzatura. Per gli elastici, indica anche se hai un punto di ancoraggio.';return}
-  let candidate,check;
-  for(let attempt=0;attempt<80;attempt++){candidate=buildWorkout(discipline,level,duration,focus,pool,eq);check=validate(candidate,pool);if(check.ok&&!check.warnings.length)break}
-  current=candidate;renderWorkout(check);configureTimer();
+  try{
+    const discipline=$('discipline').value,level=$('level').value,duration=+$('duration').value,focus=$('focus').value;
+    const eq=selectedEquipment(),anchor=$('anchor').checked;
+    if(!eq.includes('bodyweight')&&eq.length===0){alert('Seleziona almeno Corpo libero o un attrezzo.');return}
+    const pool=candidatePool(discipline,level,eq,anchor);
+    if(pool.length<4){
+      $('validation').style.display='block';
+      $('validation').className='card status warning';
+      $('validation').innerHTML='<b>Combinazione troppo limitata.</b><br>Aggiungi Corpo libero o altra attrezzatura. Per gli elastici, indica anche se hai un punto di ancoraggio.';
+      return;
+    }
+    let candidate,check;
+    for(let attempt=0;attempt<80;attempt++){
+      candidate=buildWorkout(discipline,level,duration,focus,pool,eq);
+      check=validate(candidate,pool);
+      if(check.ok&&!check.warnings.length)break;
+    }
+    current=candidate;
+    renderWorkout(check);
+    configureTimer();
+  }catch(error){
+    console.error('FORGE generation error',error);
+    $('validation').style.display='block';
+    $('validation').className='card status warning';
+    $('validation').innerHTML='<b>Errore durante la generazione.</b><br>'+String(error.message||error);
+  }
 }
 function displayQty(i){if(i.sets)return`${i.sets} × ${i.qty} ${i.unit}`;if(i.minute)return`Min ${i.minute}: ${i.qty} ${i.unit}`;return`${i.qty} ${i.unit}`}
 function renderWorkoutItems(){
@@ -571,6 +593,31 @@ function renderWorkoutItems(){
  const groups=[...new Set(current.items.map(i=>i.superset))];
  return groups.map((g,gidx)=>{const letter=String.fromCharCode(65+gidx),rows=current.items.filter(i=>i.superset===g),sets=rows[0].sets;return `<div class="superset"><div class="supersetHeader"><div class="supersetHeaderText"><strong>Superserie ${letter}</strong><span>${sets} GIRI · esegui ${letter}1 e ${letter}2, poi recupera</span></div><button class="infoInline" onclick="showConcept('superset')">i</button></div>${rows.map((i,idx)=>`<div class="wodline"><div class="repBlock"><div class="code">${letter}${idx+1}</div><div class="number">${i.qty}</div><div class="unit">REPS</div></div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')}</div><div class="exerciseMeta"><button class="helpChip" onclick="showConcept('recovery',${i.rest})">Recupero ${i.rest}s ⓘ</button><button class="helpChip" onclick="showConcept('tempo',null,'${i.tempo}')">Tempo ${i.tempo} ⓘ</button></div></div><button class="btn" data-exercise="${i.ex.n}" onclick="showExercise(this.dataset.exercise)">ℹ️</button></div>`).join('')}</div>`}).join('');
 }
+
+function renderWorkout(check){
+  $('validation').style.display='block';
+  $('validation').className='card status '+(check.ok?'success':'warning');
+  $('validation').innerHTML=`<b>${check.ok?'Controllo Engine superato':'Controllo da rivedere'}</b><br>${check.errors.concat(check.warnings).join('<br>')||'Durata, livello, attrezzatura, focus e sovrapposizioni verificati.'}`;
+
+  const safeFormat=String(current.format).replaceAll("'","&#39;");
+  $('generated').innerHTML=`<div class="card two">
+    <div class="title">
+      <h2>${formatLabel(current.format)} <button class="infoInline" data-format="${safeFormat}" onclick="showFormatHelp(this.dataset.format)">i</button></h2>
+      <span class="pill">Stima ${current.estimated} min · target ${current.duration}</span>
+    </div>
+    <p>${current.description}</p>
+    <div class="focusPanel">${current.muscles.slice(0,6).map(x=>`<span>🎯 ${x}</span>`).join('')}</div>
+    <div class="wodbox">${renderWorkoutItems()}</div>
+  </div>
+  <div class="card third">
+    <h3>🎯 Identità</h3>
+    <p><b>${focusLabel(current.focus)}</b></p>
+    <p class="muted">Intensità media ${current.intensity}/9</p>
+    <p class="muted">Muscoli: ${current.muscles.join(', ')}</p>
+    <p class="muted">Attrezzi: ${current.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p>
+  </div>`;
+}
+
 function focusLabel(x){return{balanced:'Bilanciato',engine:'Conditioning',upper:'Upper body',lower:'Lower body',core:'Core & controllo',skill:'Skill & propedeutiche',total:'Total body',back:'Dorso',chest:'Petto',shoulders:'Spalle',arms:'Braccia',legs:'Gambe',posterior:'Catena posteriore'}[x]||x}
 
 function formatLabel(x){return x==='Strength Superset'?'Allenamento Strength · Superserie':x}
@@ -587,19 +634,196 @@ function openSheet(title,body){$('sheet').innerHTML=`<div class="title"><h2>${ti
 function showConcept(type,value,tempo){const c=CONCEPTS[type]||CONCEPTS.reps;let body=c.body;if(type==='recovery'&&value)body=`<p><b>In questo allenamento recupera ${value} secondi</b> dopo la coppia.</p>`+body;if(type==='tempo'&&tempo)body=`<p><b>Tempo previsto: ${tempo}</b></p>`+body;openSheet(c.title,body)}
 function showFormatHelp(format){showConcept(format==='Strength Superset'?'superset':format==='EMOM'?'emom':format==='AMRAP'?'amrap':format==='For Time'?'fortime':'reps')}
 function exerciseGuide(e){
- const special={'Band Good Morning':{setup:'Posiziona il centro dell’elastico sotto entrambi i piedi. Porta l’elastico dietro le spalle, non sulle vertebre del collo, e fermalo con le mani.',execution:['Mantieni petto aperto, addome attivo e ginocchia appena sbloccate.','Spingi il bacino indietro come se volessi chiudere una porta con i glutei.','Inclina il busto mantenendo la schiena neutra.','Fermati quando senti tensione nei femorali.','Spingi i piedi a terra e porta il bacino avanti.'],mistakes:['Piegare troppo le ginocchia.','Arrotondare la zona lombare.','Appoggiare l’elastico direttamente sul collo.','Iperestendere la schiena alla fine.'],tips:['Il bacino va indietro; il busto si inclina come conseguenza.','Dovresti sentire soprattutto femorali e glutei.']}};
- if(special[e.n])return special[e.n];
- const movement={squat:['Spingi il bacino indietro e piega le ginocchia.','Mantieni i piedi ben appoggiati.','Spingi il pavimento per risalire.'],hinge:['Porta il bacino indietro.','Mantieni la schiena neutra.','Contrai glutei e femorali per risalire.'],pushH:['Mantieni il corpo compatto.','Porta il petto verso il punto di appoggio.','Spingi senza perdere l’allineamento.'],pushV:['Stabilizza core e scapole.','Piega i gomiti con controllo.','Spingi senza inarcare la schiena.'],pullH:['Porta le scapole indietro.','Tira i gomiti verso il busto.','Ritorna lentamente.'],pullV:['Mantieni le spalle attive.','Guida il movimento con i gomiti.','Scendi in controllo.'],coreAntiExt:['Mantieni la zona lombare controllata.','Muovi gli arti senza inarcare la schiena.','Espira nella fase difficile.']};
- return {setup:'Prepara l’attrezzatura e assumi una posizione stabile. Mantieni addome attivo, colonna neutra e articolazioni allineate.',execution:movement[e.p]||['Parti da una posizione stabile.','Esegui il movimento nell’ampiezza controllabile.','Ritorna senza perdere tensione.'],mistakes:['Muoversi troppo velocemente.','Perdere l’allineamento.','Usare una resistenza eccessiva.'],tips:['La qualità viene prima della velocità.','Interrompi se perdi la posizione o avverti dolore articolare.']}
+ const n=e.n.toLowerCase(),p=e.p,hasBand=e.eq.includes('bands'),hasBox=e.eq.includes('box'),hasBar=e.eq.includes('pullup');
+
+ const specific={
+  'Burpee':{
+   setup:'Parti in piedi con i piedi circa alla larghezza delle anche, addome attivo e spazio libero davanti e dietro di te.',
+   execution:[
+    'Fletti anche e ginocchia e porta entrambe le mani a terra davanti ai piedi.',
+    'Con un piccolo salto porta contemporaneamente i piedi indietro fino alla posizione di plank alto.',
+    'Mantieni il corpo allineato e completa un push-up: piega i gomiti, avvicina il petto al pavimento e spingi per tornare in plank.',
+    'Dalla posizione di plank dai una spinta energica con entrambe le gambe e riporta i piedi vicino alle mani.',
+    'Rialza il petto, porta il peso sui piedi ed esegui la spinta dello squat per tornare in posizione eretta.',
+    'Completa un piccolo salto verticale estendendo anche, ginocchia e caviglie e batti le mani sopra la testa.',
+    'Atterra con ginocchia morbide e riparti dalla posizione in piedi.'
+   ],
+   mistakes:[
+    'Lasciare crollare il bacino durante il push-up.',
+    'Portare un piede alla volta in modo disordinato quando la variante prevista richiede il salto simultaneo.',
+    'Atterrare sulle gambe rigide.',
+    'Saltare il push-up oppure non completare l’estensione in piedi.',
+    'Curvare eccessivamente la zona lombare durante la risalita.'
+   ],
+   tips:[
+    'Pensa al burpee come a quattro blocchi: mani a terra, plank e push-up, piedi avanti, salto.',
+    'Avvicina i piedi abbastanza alle mani da poter rialzare il petto prima di saltare.',
+    'Mantieni un ritmo regolare: la fluidità vale più della velocità nelle prime ripetizioni.'
+   ]
+  },
+  'Band Good Morning':{
+   setup:'Posiziona il centro dell’elastico sotto entrambi i piedi, larghi quanto le anche. Porta l’elastico dietro le spalle, appoggiandolo sui trapezi e non sulle vertebre cervicali. Tienilo fermo con le mani.',
+   execution:[
+    'Mantieni il peso distribuito su tallone, base dell’alluce e base del mignolo.',
+    'Sblocca appena le ginocchia e contrai addome e dorsali.',
+    'Spingi il bacino indietro senza trasformare il movimento in uno squat.',
+    'Inclina il busto come un blocco unico, mantenendo testa, torace e bacino allineati.',
+    'Scendi finché senti un allungamento controllato nei femorali senza perdere la neutralità della schiena.',
+    'Spingi i piedi nel pavimento, contrai glutei e femorali e porta il bacino avanti.',
+    'Concludi in posizione eretta senza inarcare la zona lombare.'
+   ],
+   mistakes:['Piegare eccessivamente le ginocchia.','Arrotondare la schiena.','Appoggiare l’elastico sul collo.','Iperestendere il tratto lombare alla fine.'],
+   tips:['Immagina di chiudere una porta con i glutei.','La tibia resta quasi verticale.','La tensione deve essere percepita soprattutto in femorali e glutei.']
+  },
+  'Mountain Climber':{
+   setup:'Assumi un plank alto con mani sotto le spalle, dita aperte, gambe distese e corpo in linea dalla testa ai talloni.',
+   execution:['Spingi attivamente il pavimento e mantieni le scapole stabili.','Porta un ginocchio verso il petto senza sollevare eccessivamente il bacino.','Riporta il piede indietro fino al plank.','Alterna subito con l’altra gamba mantenendo il bacino il più fermo possibile.'],
+   mistakes:['Rimbalzare con il bacino.','Accorciare troppo il plank.','Appoggiare rumorosamente i piedi.','Perdere la posizione delle spalle sopra le mani.'],
+   tips:['Immagina di correre restando in plank.','Riduci la velocità se il bacino comincia a ruotare.']
+  },
+  'Hollow Rock':{
+   setup:'Sdraiati supino. Porta la zona lombare a contatto con il pavimento, solleva spalle e gambe e allunga le braccia oltre la testa.',
+   execution:['Mantieni costole basse e bacino in retroversione.','Inizia una piccola oscillazione avanti e indietro mantenendo il corpo rigido e curvo.','L’oscillazione nasce dal trasferimento del peso, non da slanci di braccia o gambe.','Mantieni sempre la zona lombare aderente al pavimento.'],
+   mistakes:['Inarcare la zona lombare.','Oscillare piegando e stendendo le anche.','Usare un’ampiezza troppo grande.'],
+   tips:['Riduci la leva piegando le ginocchia se perdi il contatto lombare.','Il corpo deve muoversi come una singola culla rigida.']
+  }
+ };
+ const exact=Object.entries(specific).find(([key])=>n===key.toLowerCase());
+ if(exact)return exact[1];
+
+ const common={
+  squat:{
+   setup:`Parti in piedi con i piedi circa alla larghezza delle spalle${hasBand?', posizionando l’elastico in modo simmetrico':''}. Mantieni l’intero piede a contatto con il pavimento.`,
+   execution:['Inspira e crea tensione nell’addome.','Avvia la discesa piegando contemporaneamente anche e ginocchia.','Mantieni le ginocchia nella direzione delle punte dei piedi.','Scendi fino alla profondità che consente di mantenere talloni appoggiati e schiena stabile.','Spingi il pavimento con tutto il piede ed estendi anche e ginocchia insieme.'],
+   mistakes:['Sollevare i talloni.','Far collassare le ginocchia verso l’interno.','Perdere la neutralità della schiena.','Risalire prima con il bacino e poi con il petto.'],
+   tips:['Ginocchia e punte seguono la stessa direzione.','Mantieni petto e bacino coordinati durante la risalita.']
+  },
+  hinge:{
+   setup:`Parti in piedi con piedi alla larghezza delle anche${hasBand?', elastico centrato e tensione uniforme':''}. Mantieni ginocchia morbide e addome attivo.`,
+   execution:['Sposta il bacino indietro mantenendo le tibie quasi verticali.','Inclina il busto senza arrotondare la schiena.','Mantieni il carico o l’elastico vicino al corpo.','Fermati quando senti tensione nei femorali.','Estendi le anche contraendo i glutei e torna in posizione eretta.'],
+   mistakes:['Trasformare il movimento in uno squat.','Allontanare il carico dal corpo.','Iperestendere la schiena alla fine.'],
+   tips:['Il movimento principale avviene all’anca.','Pensa a spingere il pavimento e il bacino in avanti.']
+  },
+  lunge:{
+   setup:'Parti in piedi con bacino e torace rivolti in avanti. Mantieni i piedi alla larghezza delle anche, non su una sola linea.',
+   execution:['Fai un passo controllato avanti o indietro secondo la variante.','Piega entrambe le ginocchia mantenendo il busto stabile.','Porta il ginocchio posteriore verso il pavimento senza appoggiarti.','Spingi con il piede anteriore e ritorna in posizione eretta.'],
+   mistakes:['Portare il ginocchio anteriore verso l’interno.','Usare una base troppo stretta.','Spingere solo con la punta del piede.'],
+   tips:['Immagina due binari paralleli sotto i piedi.','Mantieni il peso distribuito su tutto il piede anteriore.']
+  },
+  pushH:{
+   setup:'Assumi una posizione di plank con mani poco più larghe delle spalle, addome e glutei attivi e corpo allineato.',
+   execution:['Avvita leggermente le mani nel pavimento per stabilizzare le spalle.','Piega i gomiti mantenendoli inclinati rispetto al busto, non completamente aperti.','Abbassa petto e bacino insieme.','Raggiungi una profondità controllata.','Spingi il pavimento e torna al plank senza perdere l’allineamento.'],
+   mistakes:['Lasciare cadere il bacino.','Aprire i gomiti a novanta gradi.','Muovere prima il petto e poi il bacino.'],
+   tips:['Il corpo scende e sale come un blocco unico.','Mantieni il collo neutro e guarda poco davanti alle mani.']
+  },
+  pushV:{
+   setup:`Stabilizza piedi, bacino e addome${hasBand?', controllando che l’elastico abbia la stessa tensione sui due lati':''}. Porta le mani nella posizione iniziale prevista.`,
+   execution:['Mantieni le costole basse e i glutei attivi.','Spingi le mani verso l’alto seguendo una traiettoria controllata.','Lascia ruotare le scapole verso l’alto senza sollevare eccessivamente le spalle.','Completa l’estensione senza inarcare la zona lombare.','Ritorna lentamente alla posizione iniziale.'],
+   mistakes:['Compensare inarcando la schiena.','Spingere in avanti invece che sopra la testa.','Perdere il controllo nella discesa.'],
+   tips:['Mantieni il bacino sotto il torace.','Termina con braccia vicine alle orecchie quando la mobilità lo consente.']
+  },
+  pullH:{
+   setup:`Assumi una posizione stabile e porta le braccia davanti al corpo${hasBand?', con elastico già in leggera tensione':''}. Mantieni spalle lontane dalle orecchie.`,
+   execution:['Inizia retraendo leggermente le scapole.','Tira i gomiti indietro mantenendoli vicini alla traiettoria prevista.','Porta le mani verso il busto senza spingere il petto in avanti.','Fermati un istante nella massima contrazione.','Ritorna lentamente fino alla completa distensione controllata.'],
+   mistakes:['Sollevare le spalle.','Usare slancio del busto.','Accorciare la fase di ritorno.'],
+   tips:['Pensa a guidare il movimento con i gomiti.','Mantieni il collo lungo e il torace stabile.']
+  },
+  pullV:{
+   setup:`Afferra la sbarra con presa sicura${hasBar?', pollici chiusi attorno alla sbarra':''}. Parti con corpo lungo e scapole attive.`,
+   execution:['Allontana le spalle dalle orecchie prima di piegare i gomiti.','Tira i gomiti verso il basso e indietro.','Porta il petto verso la sbarra senza oscillare.','Raggiungi la massima altezza controllabile.','Scendi lentamente fino alla posizione iniziale mantenendo controllo scapolare.'],
+   mistakes:['Usare slancio non previsto.','Iniziare tirando solo con le braccia.','Lasciarsi cadere nella discesa.'],
+   tips:['Prima muovi le scapole, poi piega i gomiti.','Mantieni costole e bacino controllati.']
+  },
+  coreAntiExt:{
+   setup:'Posizionati in modo che la zona lombare possa restare neutra o leggermente aderente al pavimento. Attiva addome e glutei.',
+   execution:['Espira e abbassa le costole.','Muovi lentamente arti superiori o inferiori secondo la variante.','Mantieni il bacino fermo e impedisci alla schiena di inarcarsi.','Ritorna alla posizione iniziale senza perdere tensione.'],
+   mistakes:['Inarcare la zona lombare.','Trattenere il respiro.','Aumentare la leva oltre il proprio controllo.'],
+   tips:['Riduci l’ampiezza appena perdi il controllo lombare.','La qualità del bracing è l’obiettivo principale.']
+  },
+  locomotion:{
+   setup:'Assumi la posizione iniziale richiesta e stabilizza tronco, spalle e bacino prima di aumentare il ritmo.',
+   execution:['Esegui il gesto in modo coordinato.','Mantieni appoggi leggeri e regolari.','Conserva l’allineamento durante ogni cambio di appoggio.','Aumenta la velocità solo finché la tecnica resta invariata.'],
+   mistakes:['Accelerare prima di avere controllo.','Lasciare oscillare eccessivamente il bacino.','Atterrare in modo rigido.'],
+   tips:['Cerca ritmo e silenziosità degli appoggi.','Rallenta prima che il movimento diventi disordinato.']
+  }
+ };
+ const base=common[p]||common[e.p]||{
+   setup:'Prepara l’attrezzatura e assumi una posizione stabile, verificando che lo spazio di lavoro sia libero.',
+   execution:['Stabilizza il tronco prima di iniziare.','Esegui la fase attiva lungo una traiettoria controllata.','Raggiungi l’ampiezza che riesci a mantenere senza compensi.','Ritorna lentamente alla posizione iniziale.'],
+   mistakes:['Usare slancio non richiesto.','Perdere l’allineamento articolare.','Continuare dopo la perdita della tecnica.'],
+   tips:['La tecnica viene prima del numero di REPS.','Riduci resistenza o ampiezza quando il movimento cambia.']
+ };
+ return base;
 }
-function academyModel(name){return `<div class="motionStage"><div class="motionGrid"></div><div class="motionBadge">PROTOTIPO 3D · LOOP</div><div class="forgeMannequin"><div class="man-head"></div><div class="man-body"></div><div class="man-arm left"></div><div class="man-arm right"></div><div class="man-leg left"></div><div class="man-leg right"></div></div><div class="motionNote">Anteprima sperimentale: il modello definitivo sarà specifico per ogni esercizio.</div></div>`}
+function academyModel(e){
+ const profile=motionProfile(e);
+ return `<div class="motionStage" id="motionStage"><div class="motionStatus">MODELLO 3D PROCEDURALE</div><div class="motionPhase" id="motionPhase">${profile.label}</div>
+ <svg id="motionSvg" viewBox="0 0 320 300" role="img" aria-label="Animazione tecnica di ${e.n}">
+ <ellipse class="motionShadow" id="motionShadow" cx="166" cy="276" rx="56" ry="10"></ellipse><line class="motionFloor" x1="28" y1="278" x2="292" y2="278"></line>
+ <g id="motionEquipment"></g><g id="motionBack"><line class="motionBoneBack" id="backUpperArm"></line><line class="motionBoneBack" id="backForearm"></line><line class="motionBoneBack" id="backThigh"></line><line class="motionBoneBack" id="backShin"></line></g>
+ <g id="motionBody"><line class="motionBone" id="upperArm"></line><line class="motionBone" id="forearm"></line><line class="motionBone" id="thigh"></line><line class="motionBone" id="shin"></line><polygon class="motionTorso" id="torso"></polygon><circle class="motionHead" id="head" r="15"></circle><circle class="motionJoint" id="shoulderJoint" r="7"></circle><circle class="motionJoint" id="elbowJoint" r="6"></circle><circle class="motionJoint" id="wristJoint" r="5"></circle><circle class="motionJoint" id="hipJoint" r="8"></circle><circle class="motionJoint" id="kneeJoint" r="7"></circle><circle class="motionJoint" id="ankleJoint" r="5"></circle></g><g id="motionBand"></g></svg>
+ <div class="motionControls"><button class="btn primary" id="motionPlay">⏸ Pausa</button><button class="btn" id="motionSlow">🐢 Lento</button><button class="btn" id="motionView">↔ Vista 3/4</button></div>
+ <div class="motionCaption">Animazione associata a <b>${e.n}</b>. Osserva soprattutto traiettoria del busto, anche, ginocchia e braccia.</div></div>`;
+}
+let activeMotion=null;
+function stopExerciseMotion(){if(activeMotion?.raf)cancelAnimationFrame(activeMotion.raf);activeMotion=null}
+function pointLerp(a,b,t){return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]}
+function easeMotion(t){return .5-.5*Math.cos(Math.PI*t)}
+function setLine(id,a,b){const el=$(id);if(!el)return;el.setAttribute('x1',a[0]);el.setAttribute('y1',a[1]);el.setAttribute('x2',b[0]);el.setAttribute('y2',b[1])}
+function setCircle(id,p){const el=$(id);if(!el)return;el.setAttribute('cx',p[0]);el.setAttribute('cy',p[1])}
+function drawMotionPose(p,equipment,view){
+ const depth=view==='three'?9:4,shoulder=p.shoulder,elbow=p.elbow,wrist=p.wrist,hip=p.hip,knee=p.knee,ankle=p.ankle,head=p.head,neck=p.neck;
+ setLine('backUpperArm',[shoulder[0]-depth,shoulder[1]+3],[elbow[0]-depth,elbow[1]+3]);setLine('backForearm',[elbow[0]-depth,elbow[1]+3],[wrist[0]-depth,wrist[1]+3]);
+ const bk=p.backKnee||[knee[0]-depth*2,knee[1]+3],ba=p.backAnkle||[ankle[0]-depth*2,ankle[1]+2];setLine('backThigh',[hip[0]-depth,hip[1]+3],bk);setLine('backShin',bk,ba);
+ setLine('upperArm',shoulder,elbow);setLine('forearm',elbow,wrist);setLine('thigh',hip,knee);setLine('shin',knee,ankle);
+ const sx=shoulder[0],sy=shoulder[1],hx=hip[0],hy=hip[1],vx=hx-sx,vy=hy-sy,len=Math.max(1,Math.hypot(vx,vy)),px=-vy/len*13,py=vx/len*13;
+ $('torso').setAttribute('points',`${sx+px},${sy+py} ${sx-px},${sy-py} ${hx-px*.85},${hy-py*.85} ${hx+px*.85},${hy+py*.85}`);
+ setCircle('head',head);setCircle('shoulderJoint',shoulder);setCircle('elbowJoint',elbow);setCircle('wristJoint',wrist);setCircle('hipJoint',hip);setCircle('kneeJoint',knee);setCircle('ankleJoint',ankle);
+ $('motionShadow').setAttribute('cx',Math.max(100,Math.min(220,(hip[0]+ankle[0])/2)));
+ const eq=$('motionEquipment'),band=$('motionBand');eq.innerHTML='';band.innerHTML='';
+ if(equipment==='bar')eq.innerHTML='<line class="motionEquipment" x1="90" y1="34" x2="230" y2="34"></line>';
+ if(equipment==='wall')eq.innerHTML='<line class="motionEquipment" x1="284" y1="28" x2="284" y2="278"></line>';
+ if(equipment==='box')eq.innerHTML='<rect class="motionBox" x="215" y="220" width="72" height="58" rx="5"></rect>';
+ if(equipment==='weight')eq.innerHTML=`<circle class="motionEquipment" cx="${wrist[0]}" cy="${wrist[1]}" r="9"></circle>`;
+ if(equipment==='band')band.innerHTML=`<path class="motionBand" d="M ${ankle[0]-8} ${ankle[1]} Q ${wrist[0]-18} ${(ankle[1]+wrist[1])/2} ${wrist[0]} ${wrist[1]}"></path>`;
+}
+function startExerciseMotion(e){
+ stopExerciseMotion();
+ const profile=motionProfile(e);
+ const poses=profile.poses.map(name=>MOTION_POSES[name]).filter(Boolean);
+ const state={paused:false,slow:false,view:'three',start:performance.now(),raf:null};activeMotion=state;
+ const play=$('motionPlay'),slow=$('motionSlow'),view=$('motionView');
+ play?.addEventListener('click',()=>{state.paused=!state.paused;play.textContent=state.paused?'▶ Riprendi':'⏸ Pausa';if(!state.paused){state.start=performance.now();tick(state.start)}});
+ slow?.addEventListener('click',()=>{state.slow=!state.slow;slow.classList.toggle('primary',state.slow);slow.textContent=state.slow?'🐢 Lento attivo':'🐢 Lento'});
+ view?.addEventListener('click',()=>{state.view=state.view==='three'?'side':'three';view.textContent=state.view==='three'?'↔ Vista 3/4':'↔ Vista laterale'});
+ function tick(now){
+  if(state.paused||activeMotion!==state)return;
+  const duration=(state.slow?1600:950)*Math.max(2,poses.length-1);
+  const cycle=((now-state.start)%duration)/duration;
+  const totalSegments=poses.length-1;
+  const raw=cycle*totalSegments;
+  const index=Math.min(totalSegments-1,Math.floor(raw));
+  const local=easeMotion(raw-index);
+  const a=poses[index],b=poses[index+1],pose={};
+  new Set([...Object.keys(a),...Object.keys(b)]).forEach(k=>{
+    if(Array.isArray(a[k])&&Array.isArray(b[k]))pose[k]=pointLerp(a[k],b[k],local);
+    else pose[k]=a[k]||b[k];
+  });
+  drawMotionPose(pose,profile.equipment,state.view);
+  const label=profile.phases?.[index]||profile.label;
+  $('motionPhase').textContent=label;
+  state.raf=requestAnimationFrame(tick)
+ }
+ tick(performance.now())
+}
 function showExercise(name){
  const e=E.find(x=>x.n===name);if(!e)return;const g=exerciseGuide(e);
- openSheet(e.n,`<div class="academyHero"><div>${academyModel(e.n)}</div><div><div class="focusPanel">${e.m.map(x=>`<span>🎯 ${x}</span>`).join('')}</div><p><b>Preparazione</b><br>${g.setup}</p><div class="academyTabs"><button class="btn primary" data-tab="movement">Movimento</button><button class="btn" data-tab="errors">Errori</button><button class="btn" data-tab="tips">Coach Tips</button></div><div id="movement" class="academySection active"><h3>Come eseguirlo</h3><ol class="stepList">${g.execution.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>Respirazione:</b> inspira nel ritorno, espira durante lo sforzo.</p></div><div id="errors" class="academySection"><h3>Errori comuni</h3><ul>${g.mistakes.map(x=>`<li>${x}</li>`).join('')}</ul></div><div id="tips" class="academySection"><h3>Indicazioni FORGE</h3><ul>${g.tips.map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Beneficio:</b> sviluppa ${e.m.join(', ')}.</p></div></div></div>`);
+ openSheet(e.n,`<div class="academyHero"><div>${academyModel(e)}</div><div><div class="focusPanel">${e.m.map(x=>`<span>🎯 ${x}</span>`).join('')}</div><p><b>Preparazione</b><br>${g.setup}</p><div class="academyTabs"><button class="btn primary" data-tab="movement">Movimento</button><button class="btn" data-tab="errors">Errori</button><button class="btn" data-tab="tips">Coach Tips</button></div><div id="movement" class="academySection active"><h3>Come eseguirlo</h3><ol class="stepList">${g.execution.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>Respirazione:</b> inspira nella fase di preparazione o ritorno; espira durante la fase di maggiore sforzo senza perdere la tensione del tronco.</p><p class="muted small"><b>Controllo tecnico:</b> interrompi la serie in presenza di dolore articolare, perdita di equilibrio o impossibilità di mantenere la traiettoria descritta.</p></div><div id="errors" class="academySection"><h3>Errori comuni</h3><ul>${g.mistakes.map(x=>`<li>${x}</li>`).join('')}</ul></div><div id="tips" class="academySection"><h3>Indicazioni FORGE</h3><ul>${g.tips.map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Beneficio:</b> sviluppa ${e.m.join(', ')}.</p></div></div></div>`);
+ startExerciseMotion(e);
  document.querySelectorAll('.academyTabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.academySection').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.academyTabs button').forEach(x=>x.classList.remove('primary'));document.getElementById(b.dataset.tab).classList.add('active');b.classList.add('primary')}))
 }
 
-function closeModal(){$('modal').classList.remove('show')}
+function closeModal(){stopExerciseMotion();$('modal').classList.remove('show')}
 function configureTimer(){
   clearInterval(timer);timer=null;paused=true;rounds=0;splits=[];elapsed=0;
   timerDirection=current.timer;remaining=current.duration*60;
