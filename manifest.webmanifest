@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.7.1 Biomechanics Precision",
+  "name": "FORGE v9.7.2 Academy Stable",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Descrizioni biomeccaniche più meticolose e animazioni multi-fase, incluso il burpee completo."
+  "description": "Release stabile senza modellazione 3D, con FORGE Academy strutturata e prime 10 schede editoriali."
 }

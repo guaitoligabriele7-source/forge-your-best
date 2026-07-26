@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.7.1 — Biomechanics Precision</title>
+<title>FORGE v9.7.2 — Academy Stable</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -102,6 +102,18 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 @media(min-width:700px){.academyHero{grid-template-columns:.9fr 1.1fr}}
 
 </style>
+
+<style>
+.academyStable{display:grid;gap:14px}
+.academyStable .academyTabs{display:flex;gap:8px;flex-wrap:wrap}
+.academyStable .academySection{display:none}
+.academyStable .academySection.active{display:block}
+.academyStable .glossaryItem{margin:10px 0}
+.academyStable .glossaryItem p{margin:6px 0}
+.academyStable h3{margin-top:18px}
+.academyStable .viz-callout{padding:14px;border:1px solid var(--line,#333);border-radius:14px}
+</style>
+
 </head>
 <body>
 
@@ -114,7 +126,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.7.1 — Biomechanics Precision</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.7.2 — Academy Stable</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -130,7 +142,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.7.1</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.7.2</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
@@ -755,75 +767,294 @@ function exerciseGuide(e){
  };
  return base;
 }
-function academyModel(e){
- const profile=motionProfile(e);
- return `<div class="motionStage" id="motionStage"><div class="motionStatus">MODELLO 3D PROCEDURALE</div><div class="motionPhase" id="motionPhase">${profile.label}</div>
- <svg id="motionSvg" viewBox="0 0 320 300" role="img" aria-label="Animazione tecnica di ${e.n}">
- <ellipse class="motionShadow" id="motionShadow" cx="166" cy="276" rx="56" ry="10"></ellipse><line class="motionFloor" x1="28" y1="278" x2="292" y2="278"></line>
- <g id="motionEquipment"></g><g id="motionBack"><line class="motionBoneBack" id="backUpperArm"></line><line class="motionBoneBack" id="backForearm"></line><line class="motionBoneBack" id="backThigh"></line><line class="motionBoneBack" id="backShin"></line></g>
- <g id="motionBody"><line class="motionBone" id="upperArm"></line><line class="motionBone" id="forearm"></line><line class="motionBone" id="thigh"></line><line class="motionBone" id="shin"></line><polygon class="motionTorso" id="torso"></polygon><circle class="motionHead" id="head" r="15"></circle><circle class="motionJoint" id="shoulderJoint" r="7"></circle><circle class="motionJoint" id="elbowJoint" r="6"></circle><circle class="motionJoint" id="wristJoint" r="5"></circle><circle class="motionJoint" id="hipJoint" r="8"></circle><circle class="motionJoint" id="kneeJoint" r="7"></circle><circle class="motionJoint" id="ankleJoint" r="5"></circle></g><g id="motionBand"></g></svg>
- <div class="motionControls"><button class="btn primary" id="motionPlay">⏸ Pausa</button><button class="btn" id="motionSlow">🐢 Lento</button><button class="btn" id="motionView">↔ Vista 3/4</button></div>
- <div class="motionCaption">Animazione associata a <b>${e.n}</b>. Osserva soprattutto traiettoria del busto, anche, ginocchia e braccia.</div></div>`;
+
+const EXERCISE_ACADEMY={
+"Burpee":{
+ objective:"Sviluppare condizionamento cardiovascolare, coordinazione e resistenza muscolare attraverso una sequenza completa che combina accosciata, plank, push-up e salto.",
+ primary:["Quadricipiti","Glutei","Pettorali","Tricipiti","Deltoidi anteriori"],
+ secondary:["Addominali","Flessori dell’anca","Polpacci","Muscoli stabilizzatori delle scapole"],
+ setup:"Parti in piedi con i piedi circa alla larghezza delle anche. Distribuisci il peso su tutto il piede, mantieni addome leggermente attivo e lascia spazio libero davanti, dietro e sopra di te.",
+ execution:[
+  "Fletti anche e ginocchia, abbassa il bacino e appoggia entrambe le mani a terra davanti ai piedi.",
+  "Trasferisci il peso sulle mani e, con un piccolo salto, porta contemporaneamente entrambi i piedi indietro fino a raggiungere un plank alto.",
+  "Allinea testa, torace, bacino e talloni. Piega i gomiti e abbassa petto e bacino insieme per eseguire un push-up.",
+  "Spingi il pavimento fino a tornare con i gomiti estesi, senza lasciare crollare la zona lombare.",
+  "Dalla posizione di plank, spingi energicamente con entrambe le gambe e riporta i piedi vicino alle mani.",
+  "Solleva il petto, trasferisci il peso su tutto il piede ed estendi anche e ginocchia come nella risalita di uno squat.",
+  "Completa un piccolo salto verticale, estendi anche, ginocchia e caviglie e batti le mani sopra la testa.",
+  "Atterra sull’avampiede e poi appoggia il tallone, assorbendo l’impatto con anche e ginocchia morbide. Torna stabile prima della REP successiva."
+ ],
+ breathing:"Inspira mentre scendi e porti le mani a terra. Espira durante la spinta del push-up. Riprendi aria nel richiamo dei piedi ed espira durante la risalita e il salto.",
+ biomechanics:[
+  "Il plank richiede un’estensione stabile di anche e ginocchia e un controllo anti-estensione della colonna lombare.",
+  "Durante il push-up, scapole e omeri devono muoversi senza che il bacino perda l’allineamento.",
+  "Il richiamo dei piedi combina una rapida flessione di anche e ginocchia con il sostegno attivo delle spalle.",
+  "La risalita e il salto dipendono dall’estensione coordinata di anche, ginocchia e caviglie."
+ ],
+ mistakes:[
+  {error:"Lasciare crollare il bacino nel plank o nel push-up.",consequence:"Aumenta la compensazione lombare e rende la spinta meno efficiente.",correction:"Contrai addome e glutei prima di piegare i gomiti; petto e bacino devono scendere insieme."},
+  {error:"Riportare i piedi troppo lontano dalle mani.",consequence:"Costringe a risalire con il busto molto inclinato e sovraccarica la zona lombare.",correction:"Richiama i piedi abbastanza avanti da poter rialzare il petto prima della spinta."},
+  {error:"Atterrare con gambe rigide.",consequence:"Riduce l’assorbimento dell’impatto.",correction:"Atterra silenziosamente e piega leggermente anche e ginocchia."}
+ ],
+ tips:["Dividi mentalmente il movimento in quattro blocchi: mani a terra, push-up, piedi avanti, salto.","Mantieni un ritmo regolare: la fluidità è più importante della velocità.","Riduci il salto o usa un push-up dalle ginocchia quando la tecnica si deteriora."],
+ stopIf:["Avverti dolore a polsi, spalle, ginocchia o zona lombare.","Non riesci più a mantenere il plank allineato.","L’atterraggio diventa rigido o incontrollato."],
+ regression:"Esegui il burpee senza push-up e senza salto; porta indietro e avanti un piede alla volta.",
+ progression:"Aumenta l’altezza del salto o utilizza una variante con salto sopra una linea o un oggetto basso, mantenendo invariata la tecnica.",
+ validRep:"La REP è completa quando parti in piedi, esegui il push-up previsto, riporti i piedi avanti e termini con estensione completa del corpo e mani sopra la testa.",
+ trivia:"Il movimento prende il nome dal fisiologo statunitense Royal H. Burpee, che lo ideò come test semplice di efficienza fisica."
+},
+"Air Squat":{
+ objective:"Allenare lo schema di accosciata, la forza resistente delle gambe e il controllo coordinato di anche, ginocchia e caviglie.",
+ primary:["Quadricipiti","Glutei"],
+ secondary:["Adduttori","Femorali","Polpacci","Addominali","Erettori spinali"],
+ setup:"Parti in piedi con i piedi circa alla larghezza delle spalle e le punte leggermente rivolte verso l’esterno. Mantieni tallone, base dell’alluce e base del mignolo a contatto con il pavimento.",
+ execution:["Inspira e crea una tensione circolare nell’addome.","Avvia la discesa piegando contemporaneamente anche e ginocchia.","Mantieni le ginocchia nella stessa direzione delle punte dei piedi e il torace stabile.","Scendi finché la mobilità consente di mantenere talloni appoggiati, colonna controllata e bacino stabile.","Spingi il pavimento con tutto il piede ed estendi anche e ginocchia insieme.","Termina in piedi con ginocchia e anche estese, senza inarcare la zona lombare."],
+ breathing:"Inspira prima e durante la discesa; mantieni la pressione addominale nel punto più basso ed espira progressivamente durante la risalita.",
+ biomechanics:["Anca, ginocchio e caviglia si flettono durante la discesa e si estendono nella risalita.","Il centro di massa resta sopra la base d’appoggio formata dai piedi.","Il tronco si inclina quanto necessario, ma senza collassare o perdere il controllo lombare."],
+ mistakes:[
+  {error:"Ginocchia che collassano verso l’interno.",consequence:"Riduce la stabilità e altera la linea di forza.",correction:"Spingi delicatamente le ginocchia nella direzione del secondo e terzo dito del piede."},
+  {error:"Talloni che si sollevano.",consequence:"Sposta eccessivamente il peso in avanti.",correction:"Riduci la profondità e mantieni il tripode del piede attivo."},
+  {error:"Bacino che sale prima del petto.",consequence:"Trasforma la risalita in un good morning.",correction:"Immagina che petto e bacino risalgano alla stessa velocità."}
+ ],
+ tips:["Avvita i piedi nel pavimento senza muoverli.","Siediti tra i talloni, non semplicemente indietro.","Usa le braccia davanti a te come contrappeso."],
+ stopIf:["Perdi il contatto dei talloni.","Compare dolore articolare.","La schiena si arrotonda in modo marcato e non correggibile."],
+ regression:"Riduci la profondità oppure esegui uno squat verso una sedia o un box.",
+ progression:"Aggiungi una pausa controllata nel punto più basso o passa a una variante caricata.",
+ validRep:"La REP è valida quando raggiungi la profondità controllabile prevista e ritorni in completa estensione di anche e ginocchia.",
+ trivia:"La profondità corretta non è identica per tutti: dipende da mobilità, proporzioni corporee e capacità di mantenere il controllo."
+},
+"Band Squat":{
+ objective:"Rafforzare lo squat aggiungendo una resistenza elastica crescente durante la risalita.",
+ primary:["Quadricipiti","Glutei"],
+ secondary:["Adduttori","Femorali","Polpacci","Core"],
+ setup:"Posiziona il centro dell’elastico sotto entrambi i piedi, in modo simmetrico. Porta le estremità all’altezza delle spalle e tienile ferme. Parti con piedi circa alla larghezza delle spalle.",
+ execution:["Controlla che l’elastico sia centrato e non possa scivolare sotto i piedi.","Inspira, attiva l’addome e mantieni i gomiti in una posizione comoda.","Piega anche e ginocchia mantenendo le ginocchia allineate alle punte.","Scendi senza permettere all’elastico di trascinare il busto in avanti.","Spingi attraverso tutto il piede e risali contro la tensione crescente.","Termina in piedi senza iperestendere la zona lombare."],
+ breathing:"Inspira nella discesa ed espira durante la fase più impegnativa della risalita.",
+ biomechanics:["La resistenza dell’elastico aumenta man mano che si allunga.","La richiesta è generalmente maggiore vicino alla parte alta del movimento.","Il tronco deve contrastare la trazione verticale dell’elastico mantenendo costole e bacino allineati."],
+ mistakes:[
+  {error:"Elastico non centrato.",consequence:"Crea una trazione asimmetrica.",correction:"Controlla la stessa lunghezza e tensione sui due lati prima di iniziare."},
+  {error:"Perdere il controllo nella discesa.",consequence:"Riduce il lavoro muscolare e può alterare l’equilibrio.",correction:"Scendi in due o tre secondi mantenendo tensione continua."},
+  {error:"Inarcare la schiena al termine.",consequence:"Sposta la tensione dalla muscolatura delle anche alla zona lombare.",correction:"Termina alto, ma con costole basse e glutei attivi."}
+ ],
+ tips:["Tieni l’elastico vicino al corpo.","Non lasciare che la tensione cambi la tecnica dell’Air Squat.","Scegli un elastico che consenta una risalita fluida."],
+ stopIf:["L’elastico scivola o appare danneggiato.","La trazione ti fa perdere l’equilibrio.","Non riesci a mantenere ginocchia e piedi allineati."],
+ regression:"Usa un elastico più leggero o torna all’Air Squat.",
+ progression:"Usa un elastico più resistente o inserisci una pausa nel punto più basso.",
+ validRep:"Scendi alla profondità controllabile prevista e torna in piedi contro la resistenza, con anche e ginocchia completamente estese.",
+ trivia:"La resistenza elastica non è costante: cresce con l’allungamento, modificando il profilo di carico rispetto a un peso libero."
+},
+"Push-up":{
+ objective:"Sviluppare forza di spinta orizzontale mantenendo il corpo stabile come un’unica leva.",
+ primary:["Pettorali","Tricipiti","Deltoidi anteriori"],
+ secondary:["Dentato anteriore","Addominali","Glutei","Stabilizzatori scapolari"],
+ setup:"Assumi un plank alto. Posiziona le mani poco più larghe delle spalle, dita aperte e polsi sotto o leggermente dietro le spalle. Estendi le gambe e contrai addome e glutei.",
+ execution:["Spingi attivamente il pavimento e crea una linea continua da testa a talloni.","Inspira e piega i gomiti, orientandoli diagonalmente rispetto al busto.","Abbassa petto e bacino insieme mantenendo avambracci e polsi stabili.","Raggiungi la profondità prevista senza perdere l’allineamento.","Spingi il pavimento, estendi i gomiti e torna al plank alto.","Completa la REP con scapole controllate e tronco ancora rigido."],
+ breathing:"Inspira durante la discesa; espira mentre spingi per tornare in alto.",
+ biomechanics:["La spalla compie un movimento di adduzione orizzontale nella spinta.","Il gomito si flette nella discesa e si estende nella risalita.","Il core impedisce l’estensione lombare e la rotazione del bacino.","Le scapole si avvicinano in modo controllato nella discesa e si allontanano nella parte finale della spinta."],
+ mistakes:[
+  {error:"Bacino che crolla.",consequence:"Aumenta l’estensione lombare e riduce la trasmissione di forza.",correction:"Contrai glutei e addome prima di iniziare la discesa."},
+  {error:"Gomiti completamente aperti lateralmente.",consequence:"Può rendere la posizione della spalla meno efficiente.",correction:"Mantieni i gomiti inclinati circa 30–60 gradi rispetto al busto."},
+  {error:"Testa che raggiunge il pavimento prima del petto.",consequence:"Accorcia il movimento e altera l’allineamento cervicale.",correction:"Guarda poco davanti alle mani e guida la discesa con lo sterno."}
+ ],
+ tips:["Immagina di avvitare le mani nel pavimento.","Petto e bacino si muovono insieme.","Spingi il pavimento lontano da te nella risalita."],
+ stopIf:["Avverti dolore acuto a polsi, gomiti o spalle.","Non mantieni più il corpo allineato.","La profondità si riduce drasticamente tra le ripetizioni."],
+ regression:"Esegui il push-up con mani su un supporto rialzato oppure dalle ginocchia.",
+ progression:"Esegui una pausa in basso, una discesa lenta o una variante con piedi rialzati.",
+ validRep:"Il corpo scende come un blocco fino alla profondità prevista e torna con gomiti estesi senza perdita dell’allineamento.",
+ trivia:"L’inclinazione del corpo modifica il carico: più le mani sono alte, minore è la percentuale di peso corporeo sostenuta."
+},
+"Band Row":{
+ objective:"Rafforzare la tirata orizzontale e il controllo delle scapole contro una resistenza elastica.",
+ primary:["Gran dorsale","Romboidi","Trapezio medio"],
+ secondary:["Bicipiti","Deltoidi posteriori","Avambracci","Core"],
+ setup:"Ancora l’elastico a un punto stabile all’altezza del petto. Afferra le estremità, arretra fino a creare una leggera tensione e posizionati con piedi stabili, ginocchia morbide e torace neutro.",
+ execution:["Estendi le braccia senza lasciare che le spalle vengano trascinate in avanti.","Inizia il movimento portando le scapole leggermente indietro e verso il basso.","Tira i gomiti indietro mantenendoli vicini al busto o nella traiettoria indicata.","Porta le mani verso i lati del torace senza spingere le costole in avanti.","Mantieni un breve controllo nella posizione finale.","Estendi lentamente le braccia e lascia che le scapole tornino in avanti senza perdere la postura."],
+ breathing:"Inspira nella fase di ritorno ed espira mentre tiri l’elastico verso il corpo.",
+ biomechanics:["La spalla compie estensione e adduzione orizzontale.","Le scapole si retraggono nella tirata e protraggono in modo controllato nel ritorno.","Il gomito si flette mentre il core contrasta la trazione dell’elastico."],
+ mistakes:[
+  {error:"Usare slancio del busto.",consequence:"Riduce il lavoro della schiena e rende la resistenza irregolare.",correction:"Mantieni bacino e torace immobili; usa un elastico più leggero."},
+  {error:"Sollevare le spalle verso le orecchie.",consequence:"Sposta il lavoro verso il trapezio superiore.",correction:"Mantieni il collo lungo e guida i gomiti indietro e leggermente in basso."},
+  {error:"Rilasciare rapidamente l’elastico.",consequence:"Perde la fase eccentrica e può destabilizzare l’ancoraggio.",correction:"Torna in due o tre secondi."}
+ ],
+ tips:["Guida il movimento con i gomiti, non con le mani.","Mantieni lo sterno fermo.","Controlla sempre l’integrità e l’ancoraggio dell’elastico."],
+ stopIf:["L’ancoraggio si muove.","L’elastico presenta tagli o usura.","Devi inclinarti indietro per completare la tirata."],
+ regression:"Avvicinati al punto di ancoraggio o usa un elastico più leggero.",
+ progression:"Allontanati dall’ancoraggio, usa un elastico più resistente o aggiungi una pausa finale.",
+ validRep:"Le mani raggiungono il busto con scapole controllate e il ritorno termina con braccia estese senza perdita della postura.",
+ trivia:"Con gli elastici la tensione cresce durante la tirata, quindi la parte finale richiede un controllo particolarmente attivo."
+},
+"Pull-up":{
+ objective:"Sviluppare forza di tirata verticale sollevando il corpo fino alla sbarra con controllo scapolare e del tronco.",
+ primary:["Gran dorsale","Bicipiti","Grande rotondo"],
+ secondary:["Romboidi","Trapezio inferiore","Avambracci","Addominali"],
+ setup:"Afferra la sbarra con presa prona poco più larga delle spalle e pollici chiusi. Parti in sospensione con gambe ferme, costole controllate e spalle attive, senza rilassarti completamente sulle strutture passive.",
+ execution:["Dalla sospensione, abbassa le scapole allontanando le spalle dalle orecchie.","Mantieni addome e glutei attivi per limitare oscillazioni.","Tira i gomiti verso il basso e indietro mentre avvicini il petto alla sbarra.","Continua finché il mento supera chiaramente la sbarra o raggiungi lo standard indicato.","Fermati senza spingere la testa in avanti.","Scendi in modo controllato estendendo progressivamente i gomiti.","Ritorna alla sospensione prevista mantenendo controllo delle scapole."],
+ breathing:"Inspira nella sospensione; espira durante la tirata. Riprendi aria in modo controllato durante la discesa.",
+ biomechanics:["La spalla compie adduzione ed estensione mentre il gomito si flette.","Le scapole ruotano verso il basso e si deprimono durante la salita.","Il tronco deve contrastare estensione e oscillazione per trasferire la forza alla sbarra."],
+ mistakes:[
+  {error:"Iniziare piegando solo i gomiti.",consequence:"Riduce il contributo della muscolatura scapolare.",correction:"Avvia ogni REP con una piccola depressione delle scapole."},
+  {error:"Slanciare gambe e bacino.",consequence:"Cambia l’esercizio e rende difficile valutare la forza reale.",correction:"Stringi glutei e addome; usa una regressione se necessario."},
+  {error:"Lasciarsi cadere nella discesa.",consequence:"Perde controllo e aumenta il carico improvviso su gomiti e spalle.",correction:"Estendi i gomiti in due o tre secondi."}
+ ],
+ tips:["Pensa a portare i gomiti nelle tasche.","Mantieni il collo lungo.","Stringi la sbarra con tutto il palmo."],
+ stopIf:["Compare dolore a spalla o gomito.","Non riesci a controllare la discesa.","L’oscillazione aumenta a ogni REP."],
+ regression:"Usa un elastico di assistenza, una trazione negativa o un Ring Row.",
+ progression:"Aggiungi una pausa in alto, una discesa lenta o un piccolo sovraccarico.",
+ validRep:"Parti dallo standard di sospensione previsto, porta il mento oltre la sbarra senza slancio e ritorna con controllo.",
+ trivia:"Una presa più larga non rende automaticamente il lavoro più efficace; spesso riduce l’ampiezza e aumenta la richiesta di mobilità."
+},
+"Band Good Morning":{
+ objective:"Allenare l’hip hinge e la catena posteriore mantenendo la colonna stabile contro una resistenza elastica.",
+ primary:["Glutei","Femorali"],
+ secondary:["Erettori spinali","Adduttore grande","Addominali","Gran dorsale"],
+ setup:"Posiziona il centro dell’elastico sotto entrambi i piedi, larghi quanto le anche. Porta l’elastico dietro le spalle appoggiandolo sui trapezi, non sul collo, e tienilo fermo con le mani.",
+ execution:["Mantieni il tripode del piede a contatto con il pavimento.","Sblocca leggermente le ginocchia e crea tensione nell’addome e nei dorsali.","Spingi il bacino indietro mantenendo le tibie quasi verticali.","Inclina il busto come un blocco unico, senza arrotondare la colonna.","Scendi finché percepisci un allungamento controllato nei femorali e mantieni il peso sul mesopiede.","Spingi i piedi nel pavimento e porta il bacino avanti usando glutei e femorali.","Termina in posizione eretta con costole sopra il bacino, senza iperestendere la zona lombare."],
+ breathing:"Inspira prima della discesa, mantieni la pressione addominale durante l’hinge ed espira nella fase finale della risalita.",
+ biomechanics:["Il movimento principale è flessione ed estensione dell’anca.","Le ginocchia restano leggermente flesse ma non avanzano come in uno squat.","La colonna mantiene una posizione stabile mentre il bacino ruota sul femore.","La resistenza elastica aumenta progressivamente nella risalita."],
+ mistakes:[
+  {error:"Piegare troppo le ginocchia.",consequence:"Trasforma il gesto in uno squat e riduce la tensione sui femorali.",correction:"Spingi il bacino indietro e mantieni le tibie quasi verticali."},
+  {error:"Arrotondare la schiena.",consequence:"Perde la distribuzione di tensione desiderata.",correction:"Riduci l’ampiezza e mantieni sterno e bacino collegati come un blocco."},
+  {error:"Appoggiare l’elastico sul collo.",consequence:"Crea pressione inutile sulle vertebre cervicali.",correction:"Posizionalo sui trapezi e bloccalo con le mani."}
+ ],
+ tips:["Immagina di chiudere una portiera con i glutei.","La tensione dovrebbe essere percepita soprattutto in femorali e glutei.","Mantieni l’elastico simmetrico."],
+ stopIf:["Senti dolore lombare invece di tensione muscolare posteriore.","L’elastico scivola verso il collo.","Non riesci più a mantenere la schiena stabile."],
+ regression:"Esegui il movimento senza elastico, con le mani sui fianchi, oppure usa un elastico più leggero.",
+ progression:"Usa un elastico più resistente o rallenta la fase di discesa.",
+ validRep:"Il bacino arretra con colonna stabile e torna avanti fino alla posizione eretta senza iperestensione lombare.",
+ trivia:"Il good morning prende il nome dalla somiglianza del busto inclinato con un tradizionale gesto di saluto."
+},
+"Mountain Climber":{
+ objective:"Allenare il condizionamento e la flessione alternata dell’anca mantenendo la stabilità di spalle, tronco e bacino.",
+ primary:["Flessori dell’anca","Addominali","Deltoidi anteriori"],
+ secondary:["Pettorali","Tricipiti","Quadricipiti","Dentato anteriore"],
+ setup:"Assumi un plank alto con mani sotto le spalle, dita aperte, gomiti estesi, gambe distese e corpo in linea dalla testa ai talloni.",
+ execution:["Spingi attivamente il pavimento e stabilizza le scapole.","Contrai addome e glutei per mantenere il bacino allineato.","Porta un ginocchio verso il petto senza sollevare eccessivamente il bacino.","Riporta il piede indietro fino al plank completo.","Alterna con l’altra gamba mantenendo le spalle sopra le mani.","Aumenta il ritmo solo se il tronco resta stabile e gli appoggi rimangono controllati."],
+ breathing:"Respira in modo continuo e ritmico; evita di trattenere il fiato. Espira ogni due o tre richiami se il ritmo è elevato.",
+ biomechanics:["Un’anca si flette mentre l’altra gamba resta estesa.","Il core contrasta estensione e rotazione del bacino.","Le spalle sostengono il peso con scapole attivamente stabilizzate."],
+ mistakes:[
+  {error:"Bacino che rimbalza in alto e in basso.",consequence:"Riduce la richiesta sul core e rende il movimento meno efficiente.",correction:"Rallenta e immagina di sostenere un bicchiere sul bacino."},
+  {error:"Spalle che arretrano dietro le mani.",consequence:"Accorcia il richiamo del ginocchio e cambia il carico.",correction:"Mantieni le spalle sopra i polsi."},
+  {error:"Piedi che colpiscono rumorosamente il pavimento.",consequence:"Indica perdita di controllo.",correction:"Appoggia e richiama i piedi con leggerezza."}
+ ],
+ tips:["Corri restando in plank.","Riduci la velocità prima che il bacino inizi a ruotare.","Mantieni lo sguardo tra le mani e poco avanti."],
+ stopIf:["I polsi o le spalle diventano doloranti.","Il bacino non resta più controllabile.","Non riesci a respirare in modo regolare."],
+ regression:"Esegui il richiamo lentamente, appoggiando un piede alla volta, oppure usa un supporto rialzato per le mani.",
+ progression:"Aumenta il ritmo mantenendo la stessa stabilità o porta il ginocchio verso il gomito opposto.",
+ validRep:"Una REP alternata è completa quando ciascun ginocchio viene richiamato e il piede ritorna al plank senza perdita dell’allineamento.",
+ trivia:"La velocità aumenta il costo cardiovascolare, ma non compensa una posizione di plank instabile."
+},
+"Hollow Rock":{
+ objective:"Sviluppare il controllo della linea hollow e la capacità del core di mantenere la colonna lombare stabile durante un’oscillazione.",
+ primary:["Retto addominale","Obliqui"],
+ secondary:["Flessori dell’anca","Quadricipiti","Dentato anteriore"],
+ setup:"Sdraiati supino. Porta il bacino in leggera retroversione e schiaccia la zona lombare contro il pavimento. Solleva spalle e gambe; allunga le braccia oltre la testa solo se mantieni il controllo.",
+ execution:["Crea una forma curva continua dalle mani ai piedi mantenendo costole basse.","Solleva leggermente testa e scapole senza flettere eccessivamente il collo.","Inizia una piccola oscillazione spostando il peso verso le scapole e poi verso il bacino.","Mantieni braccia, tronco e gambe rigidi come un’unica unità.","Evita di usare slanci articolando le anche.","Continua con un’ampiezza che non faccia mai staccare la zona lombare dal pavimento."],
+ breathing:"Espira per abbassare le costole e creare la posizione hollow. Mantieni respiri brevi e controllati durante l’oscillazione.",
+ biomechanics:["Il bacino resta in retroversione e il tronco resiste all’estensione lombare.","L’oscillazione avviene per trasferimento del centro di massa su una forma curva stabile.","Anche e spalle mantengono una posizione quasi costante durante ogni rock."],
+ mistakes:[
+  {error:"Zona lombare che si stacca dal pavimento.",consequence:"La tensione passa dai muscoli addominali alla compensazione lombare.",correction:"Piega le ginocchia o porta le braccia lungo i fianchi."},
+  {error:"Oscillare piegando e stendendo le anche.",consequence:"Il corpo non lavora più come un’unica leva.",correction:"Riduci l’ampiezza e mantieni la forma invariata."},
+  {error:"Tensione eccessiva del collo.",consequence:"Affatica inutilmente la muscolatura cervicale.",correction:"Mantieni il mento leggermente rientrato e lo sguardo verso le cosce."}
+ ],
+ tips:["Immagina di essere una culla rigida.","La qualità della posizione viene prima del numero di oscillazioni.","Riduci la leva appena perdi il contatto lombare."],
+ stopIf:["Compare dolore lombare o cervicale.","La zona lombare si solleva a ogni oscillazione.","Non riesci a respirare mantenendo la posizione."],
+ regression:"Esegui un Hollow Hold con ginocchia piegate e braccia lungo i fianchi.",
+ progression:"Estendi completamente gambe e braccia o aumenta leggermente l’ampiezza senza perdere la forma.",
+ validRep:"Ogni oscillazione avanti e indietro è valida solo se la forma hollow e il contatto lombare restano invariati.",
+ trivia:"La posizione hollow è una base tecnica utilizzata in ginnastica per trasferire forza tra parte superiore e inferiore del corpo."
+},
+"Walking Lunge":{
+ objective:"Allenare forza unilaterale, equilibrio dinamico e controllo di anca e ginocchio durante l’avanzamento.",
+ primary:["Quadricipiti","Glutei"],
+ secondary:["Femorali","Adduttori","Polpacci","Core"],
+ setup:"Parti in piedi con piedi alla larghezza delle anche, torace rivolto in avanti e bacino neutro. Mantieni lo sguardo davanti a te.",
+ execution:["Fai un passo avanti abbastanza lungo da poter appoggiare completamente il piede.","Distribuisci il peso sul piede anteriore e mantieni una base larga quanto le anche.","Piega entrambe le ginocchia e porta il ginocchio posteriore verso il pavimento.","Mantieni il ginocchio anteriore nella direzione delle dita del piede e il busto stabile.","Spingi attraverso tutto il piede anteriore ed estendi anca e ginocchio.","Porta la gamba posteriore direttamente nel passo successivo, ritrovando equilibrio prima della nuova discesa."],
+ breathing:"Inspira durante il passo e la discesa; espira mentre spingi per avanzare.",
+ biomechanics:["La gamba anteriore controlla la discesa e produce gran parte della spinta.","Anca e ginocchio anteriori si flettono e poi si estendono.","Il bacino deve limitare inclinazioni e rotazioni mentre la base d’appoggio cambia."],
+ mistakes:[
+  {error:"Camminare su una linea troppo stretta.",consequence:"Riduce la stabilità laterale.",correction:"Immagina due binari paralleli sotto i piedi."},
+  {error:"Ginocchio anteriore che collassa all’interno.",consequence:"Altera l’allineamento della gamba.",correction:"Mantieni il ginocchio verso il secondo e terzo dito del piede."},
+  {error:"Spingere solo con la punta.",consequence:"Riduce il contributo di glutei e stabilità del piede.",correction:"Mantieni tallone, base dell’alluce e base del mignolo attivi."}
+ ],
+ tips:["Fai un passo abbastanza lungo da lasciare spazio a entrambe le ginocchia.","Mantieni il bacino rivolto in avanti.","Rallenta la transizione tra un passo e l’altro."],
+ stopIf:["Perdi l’equilibrio ripetutamente.","Compare dolore a ginocchio o anca.","Il ginocchio non rimane allineato nonostante la riduzione dell’ampiezza."],
+ regression:"Esegui Reverse Lunge sul posto o usa un appoggio leggero per l’equilibrio.",
+ progression:"Aggiungi carico, una pausa in basso o aumenta il controllo eccentrico.",
+ validRep:"La REP è completa quando il ginocchio posteriore raggiunge la profondità prevista e la gamba anteriore ti porta stabilmente nel passo successivo.",
+ trivia:"Una base leggermente più larga migliora spesso l’equilibrio senza ridurre il lavoro delle gambe."
 }
-let activeMotion=null;
-function stopExerciseMotion(){if(activeMotion?.raf)cancelAnimationFrame(activeMotion.raf);activeMotion=null}
-function pointLerp(a,b,t){return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]}
-function easeMotion(t){return .5-.5*Math.cos(Math.PI*t)}
-function setLine(id,a,b){const el=$(id);if(!el)return;el.setAttribute('x1',a[0]);el.setAttribute('y1',a[1]);el.setAttribute('x2',b[0]);el.setAttribute('y2',b[1])}
-function setCircle(id,p){const el=$(id);if(!el)return;el.setAttribute('cx',p[0]);el.setAttribute('cy',p[1])}
-function drawMotionPose(p,equipment,view){
- const depth=view==='three'?9:4,shoulder=p.shoulder,elbow=p.elbow,wrist=p.wrist,hip=p.hip,knee=p.knee,ankle=p.ankle,head=p.head,neck=p.neck;
- setLine('backUpperArm',[shoulder[0]-depth,shoulder[1]+3],[elbow[0]-depth,elbow[1]+3]);setLine('backForearm',[elbow[0]-depth,elbow[1]+3],[wrist[0]-depth,wrist[1]+3]);
- const bk=p.backKnee||[knee[0]-depth*2,knee[1]+3],ba=p.backAnkle||[ankle[0]-depth*2,ankle[1]+2];setLine('backThigh',[hip[0]-depth,hip[1]+3],bk);setLine('backShin',bk,ba);
- setLine('upperArm',shoulder,elbow);setLine('forearm',elbow,wrist);setLine('thigh',hip,knee);setLine('shin',knee,ankle);
- const sx=shoulder[0],sy=shoulder[1],hx=hip[0],hy=hip[1],vx=hx-sx,vy=hy-sy,len=Math.max(1,Math.hypot(vx,vy)),px=-vy/len*13,py=vx/len*13;
- $('torso').setAttribute('points',`${sx+px},${sy+py} ${sx-px},${sy-py} ${hx-px*.85},${hy-py*.85} ${hx+px*.85},${hy+py*.85}`);
- setCircle('head',head);setCircle('shoulderJoint',shoulder);setCircle('elbowJoint',elbow);setCircle('wristJoint',wrist);setCircle('hipJoint',hip);setCircle('kneeJoint',knee);setCircle('ankleJoint',ankle);
- $('motionShadow').setAttribute('cx',Math.max(100,Math.min(220,(hip[0]+ankle[0])/2)));
- const eq=$('motionEquipment'),band=$('motionBand');eq.innerHTML='';band.innerHTML='';
- if(equipment==='bar')eq.innerHTML='<line class="motionEquipment" x1="90" y1="34" x2="230" y2="34"></line>';
- if(equipment==='wall')eq.innerHTML='<line class="motionEquipment" x1="284" y1="28" x2="284" y2="278"></line>';
- if(equipment==='box')eq.innerHTML='<rect class="motionBox" x="215" y="220" width="72" height="58" rx="5"></rect>';
- if(equipment==='weight')eq.innerHTML=`<circle class="motionEquipment" cx="${wrist[0]}" cy="${wrist[1]}" r="9"></circle>`;
- if(equipment==='band')band.innerHTML=`<path class="motionBand" d="M ${ankle[0]-8} ${ankle[1]} Q ${wrist[0]-18} ${(ankle[1]+wrist[1])/2} ${wrist[0]} ${wrist[1]}"></path>`;
+};
+
+function academyFallback(e){
+ const g=exerciseGuide(e);
+ return {
+  objective:`Sviluppare ${e.m.join(", ")} attraverso un’esecuzione controllata e coerente con lo schema motorio dell’esercizio.`,
+  primary:e.m,
+  secondary:[],
+  setup:g.setup,
+  execution:g.execution,
+  breathing:"Inspira nella fase di preparazione o ritorno ed espira durante la fase di maggiore sforzo, mantenendo il tronco stabile.",
+  biomechanics:["Mantieni le articolazioni allineate e controlla sia la fase attiva sia quella di ritorno.","Adatta ampiezza e resistenza alla capacità di conservare la traiettoria prevista."],
+  mistakes:g.mistakes.map(x=>({error:x,consequence:"Riduce la qualità del movimento e può creare compensi.",correction:"Riduci velocità, resistenza o ampiezza e ripristina l’allineamento."})),
+  tips:g.tips,
+  stopIf:["Compare dolore articolare.","Perdi equilibrio o controllo della traiettoria.","Devi usare slancio non previsto per completare le REPS."],
+  regression:"Riduci resistenza, ripetizioni o ampiezza; usa una variante più semplice.",
+  progression:"Aumenta gradualmente resistenza, controllo o ampiezza solo mantenendo la stessa tecnica.",
+  validRep:"La REP è valida quando completi l’ampiezza prevista senza compensi e torni alla posizione iniziale sotto controllo.",
+  trivia:"Questa scheda sarà ulteriormente perfezionata in uno dei prossimi blocchi editoriali di FORGE Academy."
+ };
 }
-function startExerciseMotion(e){
- stopExerciseMotion();
- const profile=motionProfile(e);
- const poses=profile.poses.map(name=>MOTION_POSES[name]).filter(Boolean);
- const state={paused:false,slow:false,view:'three',start:performance.now(),raf:null};activeMotion=state;
- const play=$('motionPlay'),slow=$('motionSlow'),view=$('motionView');
- play?.addEventListener('click',()=>{state.paused=!state.paused;play.textContent=state.paused?'▶ Riprendi':'⏸ Pausa';if(!state.paused){state.start=performance.now();tick(state.start)}});
- slow?.addEventListener('click',()=>{state.slow=!state.slow;slow.classList.toggle('primary',state.slow);slow.textContent=state.slow?'🐢 Lento attivo':'🐢 Lento'});
- view?.addEventListener('click',()=>{state.view=state.view==='three'?'side':'three';view.textContent=state.view==='three'?'↔ Vista 3/4':'↔ Vista laterale'});
- function tick(now){
-  if(state.paused||activeMotion!==state)return;
-  const duration=(state.slow?1600:950)*Math.max(2,poses.length-1);
-  const cycle=((now-state.start)%duration)/duration;
-  const totalSegments=poses.length-1;
-  const raw=cycle*totalSegments;
-  const index=Math.min(totalSegments-1,Math.floor(raw));
-  const local=easeMotion(raw-index);
-  const a=poses[index],b=poses[index+1],pose={};
-  new Set([...Object.keys(a),...Object.keys(b)]).forEach(k=>{
-    if(Array.isArray(a[k])&&Array.isArray(b[k]))pose[k]=pointLerp(a[k],b[k],local);
-    else pose[k]=a[k]||b[k];
-  });
-  drawMotionPose(pose,profile.equipment,state.view);
-  const label=profile.phases?.[index]||profile.label;
-  $('motionPhase').textContent=label;
-  state.raf=requestAnimationFrame(tick)
- }
- tick(performance.now())
-}
+function academyList(items){return `<ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>`}
+function academySteps(items){return `<ol class="stepList">${items.map(x=>`<li>${x}</li>`).join("")}</ol>`}
+function academyMistakes(items){return items.map(x=>`<div class="glossaryItem"><p><b>❌ Errore:</b> ${x.error}</p><p><b>⚠️ Conseguenza:</b> ${x.consequence}</p><p><b>✅ Correzione:</b> ${x.correction}</p></div>`).join("")}
 function showExercise(name){
- const e=E.find(x=>x.n===name);if(!e)return;const g=exerciseGuide(e);
- openSheet(e.n,`<div class="academyHero"><div>${academyModel(e)}</div><div><div class="focusPanel">${e.m.map(x=>`<span>🎯 ${x}</span>`).join('')}</div><p><b>Preparazione</b><br>${g.setup}</p><div class="academyTabs"><button class="btn primary" data-tab="movement">Movimento</button><button class="btn" data-tab="errors">Errori</button><button class="btn" data-tab="tips">Coach Tips</button></div><div id="movement" class="academySection active"><h3>Come eseguirlo</h3><ol class="stepList">${g.execution.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>Respirazione:</b> inspira nella fase di preparazione o ritorno; espira durante la fase di maggiore sforzo senza perdere la tensione del tronco.</p><p class="muted small"><b>Controllo tecnico:</b> interrompi la serie in presenza di dolore articolare, perdita di equilibrio o impossibilità di mantenere la traiettoria descritta.</p></div><div id="errors" class="academySection"><h3>Errori comuni</h3><ul>${g.mistakes.map(x=>`<li>${x}</li>`).join('')}</ul></div><div id="tips" class="academySection"><h3>Indicazioni FORGE</h3><ul>${g.tips.map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Beneficio:</b> sviluppa ${e.m.join(', ')}.</p></div></div></div>`);
- startExerciseMotion(e);
- document.querySelectorAll('.academyTabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.academySection').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.academyTabs button').forEach(x=>x.classList.remove('primary'));document.getElementById(b.dataset.tab).classList.add('active');b.classList.add('primary')}))
+ const e=E.find(x=>x.n===name);
+ if(!e)return;
+ const a=EXERCISE_ACADEMY[e.n]||academyFallback(e);
+ const primary=(a.primary||[]).map(x=>`<span>🎯 ${x}</span>`).join("");
+ const secondary=(a.secondary||[]).map(x=>`<span>＋ ${x}</span>`).join("");
+ openSheet(e.n,`
+  <div class="academyStable">
+   <div class="focusPanel">${primary}${secondary}</div>
+   <div class="viz-callout"><b>Obiettivo</b><br>${a.objective}</div>
+   <div class="academyTabs">
+    <button class="btn primary" data-tab="academyExecution">Esecuzione</button>
+    <button class="btn" data-tab="academyBiomechanics">Biomeccanica</button>
+    <button class="btn" data-tab="academyErrors">Errori</button>
+    <button class="btn" data-tab="academyCoach">Coach</button>
+   </div>
+   <section id="academyExecution" class="academySection active">
+    <h3>Posizione iniziale</h3><p>${a.setup}</p>
+    <h3>Esecuzione passo-passo</h3>${academySteps(a.execution)}
+    <h3>Respirazione</h3><p>${a.breathing}</p>
+    <h3>Quando una REP è valida</h3><p>${a.validRep}</p>
+   </section>
+   <section id="academyBiomechanics" class="academySection">
+    <h3>Biomeccanica essenziale</h3>${academyList(a.biomechanics)}
+    <h3>Muscoli principali</h3>${academyList(a.primary||[])}
+    ${a.secondary?.length?`<h3>Muscoli secondari</h3>${academyList(a.secondary)}`:""}
+   </section>
+   <section id="academyErrors" class="academySection">
+    <h3>Errori, conseguenze e correzioni</h3>${academyMistakes(a.mistakes)}
+    <h3>Interrompi o modifica la serie se</h3>${academyList(a.stopIf)}
+   </section>
+   <section id="academyCoach" class="academySection">
+    <h3>Coach Tips</h3>${academyList(a.tips)}
+    <h3>Regressione</h3><p>${a.regression}</p>
+    <h3>Progressione</h3><p>${a.progression}</p>
+    <h3>Curiosità</h3><p>${a.trivia}</p>
+   </section>
+  </div>`);
+ document.querySelectorAll(".academyTabs button").forEach(button=>button.addEventListener("click",()=>{
+  document.querySelectorAll(".academySection").forEach(section=>section.classList.remove("active"));
+  document.querySelectorAll(".academyTabs button").forEach(item=>item.classList.remove("primary"));
+  const section=document.getElementById(button.dataset.tab);
+  if(section)section.classList.add("active");
+  button.classList.add("primary");
+ }));
 }
 
-function closeModal(){stopExerciseMotion();$('modal').classList.remove('show')}
+function closeModal(){$('modal').classList.remove('show')}
 function configureTimer(){
   clearInterval(timer);timer=null;paused=true;rounds=0;splits=[];elapsed=0;
   timerDirection=current.timer;remaining=current.duration*60;
