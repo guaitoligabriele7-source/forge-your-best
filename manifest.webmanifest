@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.6 Engine Refinement",
+  "name": "FORGE v9.6.1 UX & Academy",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Strength con focus muscolare, superserie e tempo sotto tensione; nuove propedeutiche, Academy video-ready, audio e controlli migliorati."
+  "description": "Interfaccia più immediata, glossario consultabile, popup esercizi dettagliati e prototipo visuale 3D."
 }

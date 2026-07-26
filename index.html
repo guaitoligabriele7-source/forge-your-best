@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.6 — Engine Refinement</title>
+<title>FORGE v9.6.1 — UX & Academy</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -69,6 +69,34 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 .supersetTitle{font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .tempoTag{display:inline-block;margin-top:4px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}
 @media(max-width:720px){.forgeControls{grid-template-columns:1fr 1fr}.forgeControls .mainControl{min-height:72px}.forgeControls .resetControl{grid-column:1/-1}}
+
+.infoInline{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:7px;border-radius:999px;border:1px solid var(--line);background:#18202a;color:#dce9f7;font-weight:900;cursor:pointer;vertical-align:middle}
+.supersetHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.supersetHeaderText{display:flex;flex-direction:column;gap:3px}
+.supersetHeaderText strong{text-transform:uppercase;letter-spacing:.05em}
+.supersetHeaderText span{font-size:.86rem;color:var(--muted);font-weight:700}
+.repBlock{min-width:74px;text-align:center;font-weight:900;color:#ff6a13;line-height:1.05}
+.repBlock .code{font-size:1.05rem}.repBlock .number{font-size:1.85rem;margin-top:6px}.repBlock .unit{font-size:.75rem;letter-spacing:.1em;margin-top:3px;color:#ffd4bc}
+.exerciseMeta{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
+.helpChip{border:1px solid var(--line);background:#272126;color:#fff;border-radius:999px;padding:6px 10px;font-size:.82rem;cursor:pointer}
+.focusPanel{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}.focusPanel span{padding:7px 11px;border-radius:999px;background:#182331;color:#d7e8f7;font-size:.86rem}
+.sheet{max-height:88vh;overflow:auto}
+.academyHero{display:grid;grid-template-columns:1fr;gap:12px}.academyTabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.academyTabs button{flex:1;min-width:105px}
+.academySection{display:none}.academySection.active{display:block}
+.motionStage{position:relative;min-height:245px;border:1px solid var(--line);border-radius:18px;background:radial-gradient(circle at 50% 35%,#222b35,#090c10 70%);overflow:hidden;perspective:800px}
+.motionGrid{position:absolute;inset:55% 0 0;background:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px;transform:rotateX(68deg);transform-origin:top}
+.forgeMannequin{position:absolute;left:50%;top:49%;width:155px;height:210px;transform:translate(-50%,-50%) rotateY(-18deg);transform-style:preserve-3d;animation:hingeLoop 3.1s ease-in-out infinite}
+.man-head,.man-body,.man-arm,.man-leg{position:absolute;background:linear-gradient(145deg,#dfe8ef,#72808d);border:2px solid #fff4;box-shadow:inset -8px -5px 10px #0004}
+.man-head{width:34px;height:34px;border-radius:50%;left:61px;top:5px}.man-body{width:42px;height:78px;border-radius:18px;left:57px;top:39px}
+.man-arm{width:17px;height:76px;border-radius:12px;top:46px;transform-origin:50% 10%}.man-arm.left{left:42px;transform:rotate(10deg)}.man-arm.right{right:39px;transform:rotate(-10deg)}
+.man-leg{width:20px;height:91px;border-radius:13px;top:111px;transform-origin:50% 8%}.man-leg.left{left:53px;transform:rotate(3deg)}.man-leg.right{right:48px;transform:rotate(-3deg)}
+.motionBadge{position:absolute;top:12px;left:12px;padding:7px 10px;border-radius:999px;background:#000a;border:1px solid #fff2;font-size:.78rem}
+.motionNote{position:absolute;bottom:10px;left:12px;right:12px;text-align:center;color:#ccd5dd;font-size:.78rem}
+@keyframes hingeLoop{0%,20%,100%{transform:translate(-50%,-50%) rotateY(-18deg) rotateZ(0)}50%,72%{transform:translate(-50%,-46%) rotateY(-18deg) rotateZ(34deg)}}
+.glossaryItem{border:1px solid var(--line);border-radius:14px;padding:12px;background:#10141a;margin:8px 0}
+.stepList{counter-reset:steps;padding:0;list-style:none}.stepList li{counter-increment:steps;position:relative;padding-left:42px;margin:12px 0}.stepList li:before{content:counter(steps);position:absolute;left:0;top:-2px;width:29px;height:29px;border-radius:50%;display:grid;place-items:center;background:#ff6a13;color:#15100d;font-weight:900}
+@media(min-width:700px){.academyHero{grid-template-columns:.9fr 1.1fr}}
+
 </style>
 </head>
 <body>
@@ -82,7 +110,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.6 — Engine Refinement</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.6.1 — UX & Academy</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -98,7 +126,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.6</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.6.1</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
@@ -536,19 +564,41 @@ function generateWorkout(){
   current=candidate;renderWorkout(check);configureTimer();
 }
 function displayQty(i){if(i.sets)return`${i.sets} × ${i.qty} ${i.unit}`;if(i.minute)return`Min ${i.minute}: ${i.qty} ${i.unit}`;return`${i.qty} ${i.unit}`}
-function renderWorkoutItems(){if(current.format!=='Strength Superset')return current.items.map(i=>`<div class="wodline"><div class="reps">${displayQty(i)}</div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')} · fatica ${i.ex.f}/9${i.rest?` · recupero ${i.rest}s`:''}</div></div><button class="btn" onclick="showExercise('${i.ex.n.replaceAll("'","\'")}')">ℹ️</button></div>`).join('');const groups=[...new Set(current.items.map(i=>i.superset))];return groups.map((g,gidx)=>`<div class="superset"><div class="supersetTitle">Superserie ${String.fromCharCode(65+gidx)} · ${current.items.find(i=>i.superset===g).sets} giri</div>${current.items.filter(i=>i.superset===g).map((i,idx)=>`<div class="wodline"><div class="reps">${String.fromCharCode(65+gidx)}${idx+1}<br>${i.qty}</div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')} · recupero dopo la coppia ${i.rest}s</div><span class="tempoTag">Tempo ${i.tempo}</span></div><button class="btn" onclick="showExercise('${i.ex.n.replaceAll("'","\'")}')">ℹ️</button></div>`).join('')}</div>`).join('')}
-function renderWorkout(check){
-  $('validation').style.display='block';$('validation').className='card status '+(check.ok?'success':'warning');
-  $('validation').innerHTML=`<b>${check.ok?'Controllo Engine superato':'Controllo da rivedere'}</b><br>${check.errors.concat(check.warnings).join('<br>')||'Durata, livello, attrezzatura, schemi motori e sovrapposizioni verificati.'}`;
-  $('generated').innerHTML=`<div class="card two">
-    <div class="title"><h2>${current.format}</h2><span class="pill">Stima ${current.estimated} min · target ${current.duration}</span></div>
-    <p>${current.description}</p>
-    <div class="balance">${current.patterns.map(x=>`<span>${x}</span>`).join('')}</div>
-    <div class="wodbox">${renderWorkoutItems()}</div>
-  </div>
-  <div class="card third"><h3>🎯 Identità</h3><p><b>${focusLabel(current.focus)}</b></p><p class="muted">Intensità media ${current.intensity}/9</p><p class="muted">Muscoli: ${current.muscles.join(', ')}</p><p class="muted">Attrezzi: ${current.eq.map(v=>EQUIPMENT.find(x=>x[0]===v)?.[1]||v).join(', ')}</p></div>`;
+function renderWorkoutItems(){
+ if(current.format!=='Strength Superset'){
+  return current.items.map(i=>`<div class="wodline"><div class="repBlock"><div class="number">${i.qty}</div><div class="unit">${i.unit==='reps'?'REPS':i.unit.toUpperCase()}</div></div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')}${i.rest?` · Recupero ${i.rest}s`:''}</div></div><button class="btn" data-exercise="${i.ex.n}" onclick="showExercise(this.dataset.exercise)">ℹ️</button></div>`).join('');
+ }
+ const groups=[...new Set(current.items.map(i=>i.superset))];
+ return groups.map((g,gidx)=>{const letter=String.fromCharCode(65+gidx),rows=current.items.filter(i=>i.superset===g),sets=rows[0].sets;return `<div class="superset"><div class="supersetHeader"><div class="supersetHeaderText"><strong>Superserie ${letter}</strong><span>${sets} GIRI · esegui ${letter}1 e ${letter}2, poi recupera</span></div><button class="infoInline" onclick="showConcept('superset')">i</button></div>${rows.map((i,idx)=>`<div class="wodline"><div class="repBlock"><div class="code">${letter}${idx+1}</div><div class="number">${i.qty}</div><div class="unit">REPS</div></div><div><b>${i.ex.n}</b><div class="muted small">${i.ex.m.join(', ')}</div><div class="exerciseMeta"><button class="helpChip" onclick="showConcept('recovery',${i.rest})">Recupero ${i.rest}s ⓘ</button><button class="helpChip" onclick="showConcept('tempo',null,'${i.tempo}')">Tempo ${i.tempo} ⓘ</button></div></div><button class="btn" data-exercise="${i.ex.n}" onclick="showExercise(this.dataset.exercise)">ℹ️</button></div>`).join('')}</div>`}).join('');
 }
 function focusLabel(x){return{balanced:'Bilanciato',engine:'Conditioning',upper:'Upper body',lower:'Lower body',core:'Core & controllo',skill:'Skill & propedeutiche',total:'Total body',back:'Dorso',chest:'Petto',shoulders:'Spalle',arms:'Braccia',legs:'Gambe',posterior:'Catena posteriore'}[x]||x}
+
+function formatLabel(x){return x==='Strength Superset'?'Allenamento Strength · Superserie':x}
+const CONCEPTS={
+ superset:{title:'Che cos’è una superserie?',body:`<p>Una superserie unisce <b>due esercizi consecutivi</b>.</p><ol class="stepList"><li>Esegui A1 per le REPS indicate.</li><li>Passa subito ad A2, senza recupero.</li><li>Dopo A2 recupera per il tempo indicato.</li><li>Ripeti la coppia per il numero di GIRI previsto.</li></ol>`},
+ reps:{title:'Che cosa significa REPS?',body:`<p><b>REPS</b> significa ripetizioni: quante volte devi completare il movimento.</p>`},
+ recovery:{title:'Come gestire il recupero?',body:`<p>Il recupero parte <b>dopo avere completato entrambi gli esercizi della coppia</b>.</p>`},
+ tempo:{title:'Come si legge il tempo?',body:`<div class="glossaryItem"><b>Primo numero</b>: secondi della discesa.</div><div class="glossaryItem"><b>Secondo numero</b>: secondi di pausa.</div><div class="glossaryItem"><b>Terzo simbolo</b>: risalita. <b>X</b> significa controllata ma esplosiva.</div>`},
+ emom:{title:'Che cos’è un EMOM?',body:`<p>All’inizio di ogni minuto esegui il lavoro indicato. Il tempo restante è recupero.</p>`},
+ amrap:{title:'Che cos’è un AMRAP?',body:`<p>Completa più round o ripetizioni possibili nel tempo previsto, senza sacrificare la tecnica.</p>`},
+ fortime:{title:'Che cos’è un For Time?',body:`<p>Completa il lavoro indicato nel minor tempo possibile, rispettando il time cap.</p>`}
+};
+function openSheet(title,body){$('sheet').innerHTML=`<div class="title"><h2>${title}</h2><button class="btn" onclick="closeModal()">✕</button></div>${body}`;$('modal').classList.add('show')}
+function showConcept(type,value,tempo){const c=CONCEPTS[type]||CONCEPTS.reps;let body=c.body;if(type==='recovery'&&value)body=`<p><b>In questo allenamento recupera ${value} secondi</b> dopo la coppia.</p>`+body;if(type==='tempo'&&tempo)body=`<p><b>Tempo previsto: ${tempo}</b></p>`+body;openSheet(c.title,body)}
+function showFormatHelp(format){showConcept(format==='Strength Superset'?'superset':format==='EMOM'?'emom':format==='AMRAP'?'amrap':format==='For Time'?'fortime':'reps')}
+function exerciseGuide(e){
+ const special={'Band Good Morning':{setup:'Posiziona il centro dell’elastico sotto entrambi i piedi. Porta l’elastico dietro le spalle, non sulle vertebre del collo, e fermalo con le mani.',execution:['Mantieni petto aperto, addome attivo e ginocchia appena sbloccate.','Spingi il bacino indietro come se volessi chiudere una porta con i glutei.','Inclina il busto mantenendo la schiena neutra.','Fermati quando senti tensione nei femorali.','Spingi i piedi a terra e porta il bacino avanti.'],mistakes:['Piegare troppo le ginocchia.','Arrotondare la zona lombare.','Appoggiare l’elastico direttamente sul collo.','Iperestendere la schiena alla fine.'],tips:['Il bacino va indietro; il busto si inclina come conseguenza.','Dovresti sentire soprattutto femorali e glutei.']}};
+ if(special[e.n])return special[e.n];
+ const movement={squat:['Spingi il bacino indietro e piega le ginocchia.','Mantieni i piedi ben appoggiati.','Spingi il pavimento per risalire.'],hinge:['Porta il bacino indietro.','Mantieni la schiena neutra.','Contrai glutei e femorali per risalire.'],pushH:['Mantieni il corpo compatto.','Porta il petto verso il punto di appoggio.','Spingi senza perdere l’allineamento.'],pushV:['Stabilizza core e scapole.','Piega i gomiti con controllo.','Spingi senza inarcare la schiena.'],pullH:['Porta le scapole indietro.','Tira i gomiti verso il busto.','Ritorna lentamente.'],pullV:['Mantieni le spalle attive.','Guida il movimento con i gomiti.','Scendi in controllo.'],coreAntiExt:['Mantieni la zona lombare controllata.','Muovi gli arti senza inarcare la schiena.','Espira nella fase difficile.']};
+ return {setup:'Prepara l’attrezzatura e assumi una posizione stabile. Mantieni addome attivo, colonna neutra e articolazioni allineate.',execution:movement[e.p]||['Parti da una posizione stabile.','Esegui il movimento nell’ampiezza controllabile.','Ritorna senza perdere tensione.'],mistakes:['Muoversi troppo velocemente.','Perdere l’allineamento.','Usare una resistenza eccessiva.'],tips:['La qualità viene prima della velocità.','Interrompi se perdi la posizione o avverti dolore articolare.']}
+}
+function academyModel(name){return `<div class="motionStage"><div class="motionGrid"></div><div class="motionBadge">PROTOTIPO 3D · LOOP</div><div class="forgeMannequin"><div class="man-head"></div><div class="man-body"></div><div class="man-arm left"></div><div class="man-arm right"></div><div class="man-leg left"></div><div class="man-leg right"></div></div><div class="motionNote">Anteprima sperimentale: il modello definitivo sarà specifico per ogni esercizio.</div></div>`}
+function showExercise(name){
+ const e=E.find(x=>x.n===name);if(!e)return;const g=exerciseGuide(e);
+ openSheet(e.n,`<div class="academyHero"><div>${academyModel(e.n)}</div><div><div class="focusPanel">${e.m.map(x=>`<span>🎯 ${x}</span>`).join('')}</div><p><b>Preparazione</b><br>${g.setup}</p><div class="academyTabs"><button class="btn primary" data-tab="movement">Movimento</button><button class="btn" data-tab="errors">Errori</button><button class="btn" data-tab="tips">Coach Tips</button></div><div id="movement" class="academySection active"><h3>Come eseguirlo</h3><ol class="stepList">${g.execution.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>Respirazione:</b> inspira nel ritorno, espira durante lo sforzo.</p></div><div id="errors" class="academySection"><h3>Errori comuni</h3><ul>${g.mistakes.map(x=>`<li>${x}</li>`).join('')}</ul></div><div id="tips" class="academySection"><h3>Indicazioni FORGE</h3><ul>${g.tips.map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Beneficio:</b> sviluppa ${e.m.join(', ')}.</p></div></div></div>`);
+ document.querySelectorAll('.academyTabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.academySection').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.academyTabs button').forEach(x=>x.classList.remove('primary'));document.getElementById(b.dataset.tab).classList.add('active');b.classList.add('primary')}))
+}
+
 function closeModal(){$('modal').classList.remove('show')}
 function configureTimer(){
   clearInterval(timer);timer=null;paused=true;rounds=0;splits=[];elapsed=0;
@@ -632,7 +682,7 @@ function renderLibrary(){
   const q=($('search')?.value||'').toLowerCase();
   const list=E.filter(e=>(e.n+' '+e.p+' '+e.m.join(' ')+' '+e.eq.join(' ')+' '+e.d.join(' ')).toLowerCase().includes(q));
   $('exerciseCount').textContent=list.length+' esercizi';
-  $('libraryList').innerHTML=list.map(e=>`<div class="exerciseCard"><div class="title"><b>${e.n}</b><span class="tag">${e.p}</span></div><div class="muted small">${e.d.join(' · ')} · ${e.m.join(', ')} · ${e.eq.join(', ')} · livello ${e.lvl}</div></div>`).join('');
+  $('libraryList').innerHTML=list.map(e=>`<div class="exerciseCard" style="cursor:pointer" data-exercise="${e.n}" onclick="showExercise(this.dataset.exercise)"><div class="title"><b>${e.n}</b><button class="btn">Apri scheda ℹ️</button></div><div class="muted small">${e.m.join(', ')} · livello ${e.lvl}</div></div>`).join('');
 }
 function renderHistory(){
   const h=getHistory();
