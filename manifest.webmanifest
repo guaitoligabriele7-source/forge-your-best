@@ -1,9 +1,9 @@
 {
-  "name": "FORGE v9.7.2 Academy Stable",
+  "name": "FORGE v9.7.3 Academy Core",
   "short_name": "FORGE",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0d10",
   "theme_color": "#0b0d10",
-  "description": "Release stabile senza modellazione 3D, con FORGE Academy strutturata e prime 10 schede editoriali."
+  "description": "Academy estesa a 20 schede editoriali con schema dati predisposto per FORGE Coach."
 }

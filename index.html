@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <link rel="manifest" href="manifest.webmanifest">
-<title>FORGE v9.7.2 — Academy Stable</title>
+<title>FORGE v9.7.3 — Academy Core</title>
 <style>
 :root{
   --bg:#0b0d10;--panel:#14171c;--panel2:#1b2027;--line:#2a313b;
@@ -106,6 +106,8 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 <style>
 .academyStable{display:grid;gap:14px}
 .academyStable .academyTabs{display:flex;gap:8px;flex-wrap:wrap}
+.academyStable .academyMeta{display:flex;gap:8px;flex-wrap:wrap}
+.academyStable .academyBadge{padding:7px 10px;border:1px solid var(--line,#333);border-radius:999px;font-size:.86rem;font-weight:700}
 .academyStable .academySection{display:none}
 .academyStable .academySection.active{display:block}
 .academyStable .glossaryItem{margin:10px 0}
@@ -126,7 +128,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.7.2 — Academy Stable</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
+    <div class="brand"><div class="mark">F</div><div><h1>FORGE</h1><p>v9.7.3 — Academy Core</p><div class="muted small">Non estrae esercizi. Programma schemi motori.</div></div></div>
     <div class="statrow">
       <div class="stat"><b id="statWod">0</b><span class="muted small">Workout salvati</span></div>
       <div class="stat"><b id="statTest">0</b><span class="muted small">WOD testati</span></div>
@@ -142,7 +144,7 @@ display:flex;justify-content:space-around;background:rgba(11,13,16,.96);backdrop
 
 <section id="wod" class="section">
   <div class="card">
-    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.7.2</span></div>
+    <div class="title"><h2>🏋️ Forge Engine</h2><span class="pill">Build 9.7.3</span></div>
     <div class="grid">
       <div class="card third">
         <h3>1. Disciplina</h3>
@@ -983,14 +985,303 @@ const EXERCISE_ACADEMY={
  validRep:"La REP è completa quando il ginocchio posteriore raggiunge la profondità prevista e la gamba anteriore ti porta stabilmente nel passo successivo.",
  trivia:"Una base leggermente più larga migliora spesso l’equilibrio senza ridurre il lavoro delle gambe."
 }
+,
+"Band Overhead Press":{
+ id:"band-overhead-press",name:"Band Overhead Press",category:"Strength",pattern:"Spinta verticale",equipment:["Elastico"],difficulty:"Base",
+ objective:"Sviluppare la forza di spinta sopra la testa e il controllo del tronco contro una resistenza elastica crescente.",
+ primary:["Deltoidi","Tricipiti"],secondary:["Trapezio superiore","Dentato anteriore"],stabilizers:["Addominali","Glutei","Erettori spinali"],
+ mobilityRequirements:["Flessione di spalla sufficiente a portare le braccia sopra la testa senza compenso lombare."],prerequisites:["Capacità di mantenere costole e bacino allineati in piedi."],
+ setup:"Posiziona il centro dell’elastico sotto entrambi i piedi. Porta le estremità all’altezza delle spalle, con polsi neutri, piedi stabili e addome attivo.",
+ execution:["Controlla che l’elastico sia centrato e della stessa lunghezza sui due lati.","Parti con gomiti leggermente davanti al busto e avambracci verticali.","Contrai glutei e addome senza irrigidire il respiro.","Spingi le mani verso l’alto seguendo una traiettoria quasi verticale.","Mentre le braccia salgono, lascia che le scapole ruotino verso l’alto senza sollevare eccessivamente le spalle.","Termina con gomiti estesi, bicipiti vicini alle orecchie e costole controllate.","Riporta lentamente le mani alle spalle mantenendo tensione continua."],
+ breathing:"Inspira nella posizione iniziale; espira durante la spinta. Inspira nuovamente durante il ritorno controllato.",
+ biomechanics:["La spalla compie flessione e abduzione sul piano scapolare.","Il gomito si estende durante la spinta.","Le scapole ruotano verso l’alto e si elevano in modo controllato.","Il core contrasta l’iperestensione lombare causata dalla trazione dell’elastico."],
+ biomechanicsDetail:{hips:"Estese e stabili.",knees:"Morbide ma ferme.",ankles:"Stabili sul tripode del piede.",spine:"Neutra, senza compenso lombare.",shoulders:"Flessione sopra la testa.",scapulae:"Rotazione verso l’alto controllata.",elbows:"Estensione completa.",wrists:"Neutri."},
+ forgeStandard:["Elastico centrato sotto i piedi.","Corpo stabile senza spinta delle gambe.","Gomiti completamente estesi sopra la testa.","Costole sopra il bacino, senza inarcare la zona lombare.","Ritorno controllato alle spalle."],
+ mistakes:[
+  {error:"Inarcare la zona lombare.",consequence:"Trasferisce il movimento dalla spalla alla colonna.",correction:"Stringi glutei e abbassa le costole; usa un elastico più leggero."},
+  {error:"Spingere le mani in avanti.",consequence:"Riduce l’efficienza della spinta verticale.",correction:"Porta la testa leggermente avanti solo dopo che le mani hanno superato la fronte."},
+  {error:"Piegare i polsi all’indietro.",consequence:"Aumenta lo stress sul polso.",correction:"Mantieni nocche, polso e avambraccio allineati."}
+ ],
+ tips:["Spingi il soffitto lontano da te.","Rimani alto, ma non inarcato.","Lascia che le scapole si muovano: non bloccarle verso il basso."],
+ stopIf:["Compare dolore alla spalla.","Non riesci a mantenere il tronco stabile.","L’elastico scivola o presenta usura."],
+ regression:"Usa un elastico più leggero o lavora con un braccio alla volta in mezzo-inginocchio.",
+ progression:"Usa un elastico più resistente o aggiungi una pausa sopra la testa.",
+ validRep:"La REP termina con gomiti estesi sopra la testa, tronco stabile e ritorno controllato alla posizione iniziale.",
+ programming:{strength:"6–10 REPS controllate.",hypertrophy:"8–15 REPS con tensione continua.",endurance:"15–25 REPS leggere.",conditioning:"Serie brevi inserite in circuiti tecnici."},
+ safety:{contraindications:["Dolore acuto durante la spinta sopra la testa."],cautions:["Ridurre l’ampiezza se manca mobilità di spalla."]},
+ trivia:"La resistenza elastica aumenta vicino alla parte alta, dove l’elastico è maggiormente allungato.",
+ relatedExercises:["Pike Push-up","Dumbbell Push Press","Band Chest Press"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["polsi","gomiti","spalle","costole","bacino"],jointsToTrack:["wrist","elbow","shoulder","hip"],commonFaults:["lumbar_extension","forward_press_path","incomplete_lockout"]}
+},
+"Pike Push-up":{
+ id:"pike-push-up",name:"Pike Push-up",category:"Calisthenics",pattern:"Spinta verticale",equipment:["Corpo libero"],difficulty:"Intermedio",
+ objective:"Sviluppare forza di spinta verticale a corpo libero, preparando spalle e tricipiti a varianti invertite più avanzate.",
+ primary:["Deltoidi","Tricipiti"],secondary:["Pettorali superiori","Trapezio"],stabilizers:["Addominali","Dentato anteriore","Avambracci"],
+ mobilityRequirements:["Buona flessione di spalla.","Flessibilità sufficiente della catena posteriore per mantenere il bacino alto."],prerequisites:["Push-up stabile.","Plank alto controllato."],
+ setup:"Parti in plank alto, poi cammina con i piedi verso le mani e solleva il bacino fino a creare una forma a V rovesciata. Mani poco più larghe delle spalle, dita aperte e talloni sollevati se necessario.",
+ execution:["Spingi il pavimento e mantieni il bacino alto.","Orienta i gomiti diagonalmente indietro, non completamente laterali.","Piega i gomiti e porta la sommità della testa verso un punto davanti alle mani.","Mantieni il peso distribuito tra tutta la mano, con particolare attenzione a indice e pollice.","Scendi finché controlli spalle, collo e tronco.","Spingi il pavimento, estendi i gomiti e torna alla posizione iniziale senza abbassare il bacino."],
+ breathing:"Inspira durante la discesa; espira mentre spingi per tornare in alto.",
+ biomechanics:["La spalla lavora in una posizione più verticale rispetto al Push-up.","Il gomito si flette e si estende mentre le scapole ruotano verso l’alto.","Il bacino alto sposta una quota maggiore del peso corporeo sulle braccia."],
+ biomechanicsDetail:{hips:"Flesse e mantenute alte.",knees:"Estese o leggermente flesse.",ankles:"Talloni liberi di sollevarsi.",spine:"Allungata e stabile.",shoulders:"Flessione elevata.",scapulae:"Rotazione verso l’alto.",elbows:"Flettono diagonalmente.",wrists:"Sotto carico, mani attive."},
+ forgeStandard:["Bacino mantenuto alto per tutta la REP.","Testa diretta davanti alle mani.","Gomiti controllati, senza apertura completa laterale.","Estensione completa dei gomiti in alto.","Nessun collasso della testa o delle spalle."],
+ mistakes:[
+  {error:"Trasformare il gesto in un Push-up inclinato.",consequence:"Riduce il carico verticale sulle spalle.",correction:"Avvicina i piedi alle mani e mantieni il bacino alto."},
+  {error:"Portare la testa tra le mani.",consequence:"Crea una traiettoria poco efficace.",correction:"Forma un triangolo tra testa e mani, mirando davanti alla linea delle dita."},
+  {error:"Lasciar collassare le spalle.",consequence:"Riduce la stabilità scapolare.",correction:"Spingi attivamente il pavimento anche nella posizione alta."}
+ ],
+ tips:["Pensa a scendere con la testa davanti alle mani.","Mantieni il bacino come il punto più alto del corpo.","Crea un triangolo stabile tra le due mani e la testa."],
+ stopIf:["Compare dolore a polsi, collo o spalle.","Il bacino scende a ogni REP.","Non controlli la fase eccentrica."],
+ regression:"Esegui il Pike Push-up con mani su un supporto rialzato o riduci la profondità.",
+ progression:"Eleva i piedi su un box o passa al Box Pike Push-up.",
+ validRep:"La testa raggiunge la profondità prevista davanti alle mani e il corpo ritorna con gomiti estesi e bacino ancora alto.",
+ programming:{strength:"4–8 REPS.",hypertrophy:"6–12 REPS.",endurance:"Serie tecniche moderate.",conditioning:"Usare solo se la forma resta stabile sotto fatica."},
+ safety:{contraindications:["Dolore cervicale o alla spalla durante il carico."],cautions:["Proteggere la testa con ampiezza controllata."]},
+ trivia:"È una delle regressioni più utili per costruire la spinta necessaria alle verticali e agli Handstand Push-up.",
+ relatedExercises:["Band Overhead Press","Box Pike Push-up","Push-up"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["mani","testa","gomiti","spalle","bacino"],jointsToTrack:["wrist","elbow","shoulder","hip"],commonFaults:["low_hips","head_between_hands","elbow_flare"]}
+},
+"Band Chest Press":{
+ id:"band-chest-press",name:"Band Chest Press",category:"Strength",pattern:"Spinta orizzontale",equipment:["Elastico","Ancoraggio"],difficulty:"Base",
+ objective:"Allenare pettorali e tricipiti con una spinta orizzontale stabile e resistenza progressiva.",
+ primary:["Pettorali","Tricipiti"],secondary:["Deltoidi anteriori"],stabilizers:["Dentato anteriore","Addominali","Glutei"],
+ mobilityRequirements:["Estensione di spalla moderata e indolore."],prerequisites:["Capacità di mantenere una posizione stabile in piedi."],
+ setup:"Ancora l’elastico dietro di te all’altezza del petto. Afferra le estremità, fai un passo avanti e assumi una posizione sfalsata stabile con mani ai lati del torace.",
+ execution:["Verifica la stabilità dell’ancoraggio e la simmetria dell’elastico.","Mantieni polsi neutri e gomiti inclinati circa 30–60 gradi rispetto al busto.","Attiva addome e glutei per impedire al tronco di ruotare o inarcarsi.","Spingi entrambe le mani in avanti fino a estendere i gomiti.","Avvicina leggermente le mani senza perdere l’allineamento delle spalle.","Fermati brevemente, poi torna lentamente finché le mani raggiungono il torace."],
+ breathing:"Inspira nel ritorno; espira durante la spinta.",
+ biomechanics:["La spalla compie adduzione orizzontale.","Il gomito si estende durante la spinta.","Le scapole protraggono in modo naturale nella parte finale.","Il core contrasta la trazione posteriore e la rotazione."],
+ biomechanicsDetail:{hips:"Stabili in posizione sfalsata.",knees:"Leggermente flesse.",ankles:"Base solida.",spine:"Neutra.",shoulders:"Adduzione orizzontale.",scapulae:"Protrazione controllata.",elbows:"Estensione.",wrists:"Neutri."},
+ forgeStandard:["Ancoraggio sicuro.","Tronco immobile durante la spinta.","Gomiti estesi senza blocco aggressivo.","Mani alla stessa altezza.","Ritorno lento e controllato."],
+ mistakes:[
+  {error:"Inarcare il busto.",consequence:"Riduce il lavoro dei pettorali e aumenta il compenso lombare.",correction:"Riduci la tensione e mantieni costole sopra il bacino."},
+  {error:"Spalle sollevate.",consequence:"Aumenta tensione cervicale.",correction:"Mantieni collo lungo e scapole libere di muoversi."},
+  {error:"Ritorno troppo rapido.",consequence:"Perde controllo eccentrico.",correction:"Rientra in due o tre secondi."}
+ ],
+ tips:["Spingi attraverso il palmo.","Mantieni il petto fermo, non inseguire le mani.","Lascia che le scapole scorrano intorno alla gabbia toracica."],
+ stopIf:["L’ancoraggio si muove.","Compare dolore alla spalla.","L’elastico presenta tagli."],
+ regression:"Avvicinati all’ancoraggio o usa un elastico più leggero.",
+ progression:"Allontanati dall’ancoraggio, usa maggiore resistenza o lavora unilateralmente.",
+ validRep:"Le mani avanzano in modo simmetrico fino all’estensione dei gomiti e tornano al torace senza movimento del tronco.",
+ programming:{strength:"6–10 REPS.",hypertrophy:"8–15 REPS.",endurance:"15–25 REPS.",conditioning:"Serie brevi a ritmo regolare."},
+ safety:{contraindications:["Dolore acuto durante la spinta."],cautions:["Controllare sempre l’ancoraggio."]},
+ trivia:"L’elastico offre la massima resistenza nella parte finale, quando le braccia sono quasi estese.",
+ relatedExercises:["Push-up","Band Overhead Press","Incline Push-up"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["polsi","gomiti","spalle","costole","bacino"],jointsToTrack:["wrist","elbow","shoulder","hip"],commonFaults:["trunk_extension","asymmetric_press","shoulder_elevation"]}
+},
+"Band Romanian Deadlift":{
+ id:"band-romanian-deadlift",name:"Band Romanian Deadlift",category:"Strength",pattern:"Hinge",equipment:["Elastico"],difficulty:"Base",
+ objective:"Sviluppare glutei e femorali attraverso un hip hinge caricato, mantenendo la colonna stabile.",
+ primary:["Femorali","Glutei"],secondary:["Adduttore grande","Erettori spinali"],stabilizers:["Addominali","Gran dorsale","Presa"],
+ mobilityRequirements:["Capacità di flettere l’anca mantenendo la colonna controllata."],prerequisites:["Hip hinge a corpo libero.","Band Good Morning stabile."],
+ setup:"Posiziona l’elastico sotto entrambi i piedi. Afferra le estremità davanti alle cosce, piedi alla larghezza delle anche, ginocchia leggermente flesse e braccia lunghe.",
+ execution:["Crea tensione nell’elastico e stabilizza le spalle.","Inspira e attiva l’addome.","Spingi il bacino indietro mantenendo le tibie quasi verticali.","Lascia scorrere le mani lungo le cosce senza allontanarle dal corpo.","Scendi finché senti tensione nei femorali senza perdere la posizione della colonna.","Spingi il pavimento e porta il bacino avanti.","Termina in piedi con glutei attivi, senza inclinarti indietro."],
+ breathing:"Inspira prima e durante la discesa; espira nella risalita mantenendo pressione addominale.",
+ biomechanics:["L’anca è l’articolazione principale del movimento.","Le ginocchia mantengono una flessione ridotta e quasi costante.","La colonna rimane stabile mentre il bacino arretra.","L’elastico aumenta la resistenza durante l’estensione dell’anca."],
+ biomechanicsDetail:{hips:"Flettono e si estendono.",knees:"Morbide, poco mobili.",ankles:"Stabili.",spine:"Neutra.",shoulders:"Depresse e stabili.",scapulae:"Stabili sul torace.",elbows:"Estesi.",wrists:"Neutri."},
+ forgeStandard:["Tibie quasi verticali.","Elastico vicino alle gambe.","Schiena stabile.","Bacino che arretra e poi ritorna avanti.","Chiusura in piedi senza iperestensione."],
+ mistakes:[
+  {error:"Piegare molto le ginocchia.",consequence:"Trasforma il gesto in uno squat.",correction:"Mantieni le tibie quasi ferme e spingi il bacino indietro."},
+  {error:"Allontanare le mani dalle gambe.",consequence:"Aumenta il braccio di leva sulla zona lombare.",correction:"Fai scorrere le mani vicino alle cosce."},
+  {error:"Iperestendere in alto.",consequence:"Crea compenso lombare.",correction:"Termina quando bacino e costole sono impilati."}
+ ],
+ tips:["Chiudi una portiera con i glutei.","Mantieni l’elastico attaccato alle gambe.","Fermati quando termina la mobilità dell’anca, non quando le mani raggiungono il pavimento."],
+ stopIf:["Compare dolore lombare.","La schiena si arrotonda nonostante la riduzione dell’ampiezza.","L’elastico scivola sotto i piedi."],
+ regression:"Usa meno tensione o riduci l’ampiezza.",
+ progression:"Aumenta la resistenza o rallenta la discesa a tre o quattro secondi.",
+ validRep:"Il bacino arretra con colonna stabile e torna in completa estensione senza slancio o iperestensione.",
+ programming:{strength:"6–10 REPS.",hypertrophy:"8–15 REPS.",endurance:"12–20 REPS.",conditioning:"Moderare la velocità per proteggere la tecnica."},
+ safety:{contraindications:["Dolore lombare acuto."],cautions:["Ridurre l’ampiezza in caso di mobilità limitata."]},
+ trivia:"Il Romanian Deadlift mantiene generalmente le ginocchia più ferme rispetto a un Deadlift dal pavimento.",
+ relatedExercises:["Band Good Morning","Glute Bridge","Dumbbell Romanian Deadlift"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["spalle","colonna","bacino","ginocchia","caviglie"],jointsToTrack:["shoulder","hip","knee","ankle"],commonFaults:["lumbar_flexion","excessive_knee_flexion","hyperextension_lockout"]}
+},
+"Glute Bridge":{
+ id:"glute-bridge",name:"Glute Bridge",category:"Strength",pattern:"Estensione d’anca",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Rafforzare i glutei e imparare a estendere l’anca senza compensare con la zona lombare.",
+ primary:["Glutei"],secondary:["Femorali","Adduttori"],stabilizers:["Addominali","Erettori spinali"],
+ mobilityRequirements:["Estensione d’anca indolore."],prerequisites:["Capacità di eseguire una retroversione del bacino da supino."],
+ setup:"Sdraiati supino con ginocchia piegate e piedi appoggiati alla larghezza delle anche. Posiziona i talloni abbastanza vicini da poterli spingere con controllo.",
+ execution:["Appoggia testa, spalle e braccia al pavimento.","Espira e porta leggermente il bacino in retroversione, avvicinando il pube alle costole.","Spingi il pavimento con tutto il piede.","Solleva il bacino estendendo le anche.","Fermati quando spalle, bacino e ginocchia formano una linea, senza inarcare la schiena.","Contrai i glutei per un istante.","Abbassa il bacino lentamente mantenendo il controllo."],
+ breathing:"Espira mentre sollevi il bacino; inspira durante la discesa.",
+ biomechanics:["L’anca si estende grazie soprattutto ai glutei.","Il bacino resta controllato per evitare iperestensione lombare.","La posizione dei piedi modifica il contributo relativo di glutei e femorali."],
+ biomechanicsDetail:{hips:"Estensione.",knees:"Flesse e stabili.",ankles:"Piedi completamente appoggiati.",spine:"Neutra o leggermente flessa in modo controllato.",shoulders:"Appoggiate.",scapulae:"Stabili al suolo.",elbows:"Rilassati.",wrists:"Neutri."},
+ forgeStandard:["Piedi stabili e simmetrici.","Bacino sollevato tramite estensione d’anca.","Costole controllate.","Nessuna iperestensione lombare.","Discesa lenta fino al pavimento."],
+ mistakes:[
+  {error:"Spingere dalla zona lombare.",consequence:"Riduce il lavoro dei glutei.",correction:"Inizia con una leggera retroversione e termina prima di inarcare la schiena."},
+  {error:"Piedi troppo lontani.",consequence:"Aumenta il lavoro dei femorali e può favorire crampi.",correction:"Avvicina leggermente i talloni al bacino."},
+  {error:"Ginocchia che si aprono o chiudono.",consequence:"Riduce la stabilità dell’anca.",correction:"Mantieni ginocchia e piedi paralleli."}
+ ],
+ tips:["Porta la cintura verso le costole.","Spingi il pavimento via da te.","Stringi i glutei, non la schiena."],
+ stopIf:["Compare dolore lombare.","Avverti crampi persistenti ai femorali.","Il bacino sale in modo asimmetrico."],
+ regression:"Riduci l’ampiezza e pratica solo la retroversione del bacino.",
+ progression:"Aggiungi una pausa in alto o passa al Single-leg Glute Bridge.",
+ validRep:"Il bacino raggiunge l’allineamento con spalle e ginocchia senza iperestensione e torna a terra sotto controllo.",
+ programming:{strength:"10–15 REPS con pausa.",hypertrophy:"12–20 REPS.",endurance:"20–30 REPS.",conditioning:"Usabile in circuiti a basso impatto."},
+ safety:{contraindications:["Dolore lombare durante il sollevamento."],cautions:["Evitare di spingere eccessivamente con il collo."]},
+ trivia:"È spesso usato per insegnare la differenza tra estensione dell’anca e iperestensione della colonna.",
+ relatedExercises:["Band Romanian Deadlift","Single-leg Glute Bridge","Band Good Morning"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["spalle","costole","bacino","ginocchia","piedi"],jointsToTrack:["shoulder","hip","knee","ankle"],commonFaults:["lumbar_hyperextension","asymmetric_hips","knee_drift"]}
+},
+"Plank":{
+ id:"plank",name:"Plank",category:"Core",pattern:"Anti-estensione",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Allenare il core a impedire l’estensione lombare mantenendo il corpo rigido sotto carico.",
+ primary:["Addominali"],secondary:["Obliqui","Dentato anteriore"],stabilizers:["Glutei","Quadricipiti","Spalle"],
+ mobilityRequirements:["Posizione neutra di spalla e anca indolore."],prerequisites:["Capacità di sostenere il peso sugli avambracci."],
+ setup:"Appoggia avambracci e punte dei piedi al pavimento. Gomiti sotto le spalle, avambracci paralleli o leggermente convergenti, gambe estese.",
+ execution:["Spingi gli avambracci nel pavimento.","Allontana le spalle dalle orecchie e mantieni il collo lungo.","Contrai i quadricipiti e spingi i talloni indietro.","Stringi i glutei e porta leggermente il bacino in retroversione.","Abbassa le costole senza trattenere il respiro.","Mantieni una linea continua da testa a talloni per il tempo previsto."],
+ breathing:"Respira lentamente dietro la tensione addominale. Espira senza lasciare che il bacino cada.",
+ biomechanics:["Il core produce una contrazione isometrica anti-estensione.","Le scapole vengono stabilizzate dal dentato anteriore.","Glutei e quadricipiti contribuiscono a mantenere anche e ginocchia estese."],
+ biomechanicsDetail:{hips:"Estese e stabili.",knees:"Estese.",ankles:"In appoggio sulle punte.",spine:"Neutra.",shoulders:"Sopra i gomiti.",scapulae:"Protratte e stabili.",elbows:"Flessi a circa 90 gradi.",wrists:"Rilassati."},
+ forgeStandard:["Gomiti sotto le spalle.","Linea continua testa–bacino–talloni.","Zona lombare stabile.","Bacino non sollevato e non cadente.","Respirazione mantenuta per tutto il tempo."],
+ mistakes:[
+  {error:"Bacino che crolla.",consequence:"Aumenta l’estensione lombare.",correction:"Contrai glutei e abbassa le costole."},
+  {error:"Bacino troppo alto.",consequence:"Riduce il carico sul core.",correction:"Porta il bacino in linea con spalle e talloni."},
+  {error:"Trattenere il respiro.",consequence:"Riduce la capacità di mantenere la posizione.",correction:"Usa espirazioni lente mantenendo tensione."}
+ ],
+ tips:["Spingi i gomiti verso i piedi senza muoverli.","Immagina di accorciare la distanza tra costole e bacino.","Rendi il corpo rigido prima di aumentare il tempo."],
+ stopIf:["Compare dolore lombare o alla spalla.","Non riesci più a mantenere la linea.","Il respiro diventa completamente bloccato."],
+ regression:"Appoggia le ginocchia o usa un supporto rialzato per gli avambracci.",
+ progression:"Aumenta la tensione globale, allunga la leva o solleva un arto mantenendo il bacino fermo.",
+ validRep:"Il tempo è valido solo finché la linea del corpo, la posizione lombare e la respirazione restano controllate.",
+ programming:{strength:"10–30 secondi ad alta tensione.",hypertrophy:"Non prioritario.",endurance:"30–60 secondi tecnici.",conditioning:"Intervalli brevi senza cedimento posturale."},
+ safety:{contraindications:["Dolore acuto alla zona lombare o alla spalla."],cautions:["Preferire serie più brevi e perfette a tenute molto lunghe."]},
+ trivia:"Un plank più lungo non è necessariamente migliore: aumentando la tensione muscolare può diventare impegnativo anche in pochi secondi.",
+ relatedExercises:["Side Plank","Hollow Hold","Dead Bug"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["orecchio","spalla","bacino","ginocchio","caviglia"],jointsToTrack:["shoulder","hip","knee","ankle"],commonFaults:["hip_sag","piked_hips","forward_head"]}
+},
+"Side Plank":{
+ id:"side-plank",name:"Side Plank",category:"Core",pattern:"Anti-flessione laterale",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Rafforzare obliqui e stabilizzatori laterali impedendo al bacino di cedere verso il pavimento.",
+ primary:["Obliqui","Quadrato dei lombi"],secondary:["Gluteo medio","Dentato anteriore"],stabilizers:["Spalla","Adduttori","Addominali"],
+ mobilityRequirements:["Appoggio laterale di spalla indolore."],prerequisites:["Plank di base stabile."],
+ setup:"Sdraiati su un fianco con gomito sotto la spalla. Allinea gambe e piedi, sovrapponendoli o sfalsandoli per maggiore stabilità.",
+ execution:["Spingi l’avambraccio nel pavimento.","Allontana la spalla dall’orecchio.","Solleva il bacino fino a creare una linea continua tra testa, bacino e piedi.","Mantieni il torace rivolto lateralmente senza ruotarlo verso il pavimento.","Contrai glutei e addome.","Respira mantenendo la posizione per il tempo previsto.","Scendi lentamente senza collassare sulla spalla."],
+ breathing:"Respira in modo continuo; espira mantenendo il bacino alto e le costole controllate.",
+ biomechanics:["Il core resiste alla flessione laterale della colonna.","La spalla inferiore stabilizza il peso attraverso l’avambraccio.","Il gluteo medio contribuisce a mantenere il bacino allineato."],
+ biomechanicsDetail:{hips:"Estese e impilate.",knees:"Estese o flesse nella regressione.",ankles:"Sovrapposte o sfalsate.",spine:"Neutra sul piano frontale.",shoulders:"Impilate verticalmente.",scapulae:"Stabili.",elbows:"Gomito inferiore sotto la spalla.",wrists:"Rilassati."},
+ forgeStandard:["Gomito sotto la spalla.","Corpo in linea laterale.","Bacino alto e non ruotato.","Spalle impilate.","Respirazione continua."],
+ mistakes:[
+  {error:"Bacino che scende.",consequence:"Riduce la tensione laterale e altera la linea.",correction:"Accorcia la serie o appoggia il ginocchio inferiore."},
+  {error:"Torace ruotato verso il pavimento.",consequence:"Trasforma il gesto e riduce il controllo laterale.",correction:"Immagina di mantenere schiena e bacino contro una parete."},
+  {error:"Spalla compressa verso l’orecchio.",consequence:"Aumenta tensione cervicale.",correction:"Spingi il pavimento e allunga il collo."}
+ ],
+ tips:["Solleva il fianco inferiore lontano dal pavimento.","Mantieni il corpo tra due lastre di vetro.","Premi il bordo esterno del piede inferiore."],
+ stopIf:["Compare dolore alla spalla.","Il bacino non resta sollevato.","Perdi l’allineamento del collo."],
+ regression:"Appoggia il ginocchio inferiore piegato al pavimento.",
+ progression:"Solleva la gamba superiore o esegui una Reach-through controllata.",
+ validRep:"Il tempo è valido finché spalla, bacino e piedi restano allineati e il bacino non cede.",
+ programming:{strength:"10–30 secondi per lato.",hypertrophy:"Non prioritario.",endurance:"20–45 secondi per lato.",conditioning:"Tenute brevi alternate."},
+ safety:{contraindications:["Dolore acuto alla spalla inferiore."],cautions:["Evitare pressioni eccessive sul gomito senza imbottitura."]},
+ trivia:"La stabilità laterale del tronco è importante anche in movimenti apparentemente sagittali come corsa, squat e trasporti.",
+ relatedExercises:["Plank","Pallof Press","Suitcase Carry"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["testa","spalle","bacino","ginocchia","caviglie"],jointsToTrack:["shoulder","hip","knee","ankle"],commonFaults:["hip_drop","trunk_rotation","shoulder_shrug"]}
+},
+"Arch Hold":{
+ id:"arch-hold",name:"Arch Hold",category:"Core",pattern:"Estensione posteriore",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Sviluppare tensione della catena posteriore e controllo della posizione arch senza forzare la zona lombare.",
+ primary:["Erettori spinali","Glutei"],secondary:["Femorali","Deltoidi posteriori"],stabilizers:["Gran dorsale","Muscoli cervicali profondi"],
+ mobilityRequirements:["Estensione toracica e di spalla indolore."],prerequisites:["Capacità di contrarre i glutei in posizione prona."],
+ setup:"Sdraiati prono con gambe distese e braccia oltre la testa oppure lungo i fianchi. Mantieni fronte orientata verso il pavimento.",
+ execution:["Allunga le gambe indietro e le braccia avanti.","Contrai i glutei e unisci leggermente le gambe.","Solleva contemporaneamente petto, braccia e cosce di pochi centimetri.","Mantieni il collo neutro e lo sguardo verso il pavimento.","Distribuisci l’estensione lungo tutta la catena posteriore, non solo nella zona lombare.","Mantieni per il tempo previsto respirando in modo controllato.","Torna lentamente a terra."],
+ breathing:"Inspira nella preparazione; espira mentre crei la posizione. Mantieni respiri brevi senza perdere tensione.",
+ biomechanics:["La colonna e le anche lavorano in estensione isometrica controllata.","Le scapole seguono la posizione delle braccia senza essere forzate verso il basso.","I glutei limitano una concentrazione eccessiva del lavoro nella zona lombare."],
+ biomechanicsDetail:{hips:"Estese.",knees:"Estese.",ankles:"Allungate.",spine:"Estensione distribuita e controllata.",shoulders:"Flesse sopra la testa o estese lungo i fianchi.",scapulae:"Stabili.",elbows:"Estesi.",wrists:"Neutri."},
+ forgeStandard:["Glutei attivi.","Gambe e braccia sollevate in modo simmetrico.","Collo neutro.","Nessun dolore lombare.","Tenuta stabile senza slanci."],
+ mistakes:[
+  {error:"Sollevare troppo il torace.",consequence:"Concentra l’estensione nella zona lombare.",correction:"Riduci l’altezza e allungati più che sollevarti."},
+  {error:"Iperestendere il collo.",consequence:"Crea tensione cervicale.",correction:"Guarda il pavimento e mantieni il mento leggermente rientrato."},
+  {error:"Lasciare i glutei rilassati.",consequence:"Aumenta il carico locale sulla schiena.",correction:"Contrai prima i glutei, poi solleva."}
+ ],
+ tips:["Diventa lungo, non alto.","Allunga mani e piedi in direzioni opposte.","Stringi i glutei prima di staccarti dal pavimento."],
+ stopIf:["Compare dolore lombare o cervicale.","La respirazione diventa impossibile.","Il corpo si solleva in modo asimmetrico."],
+ regression:"Mantieni le braccia lungo i fianchi o solleva solo il petto o solo le gambe.",
+ progression:"Passa all’Arch Rock mantenendo la stessa forma.",
+ validRep:"La tenuta è valida se petto e cosce sono sollevati in modo controllato, il collo resta neutro e non compare dolore.",
+ programming:{strength:"10–25 secondi.",hypertrophy:"Non prioritario.",endurance:"20–40 secondi.",conditioning:"Tenute brevi tecniche."},
+ safety:{contraindications:["Dolore lombare provocato dall’estensione."],cautions:["Ampiezza piccola e distribuita."]},
+ trivia:"La posizione arch è il complemento della hollow body position e viene usata spesso nella ginnastica.",
+ relatedExercises:["Hollow Hold","Superman","Arch Rock"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["mani","spalle","torace","bacino","piedi"],jointsToTrack:["shoulder","spine","hip","knee"],commonFaults:["excessive_lumbar_extension","neck_extension","asymmetric_lift"]}
+},
+"Bear Crawl":{
+ id:"bear-crawl",name:"Bear Crawl",category:"Locomotion",pattern:"Locomozione quadrupedica",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Allenare coordinazione crociata, stabilità del core e resistenza di spalle e gambe durante una locomozione quadrupedica.",
+ primary:["Addominali","Spalle","Quadricipiti"],secondary:["Tricipiti","Flessori dell’anca","Polpacci"],stabilizers:["Dentato anteriore","Obliqui","Glutei"],
+ mobilityRequirements:["Appoggio sui polsi indolore.","Flessione d’anca e ginocchio sufficiente."],prerequisites:["Plank alto stabile.","Capacità di mantenere la posizione quadrupedica."],
+ setup:"Parti a quattro appoggi con mani sotto le spalle e ginocchia sotto le anche. Solleva le ginocchia di pochi centimetri dal pavimento.",
+ execution:["Spingi attivamente il pavimento e mantieni la schiena parallela al suolo.","Porta leggermente il bacino in posizione neutra e attiva l’addome.","Avanza contemporaneamente con mano destra e piede sinistro usando passi corti.","Prosegui con mano sinistra e piede destro.","Mantieni le ginocchia basse e il bacino stabile.","Evita di incrociare mani o piedi.","Continua per la distanza prevista, poi arrestati con controllo."],
+ breathing:"Respira in modo continuo e ritmico. Espira ogni uno o due passi mantenendo il core attivo.",
+ biomechanics:["La locomozione utilizza uno schema crociato controlaterale.","Il core resiste a rotazione ed estensione.","Spalle e anche stabilizzano il peso mentre gli appoggi cambiano continuamente."],
+ biomechanicsDetail:{hips:"Flesse e stabili.",knees:"Flesse e sospese vicino al pavimento.",ankles:"Appoggio sull’avampiede.",spine:"Neutra.",shoulders:"Sopra o vicino alle mani.",scapulae:"Protratte e stabili.",elbows:"Estesi ma non bloccati.",wrists:"Sotto le spalle."},
+ forgeStandard:["Ginocchia sospese e basse.","Passi corti e controlaterali.","Bacino stabile.","Schiena parallela al pavimento.","Nessun incrocio degli arti."],
+ mistakes:[
+  {error:"Bacino troppo alto.",consequence:"Riduce la richiesta sul core e cambia il pattern.",correction:"Mantieni le ginocchia vicine al pavimento."},
+  {error:"Passi troppo lunghi.",consequence:"Aumenta rotazione e perdita di equilibrio.",correction:"Usa passi piccoli e silenziosi."},
+  {error:"Oscillare il bacino lateralmente.",consequence:"Riduce il controllo anti-rotazione.",correction:"Immagina un bicchiere appoggiato sulla zona lombare."}
+ ],
+ tips:["Muoviti come un tavolo basso.","Passi piccoli, silenziosi e opposti.","Spingi il pavimento via da te."],
+ stopIf:["Compare dolore ai polsi o alle spalle.","Le ginocchia non restano sospese.","Il bacino ruota in modo incontrollato."],
+ regression:"Mantieni la posizione statica oppure avanza un appoggio alla volta molto lentamente.",
+ progression:"Procedi all’indietro, lateralmente o con un oggetto leggero appoggiato sulla schiena.",
+ validRep:"La distanza è valida finché ginocchia, bacino e schiena mantengono lo Standard FORGE con passi controlaterali.",
+ programming:{strength:"Distanze brevi e lente.",hypertrophy:"Non prioritario.",endurance:"10–30 metri controllati.",conditioning:"Intervalli brevi con recupero adeguato."},
+ safety:{contraindications:["Dolore acuto a polsi o spalle."],cautions:["Usare superficie non scivolosa."]},
+ trivia:"Lo schema mano destra–piede sinistro riproduce la coordinazione crociata tipica della camminata e della corsa.",
+ relatedExercises:["Mountain Climber","Crab Walk","Plank"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["mani","spalle","bacino","ginocchia","piedi"],jointsToTrack:["wrist","shoulder","hip","knee","ankle"],commonFaults:["high_hips","trunk_rotation","long_steps"]}
+}
+,
+"Dead Bug":{
+ id:"dead-bug",name:"Dead Bug",category:"Core",pattern:"Anti-estensione",equipment:["Corpo libero"],difficulty:"Base",
+ objective:"Allenare il controllo lombopelvico mentre braccia e gambe si muovono in modo alternato.",
+ primary:["Addominali"],secondary:["Flessori dell’anca"],stabilizers:["Obliqui","Dentato anteriore"],
+ mobilityRequirements:["Flessione di anca e spalla indolore."],prerequisites:["Capacità di mantenere la zona lombare controllata da supino."],
+ setup:"Sdraiati supino con anche e ginocchia a circa 90 gradi e braccia verticali sopra le spalle. Porta le costole verso il bacino e mantieni la zona lombare appoggiata.",
+ execution:["Espira e crea pressione addominale.","Estendi lentamente una gamba e il braccio opposto.","Fermati prima che la zona lombare perda contatto con il pavimento.","Riporta braccio e gamba alla posizione iniziale.","Ripeti sul lato opposto mantenendo il bacino immobile.","Continua alternando con ritmo lento e controllato."],
+ breathing:"Espira durante l’allungamento degli arti; inspira nel ritorno senza perdere la posizione lombare.",
+ biomechanics:["Il core resiste all’estensione e alla rotazione del bacino.","Braccio e gamba opposti aumentano progressivamente la leva.","La colonna lombare resta stabile mentre spalle e anche si muovono."],
+ biomechanicsDetail:{hips:"Alternano flessione ed estensione.",knees:"Si estendono nella variante completa.",ankles:"Neutre.",spine:"Lombare stabile.",shoulders:"Flessione ed estensione controllata.",scapulae:"Appoggiate.",elbows:"Estesi.",wrists:"Neutri."},
+ forgeStandard:["Zona lombare controllata.","Bacino immobile.","Arti opposti mossi lentamente.","Nessun arco lombare.","Ritorno completo prima di alternare."],
+ mistakes:[
+  {error:"Estendere troppo gli arti.",consequence:"La zona lombare si solleva.",correction:"Riduci la leva o l’ampiezza."},
+  {error:"Muoversi troppo velocemente.",consequence:"Nasconde la perdita di controllo.",correction:"Usa tre secondi per l’allungamento."},
+  {error:"Trattenere il respiro.",consequence:"Rende difficile stabilizzare in modo sostenibile.",correction:"Espira lentamente mentre allunghi."}
+ ],
+ tips:["Schiaccia delicatamente la cintura contro il pavimento.","Allungati solo finché controlli la schiena.","Muovi gli arti, non il bacino."],
+ stopIf:["Compare dolore lombare.","La schiena si solleva a ogni REP.","Non riesci a coordinare respiro e movimento."],
+ regression:"Muovi un solo arto alla volta o mantieni le ginocchia più piegate.",
+ progression:"Allunga completamente gamba e braccio oppure aggiungi una leggera resistenza.",
+ validRep:"Braccio e gamba opposti si estendono e ritornano senza movimento del bacino o perdita del controllo lombare.",
+ programming:{strength:"6–10 REPS lente per lato.",hypertrophy:"Non prioritario.",endurance:"8–15 REPS per lato.",conditioning:"Usare come controllo tecnico, non ad alta velocità."},
+ safety:{contraindications:["Dolore lombare durante l’esercizio."],cautions:["Ridurre subito la leva se la schiena si solleva."]},
+ trivia:"Il nome descrive la posizione supina con arti sollevati, simile a un insetto capovolto.",
+ relatedExercises:["Plank","Hollow Hold","Bird Dog"],
+ media:{image:"",animation:"",video:"",model3D:""},
+ ai:{keyPoints:["spalle","polsi","bacino","ginocchia","caviglie"],jointsToTrack:["shoulder","hip","knee"],commonFaults:["lumbar_extension","pelvic_rotation","excessive_range"]}
+}
 };
 
 function academyFallback(e){
  const g=exerciseGuide(e);
  return {
+  id:e.n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),
+  name:e.n,
+  category:e.d?.join(" / ")||"Allenamento",
+  pattern:e.p||"Generale",
+  equipment:e.eq||[],
+  difficulty:e.lvl===1?"Base":e.lvl===2?"Intermedio":"Avanzato",
   objective:`Sviluppare ${e.m.join(", ")} attraverso un’esecuzione controllata e coerente con lo schema motorio dell’esercizio.`,
   primary:e.m,
   secondary:[],
+  stabilizers:[],
   setup:g.setup,
   execution:g.execution,
   breathing:"Inspira nella fase di preparazione o ritorno ed espira durante la fase di maggiore sforzo, mantenendo il tronco stabile.",
@@ -1000,7 +1291,13 @@ function academyFallback(e){
   stopIf:["Compare dolore articolare.","Perdi equilibrio o controllo della traiettoria.","Devi usare slancio non previsto per completare le REPS."],
   regression:"Riduci resistenza, ripetizioni o ampiezza; usa una variante più semplice.",
   progression:"Aumenta gradualmente resistenza, controllo o ampiezza solo mantenendo la stessa tecnica.",
+  forgeStandard:["Completa l’ampiezza prevista.","Mantieni controllo e allineamento.","Torna alla posizione iniziale senza slancio non previsto."],
   validRep:"La REP è valida quando completi l’ampiezza prevista senza compensi e torni alla posizione iniziale sotto controllo.",
+  programming:{strength:"Da definire.",hypertrophy:"Da definire.",endurance:"Da definire.",conditioning:"Da definire."},
+  safety:{contraindications:[],cautions:[]},
+  relatedExercises:[],
+  media:{image:"",animation:"",video:"",model3D:""},
+  ai:{keyPoints:[],jointsToTrack:[],commonFaults:[]},
   trivia:"Questa scheda sarà ulteriormente perfezionata in uno dei prossimi blocchi editoriali di FORGE Academy."
  };
 }
@@ -1013,9 +1310,16 @@ function showExercise(name){
  const a=EXERCISE_ACADEMY[e.n]||academyFallback(e);
  const primary=(a.primary||[]).map(x=>`<span>🎯 ${x}</span>`).join("");
  const secondary=(a.secondary||[]).map(x=>`<span>＋ ${x}</span>`).join("");
+ const stabilizers=(a.stabilizers||[]).map(x=>`<span>🛡️ ${x}</span>`).join("");
+ const levelIcon=a.difficulty==="Base"?"🟢":a.difficulty==="Intermedio"?"🟡":"🔴";
  openSheet(e.n,`
   <div class="academyStable">
-   <div class="focusPanel">${primary}${secondary}</div>
+   <div class="academyMeta">
+    <span class="academyBadge">${levelIcon} ${a.difficulty||"Da definire"}</span>
+    <span class="academyBadge">⚙️ ${a.pattern||e.p||"Generale"}</span>
+    <span class="academyBadge">🏋️ ${(a.equipment||e.eq||[]).join(", ")}</span>
+   </div>
+   <div class="focusPanel">${primary}${secondary}${stabilizers}</div>
    <div class="viz-callout"><b>Obiettivo</b><br>${a.objective}</div>
    <div class="academyTabs">
     <button class="btn primary" data-tab="academyExecution">Esecuzione</button>
@@ -1027,6 +1331,7 @@ function showExercise(name){
     <h3>Posizione iniziale</h3><p>${a.setup}</p>
     <h3>Esecuzione passo-passo</h3>${academySteps(a.execution)}
     <h3>Respirazione</h3><p>${a.breathing}</p>
+    <h3>Standard FORGE</h3>${academyList(a.forgeStandard||[a.validRep])}
     <h3>Quando una REP è valida</h3><p>${a.validRep}</p>
    </section>
    <section id="academyBiomechanics" class="academySection">
